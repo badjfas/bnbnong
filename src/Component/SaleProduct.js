@@ -11,13 +11,6 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-  border: 3px solid #fff;
-`;
-
-const ProductContainer = styled.div``;
-
 const Price = styled.span`
   color: rgb(0, 0, 0);
   display: block;
@@ -43,9 +36,9 @@ const UL = styled.ul`
 const List = styled.li`
     display:inline-block;
     padding:20px;
-    width:200px;
+    width:50%;
     justify-content:center;
-    margin: 20px auto;
+    margin: 0 auto;
 `;
 
 const Image = styled.img`
@@ -59,7 +52,6 @@ export default () => {
         <UL>
             <List>
             <Link style={{ marginLeft: 10 }}>
-
             <Image
               src="https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
               alt="상품이미지"
