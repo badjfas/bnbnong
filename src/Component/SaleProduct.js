@@ -14,16 +14,17 @@ const Container = styled.div`
 
 const UL = styled.ul`
   list-style: none;
-  margin: 0 auto;
 `;
 const List = styled.li`
   display: inline-block;
-  padding: 20px;
+  padding: 5px;
   width: 50%;
   justify-content: center;
   margin: 0px auto;
 `;
+const EProductCart = styled(ProductCard)`
 
+`;
 
 export default () => {
   return (
@@ -31,22 +32,22 @@ export default () => {
       <UL>
         <List>
           <Link>
-            <ProductCard />
+            <EProductCart />
           </Link>
         </List>
         <List>
           <Link>
-            <ProductCard />
+            <EProductCart />
           </Link>
         </List>
         <List>
           <Link>
-            <ProductCard />
+            <EProductCart />
           </Link>
         </List>
         <List>
           <Link>
-            <ProductCard />
+            <EProductCart />
           </Link>
         </List>
       </UL>

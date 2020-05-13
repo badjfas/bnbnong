@@ -8,10 +8,12 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width:"100%",
   },
   media: {
-    height: 140,
+    width:"100%",
+    height: 300,
+    backgroundSize:"contain" //화면에 맞게 리사이즈
   },
 });
 
