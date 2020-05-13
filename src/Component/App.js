@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
+import Footer from "./Footer";
 
 const Wrapper = styled.div`
   margin: 0px auto 0;
@@ -21,6 +22,7 @@ function App() {
         <Wrapper>
           <Routes/>
         </Wrapper>
+        <Footer/>
       </HashRouter>
     </ThemeProvider>
   );

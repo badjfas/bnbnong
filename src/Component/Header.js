@@ -54,7 +54,7 @@ const SearchInput = styled(Input)`
 const HeaderLink = styled(Link)`
   margin-left: 3px;
   &:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 15px;
   }
 `;
 
@@ -73,13 +73,6 @@ export default withRouter(({ history }) => {
           <Drawer />
         </HeaderColumn>
         <HeaderColumn>
-          {/* <form onSubmit={onSearchSubmit}>
-            <SearchInput
-              value={search.value}
-              onChange={search.onChange}
-              placeholder={"Search"}
-            />
-          </form> */}
         </HeaderColumn>
         <HeaderColumn>
           <HeaderLink to="/explore">
@@ -88,15 +81,6 @@ export default withRouter(({ history }) => {
           <HeaderLink to="/notifications">
             <UserIcon/>
           </HeaderLink>
-          {/* {!(data && data.me) ? (
-            <HeaderLink to="/#">
-              <User />
-            </HeaderLink>
-          ) : (
-            <HeaderLink to={data.me.username}>
-              <User />
-            </HeaderLink>
-          )} */}
         </HeaderColumn>
       </HeaderWrapper>
     </Header>
