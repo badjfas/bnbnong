@@ -1,31 +1,119 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { GridListTile, GridList } from "@material-ui/core";
 
 const Container = styled.div`
-margin: 0;
-display: grid;
-grid-template-columns: repeat(2, 4fr);
-grid-template-rows: repeat(2, 4fr);
-margin-top:30px;
-background-color: #f2f5fa;
-width:100%;
-height:400px;
-box-sizing: border-box;
+  margin: 0;
+  margin-top: 30px;
+  background-color: #f2f5fa;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 `;
 
 const Wrapper = styled.div`
+  width: 100%;
+  border: 3px solid #fff;
+`;
+
+const ProductContainer = styled.div``;
+
+const Price = styled.span`
+  color: rgb(0, 0, 0);
+  display: block;
+  overflow: hidden;
+  padding-top: 3px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const Product = styled.span`
+  font-size: 14px;
+  white-space: pre-line;
+  color: rgb(0, 0, 0);
+  line-height: 19px;
+`;
+const UL = styled.ul`
+    list-style:none;
+    margin:0 auto;
+`;
+const List = styled.li`
+    display:inline-block;
+    padding:20px;
+    width:200px;
+    justify-content:center;
+    margin: 20px auto;
+`;
+
+const Image = styled.img`
     width:100%;
-    border:3px solid #fff;
 `;
 
 
 export default () => {
+  return (
+    <Container >
+        <UL>
+            <List>
+            <Link style={{ marginLeft: 10 }}>
 
-    return(
-        <Container>
-            <Wrapper>
-                asdsad
-            </Wrapper>
-        </Container>
-    )
-}
+            <Image
+              src="https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
+              alt="상품이미지"
+              class="thumb"
+            />
+
+            <div style={{ width: 150 }}>
+              <Product>[회사이름] 배부른 퀴노아 곤약밥 2종</Product>
+              <Price>2,600원</Price>
+            </div>
+          </Link>
+            </List>
+
+            <List>
+            <Link style={{ marginLeft: 10 }}>
+                <Image
+              src="https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
+              alt="상품이미지"
+              class="thumb"
+            />
+            <div style={{ width: 150 }}>
+              <Product>[회사이름] 배부른 퀴노아 곤약밥 2종</Product>
+              <Price>2,600원</Price>
+            </div>
+          </Link>
+            </List>
+            <List>
+            <Link style={{ marginLeft: 10 }}>
+                <Image
+              src="https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
+              alt="상품이미지"
+              class="thumb"
+            />
+            <div style={{ width: 150 }}>
+              <Product>[회사이름] 배부른 퀴노아 곤약밥 2종</Product>
+              <Price>2,600원</Price>
+            </div>
+          </Link>
+            </List>
+            <List>
+            <Link style={{ marginLeft: 10 }}>
+                <Image
+              src="https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
+              alt="상품이미지"
+              class="thumb"
+            />
+            <div style={{ width: 150 }}>
+              <Product>[회사이름] 배부른 퀴노아 곤약밥 2종</Product>
+              <Price>2,600원</Price>
+            </div>
+          </Link>
+            </List>
+        </UL>
+    </Container>
+  );
+};
