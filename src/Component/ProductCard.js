@@ -32,9 +32,11 @@ export default function MediaCard() {
           <Typography gutterBottom variant="h5" component="h2">
             상품명
           </Typography>
+          <div>
           <Typography variant="body2" color="textSecondary" component="p">
                 이 상품은 어쩌구 저쩌구 
           </Typography>
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>

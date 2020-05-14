@@ -26,7 +26,7 @@ const EmptyCartItem = styled.p`
     display: block;
     width: calc(100% - 20px);
     height: auto;
-    margin: 40px auto 50px auto;
+    margin: 0px auto;
     padding: 60px 0;
     font-size: 15px;
     font-weight: 500;
@@ -64,6 +64,8 @@ const CartItem = styled.tr`
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   box-sizing: border-box;
+  justify-content:center;
+  align-item:center;
 `;
 
 const ProductImg = styled.img`
@@ -72,9 +74,14 @@ const ProductImg = styled.img`
 `;
 
 const Td = styled.td`
-  padding:30px;
+  padding:20px;
+  padding-top:0px;
+  margin-top:-20px;
+  width:33%;
   justify-content:center;
   align-items:center;
+  margin:0px auto;
+  z-index:2;
 `;
 
 export default ({username})=> {
@@ -88,25 +95,42 @@ export default ({username})=> {
               <CartHeaderText>장바구니</CartHeaderText>
             </CartHeader>
             <div>
-            <CartItemContainer className="CartItemContainer">
-              <CartItem className="CartItem">
-                <Td>
-                    <ProductImg className="ProductImg"
-                      src={
-                        "https://avatars2.githubusercontent.com/u/51310757?s=460&v=4"
-                      }
-                    />
-                </Td>
-                <Td style={{width:"100%"}}>
-                  <p>asdadasdas</p>
-                  <p>asdadasdas</p>
-                  <p>asdadasdas</p>
-                </Td>
-                <Td>
-                  <Button>삭제</Button>
-                </Td>
-              </CartItem>
-            </CartItemContainer>
+              <CartItemContainer className="CartItemContainer">
+                <CartItem className="CartItem">
+                  <Td>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <ProductImg
+                        className="ProductImg"
+                        src={
+                          "https://avatars2.githubusercontent.com/u/51310757?s=460&v=4"
+                        }
+                      />
+                    </div>
+                  </Td>
+                  <Td style={{ width: "100%" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span>asdadasdas</span>
+                      <span>asdadasdas</span>
+                      <span>asdadasdas</span>
+                    </div>
+                  </Td>
+                  <Td>
+                    <Button>삭제</Button>
+                  </Td>
+                </CartItem>
+              </CartItemContainer>
             </div>
           </Container>
         ) : (

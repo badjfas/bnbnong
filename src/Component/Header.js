@@ -69,19 +69,23 @@ export default withRouter(({ history }) => {
   return (
     <Header>
       <HeaderWrapper>
+
         <HeaderColumn>
           <Drawer />
         </HeaderColumn>
+
         <HeaderColumn>
         </HeaderColumn>
+
         <HeaderColumn>
-          <HeaderLink to="/explore">
+          <HeaderLink to="/cart">
             <ShoppingCart />
           </HeaderLink>
           <HeaderLink to="/notifications">
             <UserIcon/>
           </HeaderLink>
         </HeaderColumn>
+
       </HeaderWrapper>
     </Header>
   );

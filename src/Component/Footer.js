@@ -6,8 +6,9 @@ import useInput from "../Hooks/useInput";
 import Drawer from "./Drawer";
 import { ShoppingCart,UserIcon } from "./svgIcons";
 const Footer = styled.header`
-  background-color: white;
+  background-color: ${props=>props.theme.lightGreyColor};
   width: 100%;
+  height:200px;
   border: 0;
   border-bottom: ${(props) => props.theme.boxBorder};
   border-radius: 0px;
@@ -15,6 +16,7 @@ const Footer = styled.header`
   justify-content: center;
   align-items: center;
   z-index: 2;
+  margin-top:50px;
 `;
 
 const FooterWrapper = styled.div`

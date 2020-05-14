@@ -22,35 +22,86 @@ const List = styled.li`
   justify-content: center;
   margin: 0px auto;
 `;
-const EProductCart = styled(ProductCard)`
-
+const EList = styled(List)`
+  width:33%;
+`;
+const Text = styled.span`
+  color: rgb(0, 0, 0);
+  display: block;
+  overflow: hidden;
+  padding-top: 3px;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left:10px;
 `;
 
 export default () => {
   return (
+    <>
     <Container>
+            <Text>추천 상품</Text>
       <UL>
         <List>
           <Link>
-            <EProductCart />
+            <ProductCard />
           </Link>
         </List>
         <List>
           <Link>
-            <EProductCart />
+            <ProductCard />
           </Link>
         </List>
         <List>
           <Link>
-            <EProductCart />
+            <ProductCard />
           </Link>
         </List>
         <List>
           <Link>
-            <EProductCart />
+            <ProductCard />
           </Link>
         </List>
       </UL>
     </Container>
+
+    <Container>
+    <Text>추천 상품</Text>
+      <UL>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+        <EList>
+          <Link>
+            <ProductCard />
+          </Link>
+        </EList>
+      </UL>
+    </Container>
+    </>
   );
 };
