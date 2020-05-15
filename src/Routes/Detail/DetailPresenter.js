@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Input } from "@material-ui/core";
+import { Button, Input, Backdrop } from "@material-ui/core";
 
 const Container = styled.div``;
 
 const ProductDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 300px auto;
   margin-bottom:15px;
-  
 `;
 
 const ProductImg = styled.img`
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   height: 100%;
   width: 100%;
   max-height: 100%;
@@ -33,7 +31,7 @@ const DetailInfoImg = styled.img`
 const Info = styled.div`
   width: 100%;
   float: left;
-  padding: 15px 20px;
+  padding: 10px 5px;
   box-sizing: border-box;
 `;
 
@@ -42,16 +40,16 @@ const Price = styled.div``;
 const Weight = styled.div``;
 const Grade = styled.div``;
 
-export default ({ id }) => {
+export default ({ data,loading }) => {
   const [count,setCount] = useState(0)
-
+ 
   return (
     <Container>
-
+        {loading===true ? <Backdrop/> : <Container>
           <ProductDiv>
             <ProductImg
               src={
-                "https://img-cf.kurly.com/shop/data/goods/1588125578929l0.jpg"
+                data.selectProduct.image_1
               }
             />
             <Info>
@@ -63,7 +61,7 @@ export default ({ id }) => {
               <Weight>Test</Weight>
               </div>
               <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <Button style={{width:5}} onClick={()=>setCount(count+1)} color="primary">
+              <Button style={{width:3}} onClick={()=>setCount(count+1)} color="primary">
             +
           </Button>
           <Input style={{width:40}} type="number" value={count} />
@@ -85,7 +83,9 @@ export default ({ id }) => {
      <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/b270a93326c2a9671a24a19fa8905a5f.jpg"/>
      <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/c82d522740faf7ccadc40f56905b99dd.jpg"/>
      <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/fbefb46cfd39cc9c33bd8d063ddb0baf.jpg"/>
-     </>
+     </> </Container> 
+    }
     </Container>
-  );
+  
+  )
 };

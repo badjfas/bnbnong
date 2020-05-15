@@ -5,6 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import styled from 'styled-components';
 
 const useStyles = makeStyles({
   root: {
@@ -12,12 +13,16 @@ const useStyles = makeStyles({
   },
   media: {
     width:"100%",
-    height: 300,
-    backgroundSize:"contain" //화면에 맞게 리사이즈
+    height: 100,
+    backgroundSize:"contain"
   },
 });
 
-export default function MediaCard() {
+const ECardContent = styled(CardContent)`
+  
+`;
+
+export default function MediaCard({img}) {
   const classes = useStyles();
 
   return (
@@ -25,11 +30,11 @@ export default function MediaCard() {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://mblogthumb-phinf.pstatic.net/MjAxNzA1MDJfODkg/MDAxNDkzNzA3MjgzNjg5.o5H1sD1WG3LcSO1CtlI5PT_mgtdfvGZJFFO_hy0NtiUg.o4ogLZQTYLPYUzKxnNy_woNHZFRV9dP4-tVfND4g93sg.PNG.daishin_blog/%25EB%25AF%25B8%25EB%258B%2588%25EC%2582%25AC%25EA%25B3%25BC%25EA%25B3%25BC%25EC%259D%25BC%25EC%2595%25A0%25ED%2594%258C%25EC%2588%2598%25EB%25B0%2595%25EC%25B1%2584%25EC%2586%258C_05.png?type=w800"
+          image={img}
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h6" component="h2">
             상품명
           </Typography>
           <div>

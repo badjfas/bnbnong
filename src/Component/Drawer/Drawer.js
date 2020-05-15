@@ -99,6 +99,7 @@ export default () => {
               aria-label="open drawer">
               <MenuIcon />
             </IconButton>
+            
             <div className={classes.grow} />
           </Toolbar>
       <Drawer
@@ -131,7 +132,7 @@ export default () => {
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary={"카테고리"} />
+            <ListItemText onClick={()=>(handleDrawerOpen)} primary={"카테고리"} />
           </ListItem>
           <ListItem button key={3}>
             <ListItemIcon>
@@ -147,16 +148,6 @@ export default () => {
           </ListItem>
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
     </Container>
     </ClickAwayListener>

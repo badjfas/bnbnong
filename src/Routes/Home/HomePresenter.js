@@ -9,9 +9,9 @@ import {
   Tabs,
   Tab,
 } from "@material-ui/core";
-import ProductSwipe from "../../Component/ProductSwipe";
-import Banner from "../../Component/Banner";
-import SaleProduct from "../../Component/SaleProduct";
+import ProductSwipe from "../../Component/Home/ProductSwipe";
+import Banner from "../../Component/Home/Banner";
+import SaleProduct from "../../Component/Home/SaleProduct";
 
 const Container = styled.div``;
 
@@ -32,7 +32,7 @@ const Text = styled.span`
 //👁👁👁👁👁👁👁👁Material Ui Component 👁👁👁👁👁👁👁👁
 
 //👁👁👁👁👁👁👁👁👁👁👁
-export default ({ data }) => {
+export default ({ data,loading }) => {
   console.log(data);
 
   return (
@@ -41,6 +41,7 @@ export default ({ data }) => {
       <Text>추천 상품</Text>
       <ProductSwipe/>
       <SaleProduct/>
+      
     </Container>
   );
 };
