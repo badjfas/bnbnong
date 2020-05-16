@@ -28,7 +28,7 @@ const List = styled.li`
 `;
 const EList = styled(List)`
   
-  width:33%;
+  width:33.3%;
 `;
 const Text = styled.span`
   color: rgb(0, 0, 0);

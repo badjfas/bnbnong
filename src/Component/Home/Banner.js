@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const KeyFrames = keyframes`
 from {
-  opacity:0.5;
+  opacity:0.2;
 }
 
 to {
@@ -36,9 +36,9 @@ export default () => {
     const slide = () => {
         const totalFiles = files.length;
         if (currentItem === totalFiles - 1) {
-          setTimeout(() => setCurrentItem(0), 3000);
+          setTimeout(() => setCurrentItem(0), 3200);
         } else {
-          setTimeout(() => setCurrentItem(currentItem + 1), 3000);
+          setTimeout(() => setCurrentItem(currentItem + 1), 3200);
         }
       };
       useEffect(() => {

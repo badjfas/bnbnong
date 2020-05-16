@@ -9,11 +9,14 @@ import styled from 'styled-components';
 
 const useStyles = makeStyles({
   root: {
+    display:"flex",
     width:"100%",
   },
   media: {
+    display:"flex",
     width:"100%",
-    height: 100,
+    height: "100%",
+    maxHeight:150,
     backgroundSize:"contain"
   },
 });
@@ -31,6 +34,7 @@ export default function MediaCard({img}) {
         <CardMedia
           className={classes.media}
           image={img}
+          style={{    height: 300        }}
           title="Contemplative Reptile"
         />
         <CardContent>
