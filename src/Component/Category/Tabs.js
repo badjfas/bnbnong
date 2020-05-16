@@ -7,7 +7,12 @@ import { Box, Container, Button } from "@material-ui/core";
 import { useQuery } from "react-apollo-hooks";
 import { READ_PRODUCT } from "../../Queries/readProduct";
 import All from "./All";
+import Recomends from "./Recomends";
+import Sale from "./Sale";
+import New from "./New";
+
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const AntTabs = withStyles({
   root: {
@@ -58,15 +63,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  padding: {
-    padding: theme.spacing(2),
-  },
+  padding:24,
   demo1: {
     backgroundColor: theme.palette.background.paper,
   },
 }));
 
-const CategoryItem = (props) => {
+const MenuItem = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -78,7 +81,7 @@ const CategoryItem = (props) => {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box padding={1}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -90,7 +93,24 @@ const Text = styled.span`
   font-size: 12px;
 `;
 
-const Containers = styled.div``;
+const Containers = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin: 0 auto;
+  white-space:pre-line;
+
+`;
+
+const ExLink= styled(Link)`
+font-size: 12px;
+color:black;
+`;
+
+const ExButton = styled(Button)`
+width:25%;
+padding:5px;
+`;
 
 export default () => {
   const classes = useStyles();
@@ -103,47 +123,95 @@ export default () => {
     <div className={classes.root}>
       <div className={classes.demo1}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-          <AntTab label="Tab 1" />
-          <AntTab label="Tab 2" />
-          <AntTab label="Tab 3" />
-          <AntTab label="Tab 4" />
+          <AntTab label="전체 상품" />
+          <AntTab label="추천 상품" />
+          <AntTab label="할인 상품" />
+          <AntTab label="신 상품" />
         </AntTabs>
-        <Containers>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-          <Button>
-            <Text>Category1</Text>
-          </Button>
-        </Containers>
-        <p style={{ border: `3px solid #EDEDEB`, marginTop: 3 }} />
-        <CategoryItem value={value} index={0}>
+        <MenuItem value={value} index={0}>
+          <Containers>
+            <ExButton value={value}>
+              <Text>Category1</Text>
+            </ExButton>
+            <ExButton>
+              <Text>Category1</Text>
+            </ExButton>
+            <ExButton>
+              <Text>Category1</Text>
+            </ExButton>
+            <ExButton>
+              <Text>Category1</Text>
+            </ExButton>
+          </Containers>
+          <p
+            style={{
+              border: `3px solid #EDEDEB`,
+              marginTop: 3,
+              marginBottom: 8,
+            }}
+          />
           <All />
-        </CategoryItem>
-        <CategoryItem value={value} index={1}>
-          Item Two
-        </CategoryItem>
-        <CategoryItem value={value} index={2}>
-          Item Three
-        </CategoryItem>
+        </MenuItem>
+        <MenuItem value={value} index={1}>
+          <Containers>
+            <Button>
+              <Text>Category1</Text>
+            </Button>
+          </Containers>
+          <p
+            style={{
+              border: `3px solid #EDEDEB`,
+              marginTop: 3,
+              marginBottom: 8,
+            }}
+          />
+          <Recomends />
+        </MenuItem>
+        <MenuItem value={value} index={2}>
+          <Containers>
+            <Button onClick={()=>(setValue(4))}>
+              <Text>Category1</Text>
+            </Button>
+          </Containers>
+          <p
+            style={{
+              border: `3px solid #EDEDEB`,
+              marginTop: 3,
+              marginBottom: 8,
+            }}
+          />
+          <Sale />
+        </MenuItem>
+        <MenuItem value={value} index={3}>
+          <Containers>
+            <ExLink>
+              <Text style={{fontSize:17}}>Category1</Text>
+            </ExLink>
+          </Containers>
+          <p
+            style={{
+              border: `3px solid #EDEDEB`,
+              marginTop: 3,
+              marginBottom: 8,
+            }}
+          />
+          <New />
+        </MenuItem>
+        <MenuItem value={value} index={4}>
+          <Containers>
+            <ExLink>
+              <Text style={{fontSize:17}}>value4</Text>
+            </ExLink>
+          </Containers>
+          <p
+            style={{
+              border: `3px solid #EDEDEB`,
+              marginTop: 3,
+              marginBottom: 8,
+            }}
+          />
+          <New />
+        </MenuItem>
         <Typography className={classes.padding} />
       </div>
     </div>

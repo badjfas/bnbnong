@@ -21,6 +21,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from '@material-ui/icons/Menu';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { Link } from "react-router-dom";
 
 const Container = styled.div``;
 
@@ -91,15 +92,16 @@ export default () => {
     <ClickAwayListener onClickAway={handleClickAway}> 
     <Container>
           <Toolbar>
+            <Link style={{color:"black"}} to={"/category"}>
             <IconButton
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              onClick={handleDrawerOpen}
               aria-label="open drawer">
               <MenuIcon />
             </IconButton>
-            
+            </Link>
+
             <div className={classes.grow} />
           </Toolbar>
       <Drawer
