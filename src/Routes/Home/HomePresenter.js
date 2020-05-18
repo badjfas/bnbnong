@@ -1,19 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  makeStyles,
-  AppBar,
-  Tabs,
-  Tab,
-} from "@material-ui/core";
 import ProductSwipe from "../../Component/Home/ProductSwipe";
 import Banner from "../../Component/Home/Banner";
-import SaleProduct from "../../Component/Home/SaleProduct";
+import Product1 from "../../Component/Home/Product1"
+import Product2 from "../../Component/Home/Product2"
+import Product3 from "../../Component/Home/Product3";
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding:15px;
+`;
 
 const Text = styled.span`
   color: rgb(0, 0, 0);
@@ -37,11 +32,9 @@ export default ({ data,loading }) => {
 
   return (
     <Container>
-      <Banner/>
-      <Text>추천 상품</Text>
-      <ProductSwipe/>
-      <SaleProduct/>
-      
+      <Product1/>
+      <Product2/>
+      <Product3/>
     </Container>
   );
 };

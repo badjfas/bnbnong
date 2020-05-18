@@ -2,8 +2,76 @@ import React from 'react';
 import {Link} from "react-router-dom"
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-import PageviewIcon from '@material-ui/icons/Pageview';
 
+// const Overlay = styled.div`
+//     width:100%;
+//     height:100%;
+//     display:flex;
+//     opacity:1;
+//     transition:opacity 0.3s linear;
+//     svg{
+//         fill:white;
+//     }
+// `;
+
+// const Container = styled(Link)`
+//   width: 100%;
+//   display: flex;
+//   cursor:pointer;
+//   &:hover{
+//       ${Overlay}{
+//           opacity:0.2;
+//       }
+//   }
+// `;
+// const ImgContainer = styled.div`
+//   width: 100%;
+//   max-width:350px;
+// `;
+
+// const Img = styled.img`
+//   width:100%;
+//   max-height:350px;
+
+// `;
+
+// const TextContainer = styled.div`
+// `;
+
+// const ProductName = styled.span`
+//   color: #494848;
+//   display: block;
+//   overflow: hidden;
+//   padding-top: 3px;
+//   font-weight: 600;
+//   font-size: 22px;
+//   line-height: 2;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// `;
+
+// const ProductPrice = styled.span`
+//   color: #727272;
+//   display: block;
+//   overflow: hidden;
+//   padding-top: 1px;
+//   font-weight: 500;
+//   font-size: 18px;
+//   line-height: 2;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// `;
+
+// const ProductContent = styled.span`
+// color: #727272;
+// display: block;
+// overflow: hidden;
+// font-weight: 500;
+// font-size: 14px;
+// line-height: 2;
+// white-space: nowrap;
+// text-overflow: ellipsis;
+// `;
 const Overlay = styled.div`
     width:100%;
     height:100%;
@@ -78,16 +146,16 @@ text-overflow: ellipsis;
 
 
 export default ({src}) => {
-                            return (
-                              <>
-                                <Container>
-                                  <Overlay>
-                                    <ImgContainer>
-                                      <Img src={src} />
-                                      <ProductName>하우스 감귤</ProductName>
-                                      <ProductPrice>39,000원</ProductPrice>
-                                      <ProductContent>
-                                        Lorem Ipsum is simply dummy text of the
+  return (
+    <>
+      <Container>
+        <Overlay>
+          <ImgContainer>
+            <Img src={src} />
+            <TextContainer>
+            <ProductName>제주 딸기 잼</ProductName>
+            <ProductPrice>9,000원</ProductPrice>
+            <ProductContent>Lorem Ipsum is simply dummy text of the
                                         printing and typesetting industry. Lorem
                                         Ipsum has been the industry's standard
                                         dummy text ever since the 1500s, when an
@@ -102,11 +170,12 @@ export default ({src}) => {
                                         Lorem Ipsum passages, and more recently
                                         with desktop publishing software like
                                         Aldus PageMaker including versions of
-                                        Lorem Ipsum.
-                                      </ProductContent>
-                                    </ImgContainer>
-                                  </Overlay>
-                                </Container>
-                              </>
-                            );
-                          }
+                                        Lorem Ipsum.</ProductContent>
+          </TextContainer>
+          </ImgContainer>
+
+        </Overlay>
+      </Container>
+    </>
+  );
+}

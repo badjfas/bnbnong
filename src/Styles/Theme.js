@@ -15,5 +15,5 @@ export default{
                 border-radius:${BORDER_RADIUS};
                 background-color:white;
                `, 
-    maxWidth: `700px;`
+    maxWidth: `1100px;`
 };

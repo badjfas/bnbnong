@@ -5,7 +5,9 @@ import { Button, Input } from "@material-ui/core";
 const Container = styled.div`
   width:100%;
   display:flex;
-  padding:10px;
+  justify-content:center;
+  align-items:center;
+  padding:5px;
   border:1px solid #ededed;
 `;
 
@@ -14,21 +16,29 @@ const ImgContainer = styled.div`
 `;
 
 const CartContainer = styled.div`
-  width:70%;
-  height:150px;
+  width:50%;
+  height:130px;
   white-space:pre-line;
-`
-;
+  `;
+
+const QtyContainer= styled.div`
+  
+`;  
+  
 const ProductImg = styled.img`
-max-width:150px;
-max-height:150px;
+  max-width: 130px;
+  max-height: 130px;
 `;
+
 
 const ButtonContainer =styled.div`
 display:flex;
-width:100%;
+justify-content:center;
+align-items:center;
 position:fixed;
-bottom:0;
+width:100%;
+max-width:700px;
+top:10;
   align-items:center;
   justify-content:center;
 `;
@@ -48,6 +58,9 @@ export default ({username})=> {
               <p>Item1</p>
               <p>Item1</p>
           </CartContainer>
+        <QtyContainer>
+          <Input style={{width:30}}/>개
+        </QtyContainer>
       </Container>
       <Container>
           <ImgContainer>
@@ -72,9 +85,10 @@ export default ({username})=> {
           <CartContainer>
             Item3
           </CartContainer>
+      
       </Container>
       <ButtonContainer>
-            <Button variant="contained" style={{width:"100%",height:"100%"}}>주문하기</Button>
+            <Button variant="contained" style={{display:"flex",height:"100%"}}>주문하기</Button>
         </ButtonContainer>
       </>
     );

@@ -8,9 +8,11 @@ const Footer = styled.footer`
   background-color: "white";
   width: 100%;
   border: 0;
+  border-top:${(props) => props.theme.boxBorder};
   border-bottom: ${(props) => props.theme.boxBorder};
   border-radius: 0px;
-`;
+  margin:150px 0 auto;
+  `;
 
 const FooterWrapper = styled.div`
   display: flex;

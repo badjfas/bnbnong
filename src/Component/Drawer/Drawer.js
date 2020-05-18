@@ -22,6 +22,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from '@material-ui/icons/Menu';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { Link } from "react-router-dom";
+import HomeIcon from '@material-ui/icons/Home';
 
 const Container = styled.div``;
 
@@ -88,70 +89,100 @@ export default () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const [isClick,setIsClick]= useState("false")
   return (
-    <ClickAwayListener onClickAway={handleClickAway}> 
-    <Container>
-          <Toolbar>
-            <Link style={{color:"black"}} to={"/category"}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer">
-              <MenuIcon />
+    <ClickAwayListener onClickAway={handleClickAway}>
+      <Container>
+        <Toolbar>
+          {isClick ? (
+            <>
+              <Link style={{ color: "black" }} to={"/category"}>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  onClick={(i) => {
+                    i = isClick;
+                    setIsClick(!i);
+                  }}
+                  color="inherit"
+                  aria-label="open drawer"
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Link>
+              <div className={classes.grow} />{" "}
+            </>
+          ) : (
+            <>
+              <Link style={{ color: "black" }} to={"/"}>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  onClick={(i) => {
+                    i = isClick;
+                    setIsClick(!i);
+                  }}
+                  color="inherit"
+                  aria-label="open drawer"
+                >
+                  <HomeIcon />
+                </IconButton>
+              </Link>
+              <div className={classes.grow} />{" "}
+            </>
+          )}
+        </Toolbar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <Container className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
             </IconButton>
-            </Link>
-
-            <div className={classes.grow} />
-          </Toolbar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <Container className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </Container>
-        <Divider />
-        <List>
-          <ListItem button key={1}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={"홈"} />
-          </ListItem>
-          <ListItem button key={2}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText onClick={()=>(handleDrawerOpen)} primary={"카테고리"} />
-          </ListItem>
-          <ListItem button key={3}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={""} />
-          </ListItem>
-          <ListItem button key={4}>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={""} />
-          </ListItem>
-        </List>
-        <Divider />
-      </Drawer>
-    </Container>
+          </Container>
+          <Divider />
+          <List>
+            <ListItem button key={1}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"홈"} />
+            </ListItem>
+            <ListItem button key={2}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText
+                onClick={() => handleDrawerOpen}
+                primary={"카테고리"}
+              />
+            </ListItem>
+            <ListItem button key={3}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={""} />
+            </ListItem>
+            <ListItem button key={4}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={""} />
+            </ListItem>
+          </List>
+          <Divider />
+        </Drawer>
+      </Container>
     </ClickAwayListener>
   );
 };
