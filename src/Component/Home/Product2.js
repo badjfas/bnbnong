@@ -50,6 +50,8 @@ const TextContainer = styled.div`
   align-items:center;
   justify-content:center;
   padding-top:30px;
+  border-top:1px solid #000;
+
 `;
 const Text = styled.span`
   color: #000;

@@ -39,18 +39,17 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  padding : 10px;
-  @media only screen and (max-width: 500px) {
-    width:100%;
-    display:table;
-  }
+  box-sizing: border-box;  
+  float:left;
+  padding : 5px;
+
 `;
 const TextContainer = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
   padding-top:30px;
+  border-top:1px solid #000;
 `;
 const Text = styled.span`
   color: #000;
