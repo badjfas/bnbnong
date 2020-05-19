@@ -10,7 +10,7 @@ import Category from "../Routes/Category";
 const Routes =  () =>(
     <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path="/detail/:id" component={Deatail}/>
+        <Route exact path="/detail/" component={Deatail}/>
         <Route exact path="/cart" component={Cart}/>
         <Route exact path="/Menu" component={Menu}/>
         <Route exact path="/Category/" component={Category}/>

@@ -1,91 +1,92 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input, Backdrop } from "@material-ui/core";
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import {ShippingBox, ShippingTruck, ShippingMoney, Caution} from "./../../Component/svgIcons";
+import { Link } from "react-router-dom";
+const Container = styled.div`
+  display:flex;
+  padding: 30px;
+  padding-top: 60px;
+  width:100%;
+`;
+const ImgContainer = styled.div`
+  border:1px  #D6DADA;
+  width:100%;
+`;
+const Image = styled.img`
+  width:100%;
+  height:100%;
+  max-width:450px;
+  max-height:500px;
+`;
+const ContentContainer = styled.div`
+display: table;
+padding-left:70px;
+width:100%;
 
-const Container = styled.div``;
-
-const ProductDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-bottom:15px;
+  `;
+const Text = styled.p`
+padding:10px;
+`;
+const ProductName = styled(Text)`
+font-size: 50px;
+margin-bottom:20px;
+border-bottom: 1px solid #DBE1E1;
 `;
 
-const ProductImg = styled.img`
-  background-position: center;
-  background-size: contain;
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  border-radius: 10px;
-  border: 1px solid #c3c3c2;
-`;
-const DetailInfoImg = styled.img`
-  background-position: center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  max-height: 100%;
-  max-width: 100%;
-`;
-const Info = styled.div`
-  width: 100%;
-  float: left;
-  padding: 10px 5px;
-  box-sizing: border-box;
+const ProductPrice = styled(Text)`
+  font-size 35px;
 `;
 
-const FamilyName = styled.div``;
-const Price = styled.div``;
-const Weight = styled.div``;
-const Grade = styled.div``;
+const ProductWeight = styled(Text)`
+  font-size 20px;
+  border-bottom: 1px solid #DBE1E1;
+`;
 
+const ProductCaution = styled(Text)`
+  margin-top:5px;
+  background-color:#FFBC54;
+  border-radius:7px;
+  padding:3px;
+  font-size:24px;
+  color:#F3F3F3;
+`;
+
+const ProductContent =styled(Text)`
+  color:#0B61D4;
+  font-size:  23px;
+`;
+
+const ButtonContainer = styled(Link)`
+display:flex;
+width:100%;
+border-top: 1px solid #DBE1E1;
+`;
+
+const NaverButton = styled.img``;
 export default ({ data,loading }) => {
   const [count,setCount] = useState(0)
  
   return (
+    <>
     <Container>
-        {loading===true ? <Backdrop/> : <Container>
-          <ProductDiv>
-            <ProductImg
-              src={
-                data.selectProduct.image_1
-              }
-            />
-            <Info>
-              <div style={{height:"50%",lineHeight:1.5}}>
-              <h1>Test</h1>
-              <Grade>Test</Grade>
-              <FamilyName>Test</FamilyName>
-              <Price>Test원</Price>
-              <Weight>Test</Weight>
-              </div>
-              <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <Button style={{width:3}} onClick={()=>setCount(count+1)} color="primary">
-            +
-          </Button>
-          <Input style={{width:40}} type="number" value={count} />
-          <Button color="primary" onClick={()=>{if(count <= 0){
-              setCount(0)
-          }else{
-              setCount(count-1)
-          }}}>
-            -
-          </Button>
-          </div>
-          <div style={{marginTop:25,display:"flex",alignItems:"center",justifyContent:"center"}}>
-            <Button variant="contained" color="primary">구매하기</Button>
-            <Button style={{marginLeft:25}} variant="contained" color="primary">장바구니</Button>
-            </div>
-            </Info>
-          </ProductDiv>
-     <>
-     <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/b270a93326c2a9671a24a19fa8905a5f.jpg"/>
-     <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/c82d522740faf7ccadc40f56905b99dd.jpg"/>
-     <DetailInfoImg src="http://skin-skin6.cafe11111111.cafe24.com/web/upload/NNEditor/20200420/fbefb46cfd39cc9c33bd8d063ddb0baf.jpg"/>
-     </> </Container> 
-    }
+        <ImgContainer>
+          <Image src={"https://m.organic-story.com/web/product/big/201901/d76c22fc86ea008266e16cc58b1d2b5e.jpg"}/>
+        </ImgContainer>
+        <ContentContainer>
+              <ProductName>제주 딸기 잼</ProductName>
+              <ProductPrice>9,000원</ProductPrice>
+              <ProductWeight>중량: 500g</ProductWeight>
+              <ProductCaution><Caution/> 이상품은   ...</ProductCaution>
+              <ProductContent><ShippingTruck style={{fontSize:35}}/> 배송 1~2일 소요</ProductContent>
+              <ProductContent><ShippingBox style={{fontSize:35}}/> 튼튼한 박스 포장</ProductContent>
+              <ProductContent><ShippingMoney style={{fontSize:35}}/> 배송비 2,500원</ProductContent>
+            <ButtonContainer>
+                <NaverButton src={"https://developer.pay.naver.com/static/img/sp_btn_default_20180916.png"}/>
+            </ButtonContainer>
+        </ContentContainer>
     </Container>
-  
+  </>
   )
 };

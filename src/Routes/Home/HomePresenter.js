@@ -5,6 +5,7 @@ import Banner from "../../Component/Home/Banner";
 import Product1 from "../../Component/Home/Product1"
 import Product2 from "../../Component/Home/Product2"
 import Product3 from "../../Component/Home/Product3";
+import Product4 from "../../Component/Home/Product4";
 
 const Container = styled.div`
   padding:15px;
@@ -34,7 +35,7 @@ export default ({ data,loading }) => {
     <Container>
       <Product1/>
       <Product2/>
-      <Product3/>
+      <Product4/>
     </Container>
   );
 };

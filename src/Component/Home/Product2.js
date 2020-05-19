@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ProcessedCard from "./ProcessedCard";
+import SquarePost from "../PCard";
 
 // const Container = styled(Link)`
 //   padding: 15px;
@@ -73,12 +74,12 @@ export default ({src}) => {
       <Text>기타 가공품</Text>
     </TextContainer>
     <Container>
-      <ProcessedCard src={"https://m.organic-story.com/web/product/big/201901/d76c22fc86ea008266e16cc58b1d2b5e.jpg"}/>
-      <ProcessedCard src={"https://view01.wemep.co.kr/wmp-product/9/354/153573549/pm_yerafjs14p3n.jpg?1552981455"}/>
+      <SquarePost src={"https://m.organic-story.com/web/product/big/201901/d76c22fc86ea008266e16cc58b1d2b5e.jpg"}/>
+      <SquarePost src={"https://view01.wemep.co.kr/wmp-product/9/354/153573549/pm_yerafjs14p3n.jpg?1552981455"}/>
     </Container>
     <Container>
-    <ProcessedCard src={"http://qkfms3005.diskn.com/ss/nut/gjmg_01.jpg"}/>
-      <ProcessedCard src={"https://www.heroasia.net/jam/sites/asia.jam/files/styles/1200x1200/public/1227_203_BitterOrange_APAC_600x412px.png?itok=mUXW3A71"}/>
+    <SquarePost src={"http://qkfms3005.diskn.com/ss/nut/gjmg_01.jpg"}/>
+      <SquarePost src={"https://www.heroasia.net/jam/sites/asia.jam/files/styles/1200x1200/public/1227_203_BitterOrange_APAC_600x412px.png?itok=mUXW3A71"}/>
     </Container>
     </>
   );

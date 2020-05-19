@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LeisureCard from "./LeisureCard";
+import SquarePost from "../PCard";
 
 // const Container = styled(Link)`
 //   padding: 15px;

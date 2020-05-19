@@ -3,7 +3,7 @@ import reset from "styled-reset";
 
 export default createGlobalStyle`
     ${reset};
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans&family=Nanum+Pen+Script:400,600,700');
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
     * {
           box-sizing:border-box;
     }
@@ -11,8 +11,7 @@ export default createGlobalStyle`
     body{
         background-color:${props=>props.theme.bgColor};
         color:${props=>props.theme.blackColor};
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue','Nanum Pen Script', cursive ,sans-serif ;
+        font-family: 'Nanum Brush Script', cursive;
     }
     a{
         color:${props=>props.theme.blueColor};
