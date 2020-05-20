@@ -9,16 +9,12 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
-  fade,
   useTheme,
-  Menu,
-  MenuItem,
   Toolbar,
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from '@material-ui/icons/Menu';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { Link } from "react-router-dom";
@@ -54,12 +50,6 @@ export default () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-  };
 
   const handleClickAway = () => {
     setOpen(false);
@@ -71,22 +61,6 @@ export default () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const [isClick,setIsClick]= useState("false")

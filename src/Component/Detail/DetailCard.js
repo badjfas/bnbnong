@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Button, Input, Backdrop } from "@material-ui/core";
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+
 import {ShippingBox, ShippingTruck, ShippingMoney, Caution} from "../svgIcons";
 import { Link } from "react-router-dom";
 const Container = styled.div`

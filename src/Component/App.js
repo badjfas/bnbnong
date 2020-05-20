@@ -1,7 +1,6 @@
 import React from "react";
-import Drawer from "./Drawer/Drawer";
 import Header from "./Header";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter} from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";

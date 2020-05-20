@@ -1,5 +1,4 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
 import React from "react";
 import Home from "../Routes/Home";
 import Deatail from "../Routes/Detail";

@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom"
-import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-import PageviewIcon from '@material-ui/icons/Pageview';
 
 const Overlay = styled.div`
     width:100%;
@@ -37,9 +35,6 @@ const Img = styled.img`
   width:100%;
 `;
 
-const TextContainer = styled.div`
-  width: 100%;
-`;
 
 const ProductName = styled.span`
   color: #494848;

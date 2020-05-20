@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomePresenter from "./HomePresenter";
 import { useQuery } from "react-apollo-hooks";
 import {READ_PRODUCT} from "../../Queries/readProduct"

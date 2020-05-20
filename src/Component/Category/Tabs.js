@@ -3,9 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import { Box, Container, Button } from "@material-ui/core";
-import { useQuery } from "react-apollo-hooks";
-import { READ_PRODUCT } from "../../Queries/readProduct";
+import { Box, Button } from "@material-ui/core"
 import All from "./All";
 import Recomends from "./Recomends";
 import Sale from "./Sale";

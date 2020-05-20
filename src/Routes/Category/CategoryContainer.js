@@ -8,6 +8,6 @@ export default () => {
     
     console.log(data);
     return(
-    <CategoryPresenter data={data}/>
+    <CategoryPresenter data={data} loading={loading}/>
     )
 }

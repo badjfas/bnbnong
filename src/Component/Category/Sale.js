@@ -8,14 +8,6 @@ const Container = styled.div`
 
 `;
 
-const ProductContainer = styled.div`
-`;
-
-const Product = styled.tr`
-display:flex;
-width:100%;
-`;
-
 
 const ProductImg = styled.img`
 max-width:150px;

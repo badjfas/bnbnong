@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button, Input } from "@material-ui/core";
 
@@ -44,8 +44,6 @@ top:10;
 `;
 
 export default ({username})=> {
-    const  [isEmpty,setIsEmpty] = useState(false);
-
     return (
       <>
       <Container>
