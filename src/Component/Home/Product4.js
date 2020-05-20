@@ -35,11 +35,22 @@ import SquarePost from "../PCard";
 //   text-overflow: ellipsis;
 //   margin-left:10px;
 // `;3
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  @media only screen and (max-width: 500px) {
+    width: 100%;
+    height:100%;
+    display: table;
+  }
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
    flex-wrap: wrap;
+   height:900px;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -76,18 +87,21 @@ export default () => {
       <TextContainer>
         <Text>체 험</Text>
       </TextContainer>
-      <Container>
+      <GridContainer>
         <SquarePost
           src={
             "https://img-wishbeen.akamaized.net/plan/1444435450498_10923258_917735108276775_4031536054220078925_n.jpg"
           }
           name={"조랑말 체험"}
+          content={"asdasdasdasdaskndkasljdasdklajdklsjkljkl"}
         />
         <SquarePost
           src={
             "https://img.hani.co.kr/imgdb/resize/2018/0917/00500854_20180917.JPG"
           }
           name={"수상 레저"}
+          content={"asdasdasdasdasdssssssssssssssssssssssssssssssssssasdasasdasda"}
+
         />
         <SquarePost
           src={
@@ -101,7 +115,7 @@ export default () => {
           }
           name={"낙타 트래킹"}
         />
-      </Container>
+      </GridContainer>
     </>
   );
 };

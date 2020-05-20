@@ -98,8 +98,7 @@ const SquarePost = ({name,price ,content,src }) => (
     <ProductName>{name}</ProductName>
         <ProductPrice>39,000원</ProductPrice>
         <ProductContent>
-              asdasdasdasdasdahdksjahfsajhfasfhdadadsadsadasdas
-              ksajhfkjshfkjshafhsad;hfljasdasdasdasdsadadasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+              {content}
         </ProductContent>
     </div>
 
