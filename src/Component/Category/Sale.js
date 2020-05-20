@@ -4,9 +4,7 @@ import { READ_PRODUCT } from "../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Container = styled.div`
-
-`;
+const Container = styled.div``;
 
 
 const ProductImg = styled.img`
