@@ -11,7 +11,7 @@ export default createGlobalStyle`
     body{
         background-color:${props=>props.theme.bgColor};
         color:${props=>props.theme.blackColor};
-        font-family: 'Nanum Brush Script', cursive;
+        font-family: 'Nanum Brush Script', 'Do Hyeon', sans-serif,cursive;
     }
     a{
         color:${props=>props.theme.blueColor};

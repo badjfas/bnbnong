@@ -79,12 +79,15 @@ display: block;
 overflow: hidden;
 font-weight: 500;
 font-size: 14px;
+font-family:'Do Hyeon', sans-serif;
 line-height: 2;
 white-space: pre-line;
+word-break:break-all;
 text-overflow: ellipsis;
+
 `;
 
-const SquarePost = ({ src }) => (
+const SquarePost = ({name,price ,content,src }) => (
   <LL to={"/detail/"}>
     <Container src={src}>
       <Overlay>
@@ -92,18 +95,11 @@ const SquarePost = ({ src }) => (
       </Overlay>
     </Container>
     <div style={{display:"table"}}>
-    <ProductName>하우스 감귤</ProductName>
+    <ProductName>{name}</ProductName>
         <ProductPrice>39,000원</ProductPrice>
         <ProductContent>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
+              asdasdasdasdasdahdksjahfsajhfasfhdadadsadsadasdas
+              ksajhfkjshfkjshafhsad;hfljasdasdasdasdsadadasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
         </ProductContent>
     </div>
 
