@@ -32,7 +32,7 @@ import SquarePost from "../PCard";
 //   white-space: nowrap;
 //   text-overflow: ellipsis;
 //   margin-left:10px;
-// `;3
+// `;
 const GridContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(1, 1fr);
@@ -44,19 +44,19 @@ const GridContainer = styled.div`
   }
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-   flex-wrap: wrap;
-   height:900px;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  @media only screen and (max-width: 500px) {
-    width: 100%;
-    display: table;
-  }
-`;
+// const Container = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//    flex-wrap: wrap;
+//    height:900px;
+//   align-items: center;
+//   justify-content: center;
+//   box-sizing: border-box;
+//   @media only screen and (max-width: 500px) {
+//     width: 100%;
+//     display: table;
+//   }
+// `;
 const TextContainer = styled.div`
   display:flex;
   align-items:center;

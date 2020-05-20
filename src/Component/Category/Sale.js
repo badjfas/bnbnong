@@ -3,6 +3,7 @@ import { useQuery } from "react-apollo-hooks";
 import { READ_PRODUCT } from "../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 const Container = styled.div``;
 
@@ -45,17 +46,17 @@ export default () => {
                     <div style={{ display: "inherit", width: "70%" }}>
                       <div style={{ display: "inherit", width: "100%" }}>
                         <Text>
-                          <span style={{ fontSize: 17  }}>
+                          <Typography component={'span'} style={{ fontSize: 17  }}>
                           청양고추 A급 약 950g 1봉
-                          </span>
+                          </Typography>
                           <br />
-                          <span style={{ fontSize: 13, color: `#B3B2B2`,lineHeight:2 }}>
+                          <Typography component={'span'} style={{ fontSize: 13, color: `#B3B2B2`,lineHeight:2 }}>
                             국내산(제주)
-                          </span>
+                          </Typography>
                           <br />
-                          <span style={{ fontSize: 18,lineHeight:4 }}>
+                          <Typography component={'span'} style={{ fontSize: 18,lineHeight:4 }}>
                             3,500원
-                          </span>
+                          </Typography>
                         </Text>
                       </div>
                     </div>
