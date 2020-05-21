@@ -36,11 +36,13 @@ import SquarePost from "../PCard";
 const GridContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(1, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   @media only screen and (max-width: 768px) {
     width: 100%;
     height:100%;
     display: table;
+    justify-content:center;
+    margin: 0 auto;
   }
 `;
 
