@@ -14,7 +14,7 @@ const Overlay = styled.div`
     svg{
         fill:white;
     }
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 768px) {
       justify-content:center;
       display:flex;
       align-items:center;
@@ -22,7 +22,7 @@ const Overlay = styled.div`
 `;
 const LL = styled(Link)`
   display: table;
-  width: 250px;
+  width: 230px;
   height:100%;
   margin: 0 auto;
   margin-bottom:20px;
@@ -35,16 +35,18 @@ const LL = styled(Link)`
 `;
 
 const Container = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   display: flex;
   background-image: url(${(props) => props.src});
   background-size: cover;
   cursor: pointer;
-  @media only screen and (max-width: 500px) {
-    width: 280px;
-    height: 280px;
+  @media only screen and (max-width: 768px) {
+    width: 230px;
+    height: 230px;
     display: table;
+    justify-content:center;
+    margin: 0 auto;
   }
 `;
 

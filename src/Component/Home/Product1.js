@@ -11,8 +11,16 @@ const GridContainer = styled.div`
     width: 100%;
     height:100%;
     display: table;
+    justify-content:center;
+    margin: 0 auto;
   }
-`;
+  @media only screen and  (width:768px) , (width:1024px) ,(width:1366px) {
+    background-color:#000;
+    display:grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+    `;
 
 // const Container = styled.div`
 //   display: flex;
