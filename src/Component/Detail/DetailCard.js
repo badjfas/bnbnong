@@ -8,9 +8,17 @@ const Container = styled.div`
   padding: 30px;
   padding-top: 60px;
   width:100%;
+  @media only screen and (max-width:768px) {
+    display:grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+  } 
 `;
 const ImgContainer = styled.div`
   border:1px  #D6DADA;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   width:100%;
 `;
 const Image = styled.img`
@@ -23,7 +31,9 @@ const ContentContainer = styled.div`
 display: table;
 padding-left:70px;
 width:100%;
-
+@media only screen and (max-width:768px) {
+  padding : 0;  
+} 
   `;
 const Text = styled.p`
 padding:10px;
@@ -94,8 +104,8 @@ export default () => {
               <ProductContent><ShippingBox style={{fontSize:35}}/> 튼튼한 박스 포장</ProductContent>
               <ProductContent><ShippingMoney style={{fontSize:35}}/> 배송비 2,500원</ProductContent>
               <ButtonContainer>
-                <NaverButton></NaverButton>
-                <ExButton></ExButton>
+                <NaverButton>네이버버튼</NaverButton>
+                <ExButton>추가 버튼</ExButton>
             </ButtonContainer>
         </ContentContainer>
     </Container>

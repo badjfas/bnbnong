@@ -1,9 +1,6 @@
 import React, { useState } from "react"
-import styled, { keyframes } from "styled-components"
-import All from "./Category/All";
-import Sale from "./Category/Sale";
-import Recomends from "./Category/Recomends";
-import New from "./Category/New";
+import styled from "styled-components"
+
 const Container = styled.div`
 display: flex;
 justify-content:center;
