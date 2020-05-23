@@ -15,29 +15,12 @@ const GridContainer = styled.div`
     margin: 0 auto;
   }
   @media only screen and  (width:768px) , (width:1024px) ,(width:1366px) {
-    background-color:#000;
     display:grid;
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(2, 1fr);
   }
     `;
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   overflow:hidden;
-//   align-items: center;
-//   justify-content: center;
-//   box-sizing: border-box;
-//   height: 100%;
-
-//   @media only screen and (max-width: 500px) {
-//     width: 100%;
-//     height: 100%;
-//     display: table;
-//   }
-// `;
 const TextContainer = styled.div`
   display:flex;
   align-items:center;
@@ -55,6 +38,7 @@ const Text = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
+  border-bottom:2px solid #000;
 `;
 
 export default ({src}) => {
@@ -63,7 +47,6 @@ export default ({src}) => {
       <TextContainer>
         <Text>제주 농산물</Text>
       </TextContainer>
-
       <GridContainer>
         <SquarePost
           src={

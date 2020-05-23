@@ -109,16 +109,20 @@ export default () => {
 
         <MenuItem value={value} index={0}>
           <Container>
-            asdasdasdasd
+            상세정보
           </Container>
         </MenuItem>
 
         <MenuItem value={value} index={1}>
-          상세정보
+        <Container>
+            상품후기
+          </Container>
         </MenuItem>
 
         <MenuItem value={value} index={2}>
-          상세정보
+        <Container>
+            QnA
+          </Container>
         </MenuItem>
         <Typography className={classes.padding} />
       </div>

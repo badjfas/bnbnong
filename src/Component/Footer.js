@@ -50,6 +50,7 @@ const TitleText = styled(Text)`
   font-size:20px;
 `;
 
+
 export default () => {
 
   return (

@@ -2,37 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import SquarePost from "../PCard";
 
-// const Container = styled(Link)`
-//   padding: 15px;
-//   width:100%;
-//   display: talbe;
-//   align-items: center;
-//   justify-content: center;
-//   box-sizing: border-box;
-//   @media only screen and (max-width: 500px) {
-//     width:100%;
-//     display:table;
-//   }
-// `;
-// const TextContainer = styled.div`
-//   display:flex;
-//   align-items:center;
-//   justify-content:center;
-//   padding: 50px;
-//   border-top:1px solid #494848;
-// `;
-// const Text = styled.span`
-//   color: #000;
-//   display: block;
-//   overflow: hidden;
-//   padding-top: 3px;
-//   font-weight: 600;
-//   font-size: 25px;
-//   line-height: 2;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-//   margin-left:10px;
-// `;
 const GridContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(1, 1fr);
@@ -44,21 +13,13 @@ const GridContainer = styled.div`
     justify-content:center;
     margin: 0 auto;
   }
+  @media only screen and  (width:768px) , (width:1024px) ,(width:1366px) {
+    display:grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//    flex-wrap: wrap;
-//    height:900px;
-//   align-items: center;
-//   justify-content: center;
-//   box-sizing: border-box;
-//   @media only screen and (max-width: 500px) {
-//     width: 100%;
-//     display: table;
-//   }
-// `;
 const TextContainer = styled.div`
   display:flex;
   align-items:center;
@@ -78,7 +39,9 @@ const Text = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
-`;
+  border-bottom:2px solid #000;
+
+  `;
 
 
 export default () => {
