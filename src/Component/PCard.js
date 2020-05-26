@@ -88,21 +88,18 @@ text-overflow: ellipsis;
 
 `;
 
-const SquarePost = ({name,price ,content,src }) => (
-  <LL to={"/detail/"}>
+const SquarePost = ({ name, price, content, src, id ,category }) => (
+  <LL to={`/detail/${category}/${id}`}>
     <Container src={src}>
       <Overlay>
-          <PageviewIcon style={{fontSize:90}}/>
+        <PageviewIcon style={{ fontSize: 90 }} />
       </Overlay>
     </Container>
-    <div style={{display:"table"}}>
-    <ProductName>{name}</ProductName>
-        <ProductPrice>39,000원</ProductPrice>
-        <ProductContent>
-              {content}
-        </ProductContent>
+    <div style={{ display: "table" }}>
+      <ProductName>{name}</ProductName>
+      <ProductPrice>{price}원</ProductPrice>
+      <ProductContent>{content}</ProductContent>
     </div>
-
   </LL>
 );
 

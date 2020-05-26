@@ -44,41 +44,21 @@ const Text = styled.span`
   `;
 
 
-export default () => {
+export default ({data}) => {
+  console.log(data,)
   return (
     <>
       <TextContainer>
         <Text>체 험</Text>
       </TextContainer>
       <GridContainer>
-        <SquarePost
-          src={
-            "https://img-wishbeen.akamaized.net/plan/1444435450498_10923258_917735108276775_4031536054220078925_n.jpg"
-          }
-          name={"조랑말 체험"}
-          content={"asdasdasdasdaskndkasljdasdklajdklsjkljkl"}
-        />
-        <SquarePost
-          src={
-            "https://img.hani.co.kr/imgdb/resize/2018/0917/00500854_20180917.JPG"
-          }
-          name={"수상 레저"}
-          content={"asdasdasdasdasdssssssssssssssssssssssssssssssssssasdasasdasda"}
-
-        />
-        <SquarePost
-          src={
-            "https://i.011st.com/ex_t/R/1000x1000/1/85/0/src/dl/20/7/6/2/3/5/3/cNnBO/2637762353_131880199.jpg"
-          }
-          name={"감귤 농가 체험"}
-        />
-        <SquarePost
-          src={
-            "https://post-phinf.pstatic.net/MjAxNzA4MDdfMTY0/MDAxNTAyMDczMjI5MTkz.X240UJe5DKWuCmJVHyzAYT64LctZ6pJxIGsWHmv9600g.lJIPOG_h3b0GDU586XcZeMrPGkx3fhClGoV0WXUWl20g.JPEG/1_copy.jpg?type=w1200"
-          }
-          name={"낙타 트래킹"}
-        />
+        {data.map((p) => {
+          return (
+            <SquarePost id={p.id} src={p.src} name={p.productname} category={p.category} content={p.content} />
+          );
+        })}
       </GridContainer>
     </>
   );
 };
+

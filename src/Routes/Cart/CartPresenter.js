@@ -16,52 +16,44 @@ const useStyles = makeStyles({
 });
 
 
-export default  ({qty,dummyData}) => {
+export default  ({qty}) => {
   const classes = useStyles();
+  // const listArray = 
+  const x = Number(qty.value);  
 
-  const x = Number(qty.value);
-  
+  const list= JSON.parse(sessionStorage.getItem("cart"));
+
   return (
     <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="spanning table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={2}>
-                상세정보
-              </TableCell>
-              <TableCell align="right">가격</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>상품명</TableCell>
-              <TableCell align="center" style={{ width: 200 }}>
-                수량
-              </TableCell>
-              <TableCell align="right">가격</TableCell>
-            </TableRow>
-          </TableHead>
+      <Table className={classes.table} aria-label="spanning table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center" colSpan={2}>
+              상세정보
+            </TableCell>
+            <TableCell align="right">가격</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>상품명</TableCell>
+            <TableCell align="center" style={{ width: 200 }}>
+              수량
+            </TableCell>
+            <TableCell align="right">가격</TableCell>
+          </TableRow>
+        </TableHead>
+        {list.map((p) => (
           <TableBody>
-            {dummyData.map(p=>{
-              console.log(p,"p")
-                                return (
-                                  <TableRow key={p.id}>
-                                    <TableCell>{p.productname}</TableCell>
-                                    <TableCell align="right">
-                                      <Input
-                                        key="1"
-                                        id="price1"
-                                        style={{ width: 10 }}
-                                        {...qty}
-                                      />
-                                    </TableCell>
-                                    <TableCell align="right">
-                                      {p.price}
-                                    </TableCell>
-                                  </TableRow>
-                                );
-                              })}
+            <TableRow key={p.id}>
+              <TableCell>{p.productname}</TableCell>
+              <TableCell align="right">
+                <Input key="1" id="price1" style={{ width: 10 }} {...qty} />
+              </TableCell>
+              <TableCell align="right">{p.price}원</TableCell>
+            </TableRow>
           </TableBody>
-        </Table>
-        <button/>
+        ))}
+      </Table>
+      <button />
     </TableContainer>
   );
 }

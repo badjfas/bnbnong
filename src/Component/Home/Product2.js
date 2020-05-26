@@ -43,42 +43,19 @@ const Text = styled.span`
 
 `;
 
-export default ({src}) => {
+export default ({data}) => {
+  console.log(data,"data2")
   return (
     <>
       <TextContainer>
         <Text>기타 가공품</Text>
       </TextContainer>
       <GridContainer>
-        <SquarePost
-          src={
-            "https://m.organic-story.com/web/product/big/201901/d76c22fc86ea008266e16cc58b1d2b5e.jpg"
-          }
-          name={"제주 딸기 잼"}
-          content={"이 상품은 딸기로 만든 잼"}
-        />
-        <SquarePost
-          src={
-            "https://view01.wemep.co.kr/wmp-product/9/354/153573549/pm_yerafjs14p3n.jpg?1552981455"
-          }
-          name={"제주 말린 감귤"}
-          content={"이 상품은 감귤로 만든 간식"}
-
-        />
-        <SquarePost
-          src={"http://qkfms3005.diskn.com/ss/nut/gjmg_01.jpg"}
-          name={"제주 건 망고"}
-          content={"이 상품은 망고로 만든 간식"}
-
-        />
-        <SquarePost
-          src={
-            "https://www.heroasia.net/jam/sites/asia.jam/files/styles/1200x1200/public/1227_203_BitterOrange_APAC_600x412px.png?itok=mUXW3A71"
-          }
-          name={"제주 한라봉 잼"}
-          content={"이 상품은 한라봉으로 만든 잼"}
-
-        />
+        {data.map((p) => {
+          return (
+            <SquarePost id={p.id} src={p.src} name={p.productname} category={p.category} content={p.content} />
+          );
+        })}
       </GridContainer>
     </>
   );

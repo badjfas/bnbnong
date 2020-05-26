@@ -13,14 +13,12 @@ const Container = styled.div`
 //👁👁👁👁👁👁👁👁Material Ui Component 👁👁👁👁👁👁👁👁
 
 //👁👁👁👁👁👁👁👁👁👁👁
-export default ({ data,loading }) => {
-  console.log(data);
-
+export default ({ data1,data2,data3 }) => {
   return (
     <Container>
-      <Product1/>
-      <Product2/>
-      <Product3/>
+      <Product1 data={data1} />
+      <Product2 data={data2}/>
+      <Product3 data={data3}/>
     </Container>
   );
 };
