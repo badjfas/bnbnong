@@ -40,7 +40,7 @@ border:1px solid #727272;
     console.log("data:",data?.searchProduct,"searchTerm:",searchTerm)
     if (data===undefined) {
         return <Wrapper>다시 검색 해주세요.</Wrapper>;
-      } else if (data===undefined&&loading === true) {
+      } else if (data===undefined&&!loading) {
         return <Wrapper><Loader/></Wrapper>;
       } else if(data&&data?.searchProduct !=undefined)  {
         return (

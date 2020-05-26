@@ -88,8 +88,8 @@ const ExButton = styled(NaverButton)`
   background-color:#547BFF;
 `;
 
-export default () => {
-
+export default ({data}) => {
+  console.log(data,"detailCard");
     return(
         <Container>
         <ImgContainer>
@@ -104,7 +104,7 @@ export default () => {
               <ProductContent><ShippingBox style={{fontSize:35}}/> 튼튼한 박스 포장</ProductContent>
               <ProductContent><ShippingMoney style={{fontSize:35}}/> 배송비 2,500원</ProductContent>
               <ButtonContainer>
-                <NaverButton>네이버버튼</NaverButton>
+                <NaverButton onClick={()=>sessionStorage.setItem("item",JSON.stringify(data))}>네이버버튼</NaverButton>
                 <ExButton>추가 버튼</ExButton>
             </ButtonContainer>
         </ContentContainer>

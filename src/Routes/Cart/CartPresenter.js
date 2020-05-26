@@ -1,93 +1,67 @@
-import React from "react";
-import styled from "styled-components";
-import { Button, Input } from "@material-ui/core";
+import React, { useContext, useEffect , useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Input from '../../Component/Input';
 
-const Container = styled.div`
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:5px;
-  border:1px solid #ededed;
-`;
+const useStyles = makeStyles({
+  table: {
+    minWidth: 700,
+  },
+});
 
-const ImgContainer = styled.div`
-  width:30%
-`;
 
-const CartContainer = styled.div`
-  width:50%;
-  height:130px;
-  white-space:pre-line;
-  `;
+export default  ({qty,dummyData}) => {
+  const classes = useStyles();
 
-const QtyContainer= styled.div`
+  const x = Number(qty.value);
   
-`;  
-  
-const ProductImg = styled.img`
-  max-width: 130px;
-  max-height: 130px;
-`;
-
-
-const ButtonContainer =styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-position:fixed;
-width:100%;
-max-width:700px;
-top:10;
-  align-items:center;
-  justify-content:center;
-`;
-
-export default ({username})=> {
-    return (
-      <>
-      <Container>
-          <ImgContainer>
-                <ProductImg src={"asdasd"}/>
-          </ImgContainer>
-          <CartContainer>
-              <p>Item1</p>
-              <p>Item1</p>
-              <p>Item1</p>
-              <p>Item1</p>
-          </CartContainer>
-        <QtyContainer>
-          <Input style={{width:30}}/>개
-        </QtyContainer>
-      </Container>
-      <Container>
-          <ImgContainer>
-                <ProductImg src={"asdasd"}/>
-          </ImgContainer>
-          <CartContainer>
-            Item2
-          </CartContainer>
-      </Container>
-      <Container>
-          <ImgContainer>
-                <ProductImg src={"asdasd"}/>
-          </ImgContainer>
-          <CartContainer>
-            Item3
-          </CartContainer>
-      </Container>
-      <Container>
-          <ImgContainer>
-                <ProductImg src={"asdasd"}/>
-          </ImgContainer>
-          <CartContainer>
-            Item3
-          </CartContainer>
-      
-      </Container>
-      <ButtonContainer>
-            <Button variant="contained" style={{display:"flex",height:"100%"}}>주문하기</Button>
-        </ButtonContainer>
-      </>
-    );
+  return (
+    <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="spanning table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={2}>
+                상세정보
+              </TableCell>
+              <TableCell align="right">가격</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>상품명</TableCell>
+              <TableCell align="center" style={{ width: 200 }}>
+                수량
+              </TableCell>
+              <TableCell align="right">가격</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {dummyData.map(p=>{
+              console.log(p,"p")
+                                return (
+                                  <TableRow key={p.id}>
+                                    <TableCell>{p.productname}</TableCell>
+                                    <TableCell align="right">
+                                      <Input
+                                        key="1"
+                                        id="price1"
+                                        style={{ width: 10 }}
+                                        {...qty}
+                                      />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                      {p.price}
+                                    </TableCell>
+                                  </TableRow>
+                                );
+                              })}
+          </TableBody>
+        </Table>
+        <button/>
+    </TableContainer>
+  );
 }

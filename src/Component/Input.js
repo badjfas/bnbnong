@@ -18,7 +18,9 @@ const Input = ({
   type = "text",
   className,
   to
-}) => (
+}) => {
+  console.log(value,"input.js")
+  return(
   <Container
     className={className}
     placeholder={placeholder}
@@ -28,7 +30,7 @@ const Input = ({
     type={type}
     to={to}
   />
-);
+)};
 
 Input.propTypes = {
     placeholder:PropTypes.string.isRequired,
