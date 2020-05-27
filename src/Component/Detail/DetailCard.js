@@ -87,7 +87,6 @@ const NaverButton = styled(Link)`
 const ExButton = styled(NaverButton)`
   background-color:#547BFF;
 `;
-//onClick={()=>sessionStorage.setItem("item",JSON.stringify(data))}
 const list = [] ;
 
 export default ({productId,categoryId, data1, data2, data3}) => {
