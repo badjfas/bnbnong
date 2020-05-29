@@ -1,10 +1,9 @@
-import React, { useContext, useEffect , useState} from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import { Input } from '@material-ui/core';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { actionCreators } from '../../store';
-
+import { Input } from "@material-ui/core";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import { actionCreators } from "../../store";
 
 const Container = styled.div`
   width: 100%;
@@ -16,12 +15,13 @@ const Container = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
-  font-family:'Do Hyeon', sans-serif;
-  & > th,td {
+  font-family: "Do Hyeon", sans-serif;
+  & > th,
+  td {
     border: 1px solid #ddd;
     padding: 8px;
   }
-  &> tr:hover {
+  & > tr:hover {
     background-color: #f5f5f5;
   }
 `;
@@ -29,33 +29,42 @@ const TableHeader = styled.th`
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  margin-left:2px;
+  margin-left: 2px;
   background-color: #4caf50;
   color: white;
 `;
 
 const Empty = styled.div`
-width:100%;
-margin-top:20px;
-display:flex;
-justify-content:center;
-align-items:center;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+const data = JSON.parse(localStorage.getItem("cart"));
 
-const cart = JSON.parse(localStorage.getItem("cart"));
-const CartPresenter =  ({addList,data}) => {
-console.log(cart,"Cart");
-const [text, setText] = useState("");
+const CartPresenter = ({ addList, deleteCart }) => {
+  console.log(data);
+  const [text, setText] = useState("");
 
-let [value,setValue] = useState(0)
-const onChange = (e) => {
-  value = e.target.value;
-  setValue(value);
-};
-const onSubmit = (e) => {
-  e.preventDefault();
-  addList(data);  
-}
+  const [list, setList] = useState(0);
+
+  let [value, setValue] = useState(0);
+
+  const onChange = (e) => {
+    value = e.target.value;
+    setValue(value);
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addList(data);
+  };
+
+  const onClick = (e) => {
+    console.log(e)
+    e.preventDefault();
+    //deleteCart(data.id);
+  };
 
   return (
     <Container>
@@ -66,8 +75,20 @@ const onSubmit = (e) => {
           <TableHeader>수량</TableHeader>
           <TableHeader>담기</TableHeader>
         </tr>
-        {cart.map(({data}) => {
-          return <tr></tr>;
+        {data.map(({ data }) => {
+          return (
+            <tr>
+              <td>{data.productname}</td>
+              <td>{data.price}</td>
+              <td>
+                <Input />
+              </td>
+              <td>
+                <button>담기</button>
+                <button onClick={onClick}>삭제</button>
+              </td>
+            </tr>
+          );
         })}
       </Table>
 
@@ -81,17 +102,17 @@ const onSubmit = (e) => {
       </Table>
     </Container>
   );
-}
-const getCurrentState = (state) =>{
-  console.log("cart - p")
-  return {
-      state
-  }
-}
-const mapDispatchToProps = (dispatch,ownProps) => {
-  return {
-    addList: (data) => dispatch(actionCreators.addList(data)),
-    deleteList : ()=> dispatch(actionCreators.deleteCart())
-  }
 };
-export default connect(getCurrentState)(CartPresenter);
+const getCurrentState = (state) => {
+  console.log("cart - p");
+  return {
+    state,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  
+  return {
+    deleteCart: () => dispatch(actionCreators.deleteCart()),
+  };
+};
+export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);

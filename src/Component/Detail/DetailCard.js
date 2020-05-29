@@ -1,49 +1,54 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import {ShippingBox, ShippingTruck, ShippingMoney, Caution} from "../svgIcons";
+import {
+  ShippingBox,
+  ShippingTruck,
+  ShippingMoney,
+  Caution,
+} from "../svgIcons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store";
 const Container = styled.div`
-  display:flex;
+  display: flex;
   padding: 30px;
   padding-top: 60px;
-  width:100%;
-  @media only screen and (max-width:768px) {
-    display:grid;
+  width: 100%;
+  @media only screen and (max-width: 768px) {
+    display: grid;
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(1, 1fr);
-  } 
+  }
 `;
 const ImgContainer = styled.div`
-  border:1px  #D6DADA;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  width:100%;
+  border: 1px #d6dada;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 const Image = styled.img`
-  width:100%;
-  height:100%;
-  max-width:450px;
-  max-height:500px;
+  width: 100%;
+  height: 100%;
+  max-width: 450px;
+  max-height: 500px;
 `;
 const ContentContainer = styled.div`
-display: table;
-padding-left:70px;
-width:100%;
-@media only screen and (max-width:768px) {
-  padding : 0;  
-} 
-  `;
+  display: table;
+  padding-left: 70px;
+  width: 100%;
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
+`;
 const Text = styled.p`
-padding:10px;
+  padding: 10px;
 `;
 const ProductName = styled(Text)`
-font-size: 50px;
-margin-bottom:20px;
-border-bottom: 1px solid #DBE1E1;
+  font-size: 50px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #dbe1e1;
 `;
 
 const ProductPrice = styled(Text)`
@@ -56,53 +61,51 @@ const ProductWeight = styled(Text)`
 `;
 
 const ProductCaution = styled(Text)`
-  margin-top:5px;
-  background-color:#FFBC54;
-  border-radius:7px;
-  padding:3px;
-  font-size:24px;
-  color:#F3F3F3;
+  margin-top: 5px;
+  background-color: #ffbc54;
+  border-radius: 7px;
+  padding: 3px;
+  font-size: 24px;
+  color: #f3f3f3;
 `;
 
-const ProductContent =styled(Text)`
-  color:#0B61D4;
-  font-size:  23px;
+const ProductContent = styled(Text)`
+  color: #0b61d4;
+  font-size: 23px;
 `;
 
 const ButtonContainer = styled.div`
-display:flex;
-justify-content:center;
-width:100%;
-padding-top: 10px;
-border-top: 1px solid #DBE1E1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #dbe1e1;
 `;
 
 const NaverButton = styled(Link)`
-  width:45%;
-  border-radius:10px;
-  height:50px;
+  width: 45%;
+  border-radius: 10px;
+  height: 50px;
   padding: 10px;
-  margin:0 auto;
-  background-color:#4DDB49;
+  margin: 0 auto;
+  background-color: #4ddb49;
 `;
 
 const ExButton = styled(NaverButton)`
-  background-color:#547BFF;
+  background-color: #547bff;
 `;
 
-
-const DetailCard =  ({data,id,category,state,addCart}) => {
-  const [list,setList] = useState([])
-
+const DetailCard = ({ data, id, category, state, addCart }) => {
+  const [list, setList] = useState([]);
   const onClick = (e) => {
     e.preventDefault();
-    const {d} = data[id-1];
+    const { d } = data[id - 1];
     setList([]);
-   addCart(d);
+    addCart(d);
   };
-  
-    switch(category) {
-      case "1": 
+
+  switch (category) {
+    case "1":
       return (
         <Container>
           <ImgContainer>
@@ -125,28 +128,27 @@ const DetailCard =  ({data,id,category,state,addCart}) => {
               <ShippingMoney style={{ fontSize: 35 }} /> 배송비 2,500원
             </ProductContent>
             <ButtonContainer>
-                <NaverButton onClick={onClick}>장바구니</NaverButton>
+              <NaverButton onClick={onClick}>장바구니</NaverButton>
             </ButtonContainer>
           </ContentContainer>
         </Container>
       );
-      case 2:
-        return null;
-      default :
+    case 2:
       return null;
-    }
-}
-const getCurrentState = (state) =>{
-  return {
-      state
-  }
-}
-const mapDispatchToProps = (dispatch,props) => {
-  const data = props.data[props.id-1]
-  console.log(data,"dispatfch");
-  return {
-    addCart: () => dispatch(actionCreators.addCart(data)),
-    deleteCart : ()=> dispatch(actionCreators.deleteCart())
+    default:
+      return null;
   }
 };
-export default connect(getCurrentState,mapDispatchToProps)(DetailCard);
+const getCurrentState = (state) => {
+  return {
+    state,
+  };
+};
+const mapDispatchToProps = (dispatch, props) => {
+  const data = props.data[props.id - 1];
+  console.log(data, "dispatfch");
+  return {
+    addCart: () => dispatch(actionCreators.addCart(data)),
+  };
+};
+export default connect(getCurrentState, mapDispatchToProps)(DetailCard);
