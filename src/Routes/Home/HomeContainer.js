@@ -2,7 +2,7 @@ import React from "react";
 import HomePresenter from "./HomePresenter";
 import { useQuery } from "react-apollo-hooks";
 import {READ_PRODUCT} from "../../Queries/readProduct"
-import {data1,data2,data3} from "../../ProductData";
+import {data} from "../../ProductData";
 
 export default () => {
  // const {data,loading} = useQuery(READ_PRODUCT)
@@ -10,6 +10,6 @@ export default () => {
 
 
     return (
-        <HomePresenter data1={data1} data2={data2} data3={data3}/>
+        <HomePresenter data={data}/>
     )
 }

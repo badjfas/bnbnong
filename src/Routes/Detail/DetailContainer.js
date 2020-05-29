@@ -4,11 +4,11 @@ import {  withRouter } from "react-router-dom";
 import { useQuery  } from "react-apollo-hooks";
 import { SELECT_PRODUCT } from "../../Queries/selectProduct";
 
-import {data1,data2,data3} from "../../ProductData";
+import {data} from "../../ProductData";
 
 
-export default withRouter(({match:{params:{id:productId,category:categoryId}}}) =>  {
+export default withRouter(({match:{params:{id,category}}}) =>  {
 //    const {data,loading} = useQuery(SELECT_PRODUCT,{variables:{id:parseInt(id)}})
-return <DetailPresenter categoryId={categoryId} productId={productId} data1={data1} data2={data2} data3={data3} />;
+return <DetailPresenter data={data} id={id} category={category}/>;
 }
 )

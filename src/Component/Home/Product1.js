@@ -42,7 +42,6 @@ const Text = styled.span`
 `;
 
 export default ({data}) => {
-  console.log(data,"data1")
   return (
     <>
       <TextContainer>

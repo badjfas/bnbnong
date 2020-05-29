@@ -6,9 +6,8 @@ import useInput from "../../Hooks/useInput";
 export default () => {
     const {username} = useParams();
     const qty = useInput(0);
-
-    const dummy = sessionStorage.getItem("item")
+    const data = sessionStorage.getItem("cart");
     return (
-        <CartPresenter username={username} qty={qty} dummyData={JSON.parse(dummy)}/>
+        <CartPresenter username={username} qty={qty} data={JSON.parse(data)}/>
     )
 }

@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import {ShippingBox, ShippingTruck, ShippingMoney, Caution} from "../svgIcons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { actionCreators } from "../../store";
 const Container = styled.div`
   display:flex;
   padding: 30px;
@@ -87,44 +89,28 @@ const NaverButton = styled(Link)`
 const ExButton = styled(NaverButton)`
   background-color:#547BFF;
 `;
-const list = [] ;
-
-export default ({productId,categoryId, data1, data2, data3}) => {
 
 
-  const saveCart = () => {
-    sessionStorage.setItem("cart",JSON.stringify(list))
-  }
+const DetailCard =  ({data,id,category,state,addCart}) => {
+  const [list,setList] = useState([])
 
-  const addListCart = (item) => {
-    console.log(item,"item");
-    for(var c in list){
-      if(list[c].productname === item.productname){
-        list[c].qty++
-        saveCart();
-        return;
-      }
-    }
-    const newItem = item
-    console.log(newItem,"newItem");
-    list.push(newItem)
-    saveCart();
-  }
-
-  switch (categoryId) {
-    case "1":
+  const onClick = (e) => {
+    e.preventDefault();
+    const {d} = data[id-1];
+    setList([]);
+   addCart(d);
+  };
+  
+    switch(category) {
+      case "1": 
       return (
         <Container>
           <ImgContainer>
-            <Image
-              src={
-                data1[productId-1].src
-              }
-            />
+            <Image src={data[id - 1].src} />
           </ImgContainer>
           <ContentContainer>
-            <ProductName>{data1[productId-1].productname}</ProductName>
-            <ProductPrice>{data1[productId-1].price}원</ProductPrice>
+            <ProductName>{data[id - 1].productname}</ProductName>
+            <ProductPrice>{data[id - 1].price}원</ProductPrice>
             <ProductWeight>중량: 500g</ProductWeight>
             <ProductCaution>
               <Caution /> 이상품은 ...
@@ -139,80 +125,28 @@ export default ({productId,categoryId, data1, data2, data3}) => {
               <ShippingMoney style={{ fontSize: 35 }} /> 배송비 2,500원
             </ProductContent>
             <ButtonContainer>
-              <NaverButton onClick={()=>addListCart(data1[productId-1])}>장바구니</NaverButton>
-              <ExButton>추가 버튼</ExButton>
+                <NaverButton onClick={onClick}>장바구니</NaverButton>
             </ButtonContainer>
           </ContentContainer>
         </Container>
       );
-    case "2":
-      return (
-        <Container>
-          <ImgContainer>
-            <Image
-              src={
-                data2[productId-1].src
-              }
-            />
-          </ImgContainer>
-          <ContentContainer>
-            <ProductName>{data2[productId-1].productname}</ProductName>
-            <ProductPrice>{data2[productId-1].price}원</ProductPrice>
-            <ProductWeight>중량: 500g</ProductWeight>
-            <ProductCaution>
-              <Caution /> 이상품은 ...
-            </ProductCaution>
-            <ProductContent>
-              <ShippingTruck style={{ fontSize: 35 }} /> 배송 1~2일 소요
-            </ProductContent>
-            <ProductContent>
-              <ShippingBox style={{ fontSize: 35 }} /> 튼튼한 박스 포장
-            </ProductContent>
-            <ProductContent>
-              <ShippingMoney style={{ fontSize: 35 }} /> 배송비 2,500원
-            </ProductContent>
-            <ButtonContainer>
-            <NaverButton onClick={()=> list.push(JSON.stringify(data1[productId-1]))}>장바구니</NaverButton>
-              <ExButton>추가 버튼</ExButton>
-            </ButtonContainer>
-          </ContentContainer>
-        </Container>
-      );
-    case "3":
-      return (
-        <Container>
-          <ImgContainer>
-            <Image
-              src={
-                data2[productId-1].src
-              }
-            />
-          </ImgContainer>
-          <ContentContainer>
-            <ProductName>{data3[productId-1].productname}</ProductName>
-            <ProductPrice>{data3[productId-1].price}원</ProductPrice>
-            <ProductWeight>중량: 500g</ProductWeight>
-            <ProductCaution>
-              <Caution /> 이상품은 ...
-            </ProductCaution>
-            <ProductContent>
-              <ShippingTruck style={{ fontSize: 35 }} /> 배송 1~2일 소요
-            </ProductContent>
-            <ProductContent>
-              <ShippingBox style={{ fontSize: 35 }} /> 튼튼한 박스 포장
-            </ProductContent> 
-            <ProductContent>
-              <ShippingMoney style={{ fontSize: 35 }} /> 배송비 2,500원
-            </ProductContent>
-            <ButtonContainer>
-            <NaverButton onClick={()=>{
-                return sessionStorage.setItem("List",JSON.stringify(data3[productId-1]))}
-                }>장바구니</NaverButton>
-            </ButtonContainer>
-          </ContentContainer>
-        </Container>
-      );
-    default:
+      case 2:
+        return null;
+      default :
       return null;
+    }
+}
+const getCurrentState = (state) =>{
+  return {
+      state
   }
 }
+const mapDispatchToProps = (dispatch,props) => {
+  const data = props.data[props.id-1]
+  console.log(data,"dispatfch");
+  return {
+    addCart: () => dispatch(actionCreators.addCart(data)),
+    deleteCart : ()=> dispatch(actionCreators.deleteCart())
+  }
+};
+export default connect(getCurrentState,mapDispatchToProps)(DetailCard);
