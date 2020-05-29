@@ -12,18 +12,17 @@ const persistConfig = {
 };
 
 const addCart = (data) => {
-  console.log("data(addCart) : " , data)
     return{
         type:ADD_CART,
         data,
     }
 }
 
-const deleteCart = (data) => {
-  console.log(data)
+const deleteCart = (id) => {
+  console.log("Delete Id : ",id)
   return {
     type: DELETE_CART,
-    
+    id:parseInt(id)
   };
 }
 
@@ -36,14 +35,18 @@ const reducer = (state=[],action) => {
         if(state[count].data.id===data.id){
           const newState = state;
           newState.filter(list=>list.data.id !==action.data.id)
-          localStorage.setItem("cart",JSON.stringify(newState))
+          sessionStorage.setItem("cart",JSON.stringify(newState))
         return newState;
         }
       }
-      localStorage.setItem("cart",JSON.stringify([...state,action]))
+      sessionStorage.setItem("cart",JSON.stringify([...state,action]))
         return [...state,action];
       case DELETE_CART:
-        return store.filter((list) => list.id === action.id);
+        const carts = JSON.parse(sessionStorage.getItem("cart"));
+        const updateCart = carts.filter(({data:list}) => list.id !== action.id )
+        sessionStorage.setItem("cart",JSON.stringify(updateCart))
+        console.log("updateCart :" , updateCart);
+        return updateCart;
       default:
         return state;
     }
@@ -57,7 +60,6 @@ const enhancedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(enhancedReducer);
 export const persistor = persistStore(store);
-console.log("store : " , store.getState());
 export const actionCreators ={
     addCart,
     deleteCart

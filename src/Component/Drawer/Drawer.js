@@ -70,7 +70,7 @@ export default () => {
         <Toolbar>
           {isClick ? (
             <>
-              <Link style={{ color: "black" }} to={"/category"}>
+              <Link style={{ color: "black" }} to={"/"}>
                 <IconButton
                   edge="start"
                   className={classes.menuButton}

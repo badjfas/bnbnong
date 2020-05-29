@@ -5,7 +5,6 @@ import Deatail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
 import Menu from "../Routes/Menu";
 import Category from "../Routes/Category";
-import TestTabs from "./TestTab"
 import Search from "../Routes/Search";
 const Routes =  () =>(
     <Switch>

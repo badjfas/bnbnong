@@ -4,6 +4,7 @@ import { Input } from "@material-ui/core";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store";
+import CartList from "../../Component/CartList";
 
 const Container = styled.div`
   width: 100%;
@@ -16,8 +17,7 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   font-family: "Do Hyeon", sans-serif;
-  & > th,
-  td {
+  & > th, td ,* {
     border: 1px solid #ddd;
     padding: 8px;
   }
@@ -41,55 +41,23 @@ const Empty = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const data = JSON.parse(localStorage.getItem("cart"));
 
-const CartPresenter = ({ addList, deleteCart }) => {
-  console.log(data);
-  const [text, setText] = useState("");
-
-  const [list, setList] = useState(0);
-
-  let [value, setValue] = useState(0);
-
-  const onChange = (e) => {
-    value = e.target.value;
-    setValue(value);
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    addList(data);
-  };
-
-  const onClick = (e) => {
-    console.log(e)
-    e.preventDefault();
-    //deleteCart(data.id);
-  };
+const CartPresenter = ({ addList, onBtnDelete,data}) => {
+  const [value,setValue] = useState(0);
 
   return (
     <Container>
       <Table id="customers" key="sdaf">
         <tr>
+          <TableHeader>상품번호</TableHeader>
           <TableHeader>상품명</TableHeader>
           <TableHeader>단가</TableHeader>
-          <TableHeader>수량</TableHeader>
           <TableHeader>담기</TableHeader>
         </tr>
-        {data.map(({ data }) => {
-          return (
-            <tr>
-              <td>{data.productname}</td>
-              <td>{data.price}</td>
-              <td>
-                <Input />
-              </td>
-              <td>
-                <button>담기</button>
-                <button onClick={onClick}>삭제</button>
-              </td>
-            </tr>
-          );
-        })}
+     
+          {data.map(list => {
+            return (<CartList key={list.id} {...list}/>)})}
+      
       </Table>
 
       <Table style={{ marginTop: 100 }} id="customers" key="sdaf">
@@ -103,16 +71,16 @@ const CartPresenter = ({ addList, deleteCart }) => {
     </Container>
   );
 };
-const getCurrentState = (state) => {
-  console.log("cart - p");
+const getCurrentState = (state,ownProps) => {
   return {
     state,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  
+const mapDispatchToProps = (dispatch,ownProps) => {
+  const {data} = ownProps;
+  console.log(data)
   return {
-    deleteCart: () => dispatch(actionCreators.deleteCart()),
+    onBtnDelete: () => dispatch(actionCreators.deleteCart()),
   };
 };
 export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);
