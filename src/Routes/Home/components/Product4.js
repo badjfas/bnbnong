@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SquarePost from "../PCard";
+import SquarePost from "./PCard";
 
 const GridContainer = styled.div`
   display: grid;

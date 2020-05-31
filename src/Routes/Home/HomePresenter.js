@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Product1 from "../../Component/Home/Product1"
-import Product2 from "../../Component/Home/Product2"
-import Product3 from "../../Component/Home/Product4";
-import Dropdown from "../../Component/Dropdown";
+import Product1 from "./components/Product1"
+import Product2 from "./components/Product2"
+import Product3 from "./components/Product4";
 
 const Container = styled.div`
   padding:15px;

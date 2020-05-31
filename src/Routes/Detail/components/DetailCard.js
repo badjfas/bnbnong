@@ -6,10 +6,10 @@ import {
   ShippingTruck,
   ShippingMoney,
   Caution,
-} from "../svgIcons";
+} from "../../../Component/svgIcons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { actionCreators } from "../../store";
+import { actionCreators } from "../../../store";
 const Container = styled.div`
   display: flex;
   padding: 30px;

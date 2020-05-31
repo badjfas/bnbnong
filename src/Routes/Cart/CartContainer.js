@@ -7,7 +7,8 @@ export default () => {
     const {username} = useParams();
     const qty = useInput(0);
     const data = sessionStorage.getItem("cart");
+    const arr = [];
     return (
-        <CartPresenter username={username} qty={qty} data={JSON.parse(data)}/>
+        <CartPresenter username={username} bucket={arr} qty={qty} data={JSON.parse(data)}/>
     )
 }

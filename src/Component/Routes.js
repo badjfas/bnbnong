@@ -6,18 +6,31 @@ import Cart from "../Routes/Cart";
 import Menu from "../Routes/Menu";
 import Category from "../Routes/Category";
 import Search from "../Routes/Search";
-const Routes =  () =>(
-    <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/detail/:category/:id" component={Deatail}/>
-        <Route exact path="/cart" component={Cart}/>
-        <Route exact path="/Menu" component={Menu}/>
-        <Route exact path="/Category/" component={Category}/>
-        <Route exact path="/search/" component={Search}/>
+import { Provider } from "react-redux";
+import store from "../store";
+import storeA from "../Routes/Cart/store";
 
-        <Redirect from="*" to ="/" />
-    </Switch>
-);
+const Routes = () => { 
+  const ContextA = React.createContext();
+
+  return(
+  <Switch>
+    <Provider store={store}>
+      <Route exact path="/" component={Home} />
+
+      <Route exact path="/detail/:category/:id" component={Deatail} />
+      <Provider store={storeA}>
+      <Route exact path="/cart" component={Cart} />
+      </Provider>
+
+      <Route exact path="/Menu" component={Menu} />
+      <Route exact path="/Category/" component={Category} />
+      <Route exact path="/search/" component={Search} />
+
+      <Redirect from="*" to="/" />
+    </Provider>
+  </Switch>
+)};
 
 
 const appRouter = () => (

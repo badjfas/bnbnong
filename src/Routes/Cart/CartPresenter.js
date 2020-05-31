@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import { Input } from "@material-ui/core";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { actionCreators } from "../../store";
-import CartList from "../../Component/CartList";
-
+import { actionCreators } from "./store";
+import CartList from "./components/CartList";
+import ContextA from "./../../Component/Routes"
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -43,11 +41,10 @@ const Empty = styled.div`
   justify-content: center;
   align-items: center;
 `;
-let bucket = [];
 
-const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
+const CartPresenter = ({ onBtnDelete, data, bucket ,onBtnAdd }) => {
   const [value, setValue] = useState(0);
-  console.log(bucket, "bucket");
+
   const Save = () => {
     console.log(bucket, "SAVE");
     localStorage.setItem("bucket", JSON.stringify(bucket));
@@ -57,7 +54,6 @@ const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
     console.log(data, "ADD");
     for (var count in bucket) {
       if (bucket[count].id === data.id) {
-        console.log(bucket[count].id, "Equal");
         bucket[count].qty++;
         Save();
         return;
@@ -67,8 +63,8 @@ const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
     bucket.push(newBucket);
     Save();
   };
-  const t = JSON.parse(localStorage.getItem("bucket"));
 
+  
   return (
     <Container>
       <Table id="customers" key="sdaf">
@@ -87,10 +83,7 @@ const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
                   <CartList key={list.id} {...list} />
                   <td>
                     <button
-                      onClick={() => {
-                        setValue(value + 1);
-                        Add(list.data);
-                      }}
+                      onClick={()=>onBtnAdd(list.data)}
                     >
                       담기
                     </button>
@@ -118,15 +111,7 @@ const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
           <TableHeader>가격</TableHeader>
           <TableHeader>수량</TableHeader>
         </tr>
-        {t.map((data) => {
-          return (
-            <tr>
-              <td>{data.id}</td>
-              <td>{data.productname}</td>
-              <td>{data.qty}</td>
-            </tr>
-          );
-        })}
+      
       </Table>
     </Container>
   );
@@ -138,10 +123,10 @@ const getCurrentState = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { data } = ownProps;
-  console.log(data, "CartPresenter : ownProps");
+  console.log(data, "CartPresenter : cartownProps");
   return {
     onBtnDelete: (id) => dispatch(actionCreators.deleteCart(id)),
-    onBtnAdd: (list) => dispatch(actionCreators.test(list)),
+    onBtnAdd: (list) => dispatch(actionCreators.addCart(list)),
   };
 };
 export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);
