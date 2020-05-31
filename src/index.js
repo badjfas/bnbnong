@@ -5,15 +5,12 @@ import * as serviceWorker from "./serviceWorker";
 import { ApolloProvider } from 'react-apollo-hooks';
 import Client from "./Apollo/Client";
 import { Provider } from "react-redux";
-import store, { persistor } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
+import store from "./store";
 
 ReactDOM.render(
   <ApolloProvider client={Client}>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </PersistGate>
     </Provider>
   </ApolloProvider>,
   document.getElementById("root")

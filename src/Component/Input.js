@@ -19,7 +19,6 @@ const Input = ({
   className,
   to
 }) => {
-  console.log(value,"input.js")
   return(
   <Container
     className={className}

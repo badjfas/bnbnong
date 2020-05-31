@@ -17,7 +17,9 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   font-family: "Do Hyeon", sans-serif;
-  & > th, td ,* {
+  & > th,
+  td,
+  * {
     border: 1px solid #ddd;
     padding: 8px;
   }
@@ -41,9 +43,31 @@ const Empty = styled.div`
   justify-content: center;
   align-items: center;
 `;
+let bucket = [];
 
-const CartPresenter = ({ addList, onBtnDelete,data}) => {
-  const [value,setValue] = useState(0);
+const CartPresenter = ({ onBtnDelete, data, onBtnAdd }) => {
+  const [value, setValue] = useState(0);
+  console.log(bucket, "bucket");
+  const Save = () => {
+    console.log(bucket, "SAVE");
+    localStorage.setItem("bucket", JSON.stringify(bucket));
+  };
+
+  const Add = (data) => {
+    console.log(data, "ADD");
+    for (var count in bucket) {
+      if (bucket[count].id === data.id) {
+        console.log(bucket[count].id, "Equal");
+        bucket[count].qty++;
+        Save();
+        return;
+      }
+    }
+    const newBucket = data;
+    bucket.push(newBucket);
+    Save();
+  };
+  const t = JSON.parse(localStorage.getItem("bucket"));
 
   return (
     <Container>
@@ -54,10 +78,38 @@ const CartPresenter = ({ addList, onBtnDelete,data}) => {
           <TableHeader>단가</TableHeader>
           <TableHeader>담기</TableHeader>
         </tr>
-     
-          {data.map(list => {
-            return (<CartList key={list.id} {...list}/>)})}
-      
+
+        {data !== null ? (
+          <>
+            {data.map((list) => {
+              return (
+                <tr>
+                  <CartList key={list.id} {...list} />
+                  <td>
+                    <button
+                      onClick={() => {
+                        setValue(value + 1);
+                        Add(list.data);
+                      }}
+                    >
+                      담기
+                    </button>
+                    <button
+                      onClick={() => {
+                        window.location.reload();
+                        onBtnDelete(list.data.id);
+                      }}
+                    >
+                      빼기
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </>
+        ) : (
+          <td> EMPTY </td>
+        )}
       </Table>
 
       <Table style={{ marginTop: 100 }} id="customers" key="sdaf">
@@ -66,21 +118,30 @@ const CartPresenter = ({ addList, onBtnDelete,data}) => {
           <TableHeader>가격</TableHeader>
           <TableHeader>수량</TableHeader>
         </tr>
-        <td></td>
+        {t.map((data) => {
+          return (
+            <tr>
+              <td>{data.id}</td>
+              <td>{data.productname}</td>
+              <td>{data.qty}</td>
+            </tr>
+          );
+        })}
       </Table>
     </Container>
   );
 };
-const getCurrentState = (state,ownProps) => {
+const getCurrentState = (state, ownProps) => {
   return {
     state,
   };
 };
-const mapDispatchToProps = (dispatch,ownProps) => {
-  const {data} = ownProps;
-  console.log(data)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { data } = ownProps;
+  console.log(data, "CartPresenter : ownProps");
   return {
-    onBtnDelete: () => dispatch(actionCreators.deleteCart()),
+    onBtnDelete: (id) => dispatch(actionCreators.deleteCart(id)),
+    onBtnAdd: (list) => dispatch(actionCreators.test(list)),
   };
 };
 export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);

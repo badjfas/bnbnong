@@ -51,7 +51,8 @@ export default ({data}) => {
       </TextContainer>
       <GridContainer>
         {data.map((p) => {
-          return (
+        
+          if(p.id>6&&p.id<11) return (
             <SquarePost id={p.id} src={p.src} name={p.productname} category={p.category} content={p.content} />
           );
         })}

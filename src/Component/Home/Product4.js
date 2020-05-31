@@ -52,7 +52,8 @@ export default ({data}) => {
       </TextContainer>
       <GridContainer>
         {data.map((p) => {
-          return (
+          
+         if(p.category===3) return (
             <SquarePost id={p.id} src={p.src} name={p.productname} category={p.category} content={p.content} />
           );
         })}
