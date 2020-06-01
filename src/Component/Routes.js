@@ -6,20 +6,13 @@ import Cart from "../Routes/Cart";
 import Menu from "../Routes/Menu";
 import Category from "../Routes/Category";
 import Search from "../Routes/Search";
-import { Provider } from "react-redux";
-import store from "../store";
-import storeA from "../Routes/Cart/store";
 
 const Routes = () => { 
   return(
   <Switch>
       <Route exact path="/" component={Home} />
-
       <Route exact path="/detail/:category/:id" component={Deatail} />
-      <Provider store={storeA}>
       <Route exact path="/cart" component={Cart} />
-      </Provider>
-
       <Route exact path="/Menu" component={Menu} />
       <Route exact path="/Category/" component={Category} />
       <Route exact path="/search/" component={Search} />

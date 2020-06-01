@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { actionCreators } from "../../store";
-
+import { actionCreators } from "./store";
+import CartList from "./components/CartList";
+import BucketList from "./components/BucketList";
+import { Input } from "@material-ui/core";
 
 const Container = styled.div`
   width: 100%;
@@ -10,7 +12,7 @@ const Container = styled.div`
   height: 100%;
   margin-top: 40px;
   flex-direction: column;
-  &>button : hover {
+  &> button : hover {
     background-color: #ddd;
   }
 `;
@@ -25,6 +27,7 @@ const Table = styled.table`
     text-align: center;
     padding: 8px;
   }
+
 `;
 const TableHeader = styled.th`
   padding-top: 12px;
@@ -36,27 +39,30 @@ const TableHeader = styled.th`
 `;
 
 const PriceContainer = styled.div`
-  width: 100%;
+  width:100%;
   font-family: "Do Hyeon", sans-serif;
 `;
 const TotalPriceHeader = styled.div`
-  width: 20%;
-  border: 1px solid #ddd;
-  float: right;
+  width:20%;
+  border:1px solid #ddd;
+  float:right;
+
 `;
 const TotalPrice = styled.div`
-  float: right;
-  width: 20%;
-  border: 1px solid #ddd;
+float:right;
+width:20%;
+border:1px solid #ddd;
+
 `;
 
-const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
-
-  const onSubmit = (e,data) => {
-    e.preventDefault();
-    onBtnBucket(data);
-  };
-
+const CartPresenter = ({ cart, onBtnSave ,state}) => {
+  const [value, setValue] = useState(0);
+  let [price, setPrice] = useState(0);
+  for(var count in cart){
+    price = price + cart[count].data.totalPrice;
+  }  
+  state.result = price;
+  console.log(state.result)
   return (
     <Container>
       <div style={{ width: "100%" }}>
@@ -79,7 +85,7 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
           <tr>
             <TableHeader>상품명</TableHeader>
             <TableHeader>단가</TableHeader>
-            <TableHeader>담기</TableHeader>
+            <TableHeader>수량</TableHeader>
           </tr>
 
           {cart !== null ? (
@@ -89,13 +95,18 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
                   <tr key={list.data.id}>
                     <td style={{ width: "60%" }}>{list.data.productname}</td>
                     <td style={{ width: "32%" }}>{list.data.price}</td>
-                    <td style={{ width: "18%", padding: 0 }}>
-                      <form
-                        onSubmit={(e)=>{onSubmit(e,list.data)}}
-                        style={{ width: "100%", padding: 0 }}
-                      >
-                        <button style={{ width: "100%" }}>담기</button>
-                      </form>
+                    <td style={{ width: "18%" }}>
+                      <Input
+                        type="number"
+                        value={list.data.qty}
+                        onChange={(e) => {
+                          list.data.qty = e.target.value;
+                          setValue(list.data.qty);
+                          list.data.totalPrice =
+                            parseInt(list.data.qty) * list.data.price;
+                          localStorage.setItem("result", JSON.stringify(cart));
+                        }}
+                      />
                     </td>
                   </tr>
                 );
@@ -104,7 +115,10 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
           ) : null}
         </tbody>
       </Table>
-
+      <PriceContainer>
+      <TotalPrice>{price}원</TotalPrice>
+        <TotalPriceHeader>최종 가격</TotalPriceHeader>
+      </PriceContainer>
       <div style={{ width: "100%" }}>
         <button
           style={{
@@ -116,16 +130,17 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
             borderRadius: 5,
           }}
           onClick={() => {
+            onBtnSave(cart);
           }}
         >
           결제하기
         </button>
       </div>
-      <ul></ul>
     </Container>
   );
 };
 const getCurrentState = (state, ownProps) => {
+console.log(ownProps);
   return {
     state,
     ownProps,
@@ -133,7 +148,8 @@ const getCurrentState = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onBtnBucket : (data) => dispatch(actionCreators.addCartFinal(data))
+    onBtnSave: (data) => dispatch(actionCreators.saveCart(data)),
+    totalPrice : () => dispatch(actionCreators.calTotalPrice())
   };
 };
 
