@@ -39,17 +39,20 @@ const TableHeader = styled.th`
 `;
 
 const PriceContainer = styled.div`
-  display:flex;
-  width:30%;
+  width:100%;
   font-family: "Do Hyeon", sans-serif;
-  border:1px solid #ddd;
 `;
 const TotalPriceHeader = styled.div`
-  width:50%;
+  width:20%;
+  border:1px solid #ddd;
+  float:right;
+
 `;
 const TotalPrice = styled.div`
-width:50%;
-  margin-left:10px;
+float:right;
+width:20%;
+border:1px solid #ddd;
+
 `;
 
 const CartPresenter = ({ cart, onBtnSave ,state}) => {
@@ -112,6 +115,10 @@ const CartPresenter = ({ cart, onBtnSave ,state}) => {
           ) : null}
         </tbody>
       </Table>
+      <PriceContainer>
+      <TotalPrice>{price}원</TotalPrice>
+        <TotalPriceHeader>최종 가격</TotalPriceHeader>
+      </PriceContainer>
       <div style={{ width: "100%" }}>
         <button
           style={{
@@ -129,11 +136,6 @@ const CartPresenter = ({ cart, onBtnSave ,state}) => {
           결제하기
         </button>
       </div>
-      <PriceContainer>
-        <TotalPriceHeader>최종 가격</TotalPriceHeader>
-        <TotalPrice>{price}원</TotalPrice>
-      </PriceContainer>
-
     </Container>
   );
 };
