@@ -32,8 +32,7 @@ const TableHeader = styled.th`
   padding-bottom: 12px;
   text-align: left;
   margin-left: 2px;
-  background-color: #4caf50;
-  color: white;
+  color: black;
 `;
 
 const Empty = styled.div`
@@ -44,21 +43,18 @@ const Empty = styled.div`
   align-items: center;
 `;
 
-const CartPresenter = ({ ownProps, onBtnDelete, cart, bucket = [], onBtnAdd }) => {
-  console.log(ownProps)
-  const onClick = (list) => {
-    onBtnAdd(list);
-  };
+const CartPresenter = ({ cart, result }) => {
+  const [value, setValue] = useState(0);
+  const [price, setPrice] = useState(0);
 
   return (
     <Container>
       <Table id="customers" key="1">
         <tbody>
           <tr>
-            <TableHeader>상품번호</TableHeader>
             <TableHeader>상품명</TableHeader>
             <TableHeader>단가</TableHeader>
-            <TableHeader>담기</TableHeader>
+            <TableHeader>수량</TableHeader>
           </tr>
 
           {cart !== null ? (
@@ -66,23 +62,21 @@ const CartPresenter = ({ ownProps, onBtnDelete, cart, bucket = [], onBtnAdd }) =
               {cart.map((list) => {
                 return (
                   <tr key={list.data.id}>
-                    <CartList key={list.data.id} {...list} />
-                    <td>
-                      <button
-                        onClick={() => {
-                          onClick(list.data);
+                    <td style={{ width: "60%" }}>{list.data.productname}</td>
+                    <td style={{ width: "20%" }}>{list.data.price}</td>
+                    <td style={{ width: "20%" }}>
+                      <Input
+                        type="number"
+                        value={list.data.qty}
+                        onChange={(e) => {
+                          list.data.qty = e.target.value;
+                          setValue(list.data.qty);
+                          list.data.totalprice =
+                            parseInt(list.data.qty) * list.data.price;
+                          setPrice(list.data.totalprice);
+                          localStorage.setItem("result", JSON.stringify(cart));
                         }}
-                      >
-                        담기
-                      </button>
-                      <button
-                        onClick={() => {
-                          window.location.reload();
-                          onBtnDelete(list.data.id);
-                        }}
-                      >
-                        빼기
-                      </button>
+                      />
                     </td>
                   </tr>
                 );
@@ -93,17 +87,34 @@ const CartPresenter = ({ ownProps, onBtnDelete, cart, bucket = [], onBtnAdd }) =
           )}
         </tbody>
       </Table>
+
+      <button
+        onClick={() => {
+          window.location.reload();
+          localStorage.setItem("copyResult", JSON.stringify(cart));
+        }}
+      >
+        구매확정
+      </button>
+
       <Table style={{ marginTop: 100 }} id="customers" key="2">
         <tbody>
           <tr>
             <TableHeader>상품명</TableHeader>
-            <TableHeader>가격</TableHeader>
             <TableHeader>수량</TableHeader>
+            <TableHeader>총 가격</TableHeader>
           </tr>
-          {bucket !== null ? (
+          {result !== undefined && result !== null ? (
             <>
-              {bucket.map((list) => {
-                return <BucketList {...list} />;
+              {result.map((list) => {
+                if (list.data.qty > 0)
+                  return (
+                    <tr>
+                      <td>{list.data.productname}</td>
+                      <td>{list.data.qty}</td>
+                      <td>{list.data.totalprice}</td>
+                    </tr>
+                  );
               })}
             </>
           ) : null}
@@ -113,10 +124,9 @@ const CartPresenter = ({ ownProps, onBtnDelete, cart, bucket = [], onBtnAdd }) =
   );
 };
 const getCurrentState = (state, ownProps) => {
-
   return {
     state,
-    ownProps
+    ownProps,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
