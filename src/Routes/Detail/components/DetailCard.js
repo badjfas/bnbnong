@@ -145,7 +145,7 @@ const getCurrentState = (state) => {
 };
 const mapDispatchToProps = (dispatch, props) => {
   const data = props.data[props.id - 1];
-  console.log(data, "dispatfch");
+  console.log(data, "dispatch");
   return {
     addCart: () => dispatch(actionCreators.addCart(data)),
   };

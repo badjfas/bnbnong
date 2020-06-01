@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
@@ -12,6 +12,9 @@ const Container = styled.div`
   height: 100%;
   margin-top: 40px;
   flex-direction: column;
+  &> button : hover {
+    background-color: #ddd;
+  }
 `;
 const Table = styled.table`
   border-collapse: collapse;
@@ -21,34 +24,59 @@ const Table = styled.table`
   td,
   * {
     border: 1px solid #ddd;
+    text-align: center;
     padding: 8px;
   }
-  & > tr:hover {
-    background-color: #f5f5f5;
-  }
+
 `;
 const TableHeader = styled.th`
   padding-top: 12px;
+  background-color: #ddd;
   padding-bottom: 12px;
   text-align: left;
   margin-left: 2px;
   color: black;
 `;
 
-const Empty = styled.div`
-  width: 100%;
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const PriceContainer = styled.div`
+  display:flex;
+  width:30%;
+  font-family: "Do Hyeon", sans-serif;
+  border:1px solid #ddd;
+`;
+const TotalPriceHeader = styled.div`
+  width:50%;
+`;
+const TotalPrice = styled.div`
+width:50%;
+  margin-left:10px;
 `;
 
-const CartPresenter = ({ cart, result }) => {
+const CartPresenter = ({ cart, onBtnSave ,state}) => {
   const [value, setValue] = useState(0);
-  const [price, setPrice] = useState(0);
-
+  let [price, setPrice] = useState(0);
+  for(var count in cart){
+    price = price + cart[count].data.totalPrice;
+  }  
+  state.result = price;
+  console.log(state.result)
   return (
     <Container>
+      <div style={{ width: "100%" }}>
+        <button
+          style={{
+            float: "right",
+            marginBottom: 10,
+            height: 30,
+            backgroundColor: "white",
+            border: "1px solid #ddd",
+            borderRadius: 5,
+          }}
+          onClick={() => {}}
+        >
+          장바구니 비우기
+        </button>
+      </div>
       <Table id="customers" key="1">
         <tbody>
           <tr>
@@ -63,17 +91,16 @@ const CartPresenter = ({ cart, result }) => {
                 return (
                   <tr key={list.data.id}>
                     <td style={{ width: "60%" }}>{list.data.productname}</td>
-                    <td style={{ width: "20%" }}>{list.data.price}</td>
-                    <td style={{ width: "20%" }}>
+                    <td style={{ width: "32%" }}>{list.data.price}</td>
+                    <td style={{ width: "18%" }}>
                       <Input
                         type="number"
                         value={list.data.qty}
                         onChange={(e) => {
                           list.data.qty = e.target.value;
                           setValue(list.data.qty);
-                          list.data.totalprice =
+                          list.data.totalPrice =
                             parseInt(list.data.qty) * list.data.price;
-                          setPrice(list.data.totalprice);
                           localStorage.setItem("result", JSON.stringify(cart));
                         }}
                       />
@@ -82,59 +109,45 @@ const CartPresenter = ({ cart, result }) => {
                 );
               })}
             </>
-          ) : (
-            <td> EMPTY </td>
-          )}
-        </tbody>
-      </Table>
-
-      <button
-        onClick={() => {
-          window.location.reload();
-          localStorage.setItem("copyResult", JSON.stringify(cart));
-        }}
-      >
-        구매확정
-      </button>
-
-      <Table style={{ marginTop: 100 }} id="customers" key="2">
-        <tbody>
-          <tr>
-            <TableHeader>상품명</TableHeader>
-            <TableHeader>수량</TableHeader>
-            <TableHeader>총 가격</TableHeader>
-          </tr>
-          {result !== undefined && result !== null ? (
-            <>
-              {result.map((list) => {
-                if (list.data.qty > 0)
-                  return (
-                    <tr>
-                      <td>{list.data.productname}</td>
-                      <td>{list.data.qty}</td>
-                      <td>{list.data.totalprice}</td>
-                    </tr>
-                  );
-              })}
-            </>
           ) : null}
         </tbody>
       </Table>
+      <div style={{ width: "100%" }}>
+        <button
+          style={{
+            float: "right",
+            marginTop: 10,
+            height: 50,
+            backgroundColor: "white",
+            border: "1px solid #ddd",
+            borderRadius: 5,
+          }}
+          onClick={() => {
+            onBtnSave(cart);
+          }}
+        >
+          결제하기
+        </button>
+      </div>
+      <PriceContainer>
+        <TotalPriceHeader>최종 가격</TotalPriceHeader>
+        <TotalPrice>{price}원</TotalPrice>
+      </PriceContainer>
+
     </Container>
   );
 };
 const getCurrentState = (state, ownProps) => {
+console.log(ownProps);
   return {
     state,
     ownProps,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { data } = ownProps;
-  console.log(data, "CartPresenter : cartownProps");
   return {
-    onBtnDelete: (id) => dispatch(actionCreators.deleteCart(id)),
-    onBtnAdd: (list) => dispatch(actionCreators.addCart(list)),
+    onBtnSave: (data) => dispatch(actionCreators.saveCart(data)),
+    totalPrice : () => dispatch(actionCreators.calTotalPrice())
   };
 };
 

@@ -1,49 +1,40 @@
 import { createStore } from "redux";
 
-const ADD_CART = "ADD_CART";
+const SAVE = "SAVE";
 
-const DELETE_CART = "DELETE_CART";
+const CAL_PRICE = "CAL_PRICE";
 
+let price =0;
 
-const addCart = (data) => {
+const saveCart = (data) => {
+  console.log("store : " , data);
+  for(var count in data){
+    console.log(data[count].data.totalPrice)
+    price = price + (data[count].data.totalPrice)
+  }
   return {
-    type: ADD_CART,
+    type: SAVE,
     data,
+    price
   };
 };
 
-const deleteCart = (id) => {
-  console.log("Delete Id : ", id);
+const calTotalPrice = (data) => {
+  console.log("Delete Id : ", );
   return {
-    type: DELETE_CART,
-    id,
+    type: CAL_PRICE,
+    data
   };
 };
 
 
 const reducer = (state = [], action) => {
-  const { data } = action;
   switch (action.type) {
-    case ADD_CART:
-      for (var count in state) {
-        if (state[count].data.id === data.id) {
-          const newState = state;
-          newState[count].data.qty++
-          newState.filter((list) => list.data.id !== action.data.id);
-          sessionStorage.setItem("bucket", JSON.stringify(newState));
-          return newState;
-        }
-      }
-      sessionStorage.setItem("bucket", JSON.stringify([...state, action]));
-      return [...state, action];
-    case DELETE_CART:
-      const carts = JSON.parse(sessionStorage.getItem("cart"));
-      const updateCart = carts.filter(
-        ({ data: list }) => list.id !== action.id
-      );
-      sessionStorage.setItem("cart", JSON.stringify(updateCart));
-      console.log("updateCart :", updateCart);
-      return updateCart;
+    case SAVE:
+      return action.data,{result :price};
+    case CAL_PRICE:
+
+      return [state];
     default:
       return state;
   }
@@ -53,8 +44,8 @@ const reducer = (state = [], action) => {
 
 const store = createStore(reducer);
 export const actionCreators = {
-  addCart,
-  deleteCart,
+  saveCart,
+  calTotalPrice
 };
 
 export default store;
