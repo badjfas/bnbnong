@@ -11,11 +11,8 @@ import store from "../store";
 import storeA from "../Routes/Cart/store";
 
 const Routes = () => { 
-  const ContextA = React.createContext();
-
   return(
   <Switch>
-    <Provider store={store}>
       <Route exact path="/" component={Home} />
 
       <Route exact path="/detail/:category/:id" component={Deatail} />
@@ -28,7 +25,6 @@ const Routes = () => {
       <Route exact path="/search/" component={Search} />
 
       <Redirect from="*" to="/" />
-    </Provider>
   </Switch>
 )};
 

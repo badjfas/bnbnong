@@ -28,6 +28,7 @@ const reducer = (state = [], action) => {
       for (var count in state) {
         if (state[count].data.id === data.id) {
           const newState = state;
+          newState[count].data.qty++
           newState.filter((list) => list.data.id !== action.data.id);
           sessionStorage.setItem("bucket", JSON.stringify(newState));
           return newState;
@@ -36,11 +37,11 @@ const reducer = (state = [], action) => {
       sessionStorage.setItem("bucket", JSON.stringify([...state, action]));
       return [...state, action];
     case DELETE_CART:
-      const carts = JSON.parse(sessionStorage.getItem("bucket"));
+      const carts = JSON.parse(sessionStorage.getItem("cart"));
       const updateCart = carts.filter(
         ({ data: list }) => list.id !== action.id
       );
-      sessionStorage.setItem("bucket", JSON.stringify(updateCart));
+      sessionStorage.setItem("cart", JSON.stringify(updateCart));
       console.log("updateCart :", updateCart);
       return updateCart;
     default:
@@ -51,8 +52,6 @@ const reducer = (state = [], action) => {
 
 
 const store = createStore(reducer);
-
-console.log("im cart")
 export const actionCreators = {
   addCart,
   deleteCart,

@@ -100,7 +100,6 @@ const DetailCard = ({ data, id, category, state, addCart }) => {
   const onClick = (e) => {
     e.preventDefault();
     const { d } = data[id - 1];
-    setList([]);
     addCart(d);
   };
 

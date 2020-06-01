@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
 import CartList from "./components/CartList";
-import ContextA from "./../../Component/Routes"
+import BucketList from "./components/BucketList";
+import { Input } from "@material-ui/core";
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -42,83 +44,79 @@ const Empty = styled.div`
   align-items: center;
 `;
 
-const CartPresenter = ({ onBtnDelete, data, bucket ,onBtnAdd }) => {
-  const [value, setValue] = useState(0);
-
-  const Save = () => {
-    console.log(bucket, "SAVE");
-    localStorage.setItem("bucket", JSON.stringify(bucket));
+const CartPresenter = ({ ownProps, onBtnDelete, cart, bucket = [], onBtnAdd }) => {
+  console.log(ownProps)
+  const onClick = (list) => {
+    onBtnAdd(list);
   };
 
-  const Add = (data) => {
-    console.log(data, "ADD");
-    for (var count in bucket) {
-      if (bucket[count].id === data.id) {
-        bucket[count].qty++;
-        Save();
-        return;
-      }
-    }
-    const newBucket = data;
-    bucket.push(newBucket);
-    Save();
-  };
-
-  
   return (
     <Container>
-      <Table id="customers" key="sdaf">
-        <tr>
-          <TableHeader>상품번호</TableHeader>
-          <TableHeader>상품명</TableHeader>
-          <TableHeader>단가</TableHeader>
-          <TableHeader>담기</TableHeader>
-        </tr>
+      <Table id="customers" key="1">
+        <tbody>
+          <tr>
+            <TableHeader>상품번호</TableHeader>
+            <TableHeader>상품명</TableHeader>
+            <TableHeader>단가</TableHeader>
+            <TableHeader>담기</TableHeader>
+          </tr>
 
-        {data !== null ? (
-          <>
-            {data.map((list) => {
-              return (
-                <tr>
-                  <CartList key={list.id} {...list} />
-                  <td>
-                    <button
-                      onClick={()=>onBtnAdd(list.data)}
-                    >
-                      담기
-                    </button>
-                    <button
-                      onClick={() => {
-                        window.location.reload();
-                        onBtnDelete(list.data.id);
-                      }}
-                    >
-                      빼기
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </>
-        ) : (
-          <td> EMPTY </td>
-        )}
+          {cart !== null ? (
+            <>
+              {cart.map((list) => {
+                return (
+                  <tr key={list.data.id}>
+                    <CartList key={list.data.id} {...list} />
+                    <td>
+                      <button
+                        onClick={() => {
+                          onClick(list.data);
+                        }}
+                      >
+                        담기
+                      </button>
+                      <button
+                        onClick={() => {
+                          window.location.reload();
+                          onBtnDelete(list.data.id);
+                        }}
+                      >
+                        빼기
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </>
+          ) : (
+            <td> EMPTY </td>
+          )}
+        </tbody>
       </Table>
-
-      <Table style={{ marginTop: 100 }} id="customers" key="sdaf">
-        <tr>
-          <TableHeader>상품명</TableHeader>
-          <TableHeader>가격</TableHeader>
-          <TableHeader>수량</TableHeader>
-        </tr>
-      
+      <Table style={{ marginTop: 100 }} id="customers" key="2">
+        <tbody>
+          <tr>
+            <TableHeader>상품명</TableHeader>
+            <TableHeader>가격</TableHeader>
+            <TableHeader>수량</TableHeader>
+          </tr>
+          {bucket !== null ? (
+            <>
+              {bucket.map((list) => {
+                return <BucketList {...list} />;
+              })}
+            </>
+          ) : null}
+        </tbody>
       </Table>
     </Container>
   );
 };
 const getCurrentState = (state, ownProps) => {
+
   return {
     state,
+    ownProps
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -129,4 +127,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onBtnAdd: (list) => dispatch(actionCreators.addCart(list)),
   };
 };
+
 export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);

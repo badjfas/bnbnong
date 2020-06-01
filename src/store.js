@@ -28,6 +28,7 @@ const reducer = (state = [], action) => {
       for (var count in state) {
         if (state[count].data.id === data.id) {
           const newState = state;
+
           newState.filter((list) => list.data.id !== action.data.id);
           sessionStorage.setItem("cart", JSON.stringify(newState));
           return newState;
