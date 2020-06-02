@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-apollo-hooks";
-import { READ_PRODUCT } from "../../Queries/readProduct";
+import { READ_PRODUCT } from "../../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
@@ -8,6 +8,8 @@ import { Typography } from "@material-ui/core";
 const Container = styled.div`
 
 `;
+
+
 
 const ProductImg = styled.img`
 max-width:150px;

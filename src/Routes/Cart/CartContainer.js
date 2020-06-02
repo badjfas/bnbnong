@@ -1,7 +1,5 @@
 import React from "react";
 import CartPresenter from "./CartPresenter";
-import { useParams } from "react-router-dom";
-import useInput from "../../Hooks/useInput";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store";
 

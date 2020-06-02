@@ -49,10 +49,10 @@ export default ({data}) => {
       </TextContainer>
       <GridContainer>
       {data.map((p) => {
-           if(p.id<7)
-          return (
-            <SquarePost id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+           if(p.category===1)  return (
+            <SquarePost key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
           );
+         
         })}
       </GridContainer>
     </>

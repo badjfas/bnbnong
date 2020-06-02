@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-apollo-hooks";
-import { READ_PRODUCT } from "../../Queries/readProduct";
+import { READ_PRODUCT } from "../../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Tabs from "../../Component/Category/Tabs"
+import Tabs from "../../Routes/Category/components/Tabs"
 const Container = styled.div`
     width:100%;
 
