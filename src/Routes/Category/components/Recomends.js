@@ -1,76 +1,86 @@
 import React from "react";
-import { useQuery } from "react-apollo-hooks";
-import { READ_PRODUCT } from "../../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
 
 const Container = styled.div`
-
+  width:100%;
+  height:100%;
+  padding: 20px;
 `;
 
 
-
-const ProductImg = styled.img`
-max-width:150px;
-max-height:150px;
+const ImgContainer = styled.div`
+background-image: url(${(props) => props.src});
+background-size: cover;
+display:flex
+width: 100%;
+height: 320px;
+border:1px solid #727272;
+&:hover{
+  transform: scale(1.03);
+    transition: all .3s ease-in-out;
+}
 `;
 
-const Text = styled.div`
-padding: 10px;
-display: block;
-text-height:5px;
+const TextContainer = styled.div`
+  display: table;
+  align-items: center;
+  justify-content: center;
 `;
-export default () => {
-  const { data, loading } = useQuery(READ_PRODUCT);
+
+const ProductName = styled.span`
+  color: #494848;
+  display: block;
+  overflow: hidden;
+  padding-top: 3px;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 2;
+  white-space: pre-line;
+  text-overflow: ellipsis;
+`;
+
+const ProductPrice = styled.span`
+  color: #d1913c;
+  display: block;
+  overflow: hidden;
+  padding-top: 1px;
+  font-weight: 500;
+  font-size: 15px;
+  font-family:'Do Hyeon', sans-serif;
+    line-height: 2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+export default ({data}) => {
   console.log(data);
   return (
     <>
-      {loading === false ? (
-        <Container>
-          {data &&
-            data.readProduct.map((product) => {
-              return (
-                <Link to={`/detail/${product.id}`} >
-                  <div
-                    style={{ width: "100%", display: "flex", marginBottom: 8,color:"black" }}
-                  >
-                    <div style={{ width: "30%", display: "contain" }}>
-                      <ProductImg
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          display: "contain",
-                          borderRadius: 5,
-                        }}
-                        src={product.image_1}
-                      />
-                    </div>
-                    <div style={{ display: "inherit", width: "70%" }}>
-                      <div style={{ display: "inherit", width: "100%" }}>
-                        <Text>
-                          <Typography component={'span'} style={{ fontSize: 17  }}>
-                          청양고추 A급 약 950g 1봉
-                          </Typography>
-                          <br />
-                          <Typography component={'span'} style={{ fontSize: 13, color: `#B3B2B2`,lineHeight:2 }}>
-                            국내산(제주)
-                          </Typography>
-                          <br />
-                          <Typography component={'span'} style={{ fontSize: 18,lineHeight:4 }}>
-                            3,500원
-                          </Typography>
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-        </Container>
-      ) : (
-        <Container></Container>
-      )}
+      <div style={{padding:20}}>
+        <ProductPrice style={{fontSize:20,color:"black"}}>전체 항목</ProductPrice>
+      </div>
+
+      <GridContainer>
+      {data.map((p) => {
+        if(p.state===2)
+        return (
+          <Link to="/detail" key={p.id}>
+          <Container>
+            <ImgContainer src={p.src} />
+            <TextContainer>
+              <ProductName>천헤향</ProductName>
+              <ProductPrice>9,000원</ProductPrice>
+            </TextContainer>
+          </Container>
+        </Link>
+        )
+      })}
+      </GridContainer>
     </>
   );
 };

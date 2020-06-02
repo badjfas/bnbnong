@@ -31,6 +31,7 @@ const TextContainer = styled.div`
 const Text = styled.span`
   color: #000;
   display: block;
+  cursor: none;
   overflow: hidden;
   padding-top: 3px;
   font-weight: 600;

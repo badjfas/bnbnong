@@ -1,14 +1,21 @@
-import { createStore } from "redux";
+import { createStore ,combineReducers } from "redux";
 
 const ADD_CART = "ADD_CART";
 const DELETE_CART = "DELETE_CART";
 const ADD_CART_FINAL = "ADD_CART_FINAL";
 const DELETE_CART_FINAL = "DELETE_CART_FINAL";
 
-const initState ={ 
-  cart : [],
-  bucket : [],
-}
+const initState = {
+  cart: [],
+  bucket: [],
+};
+
+const VisibilityFilters = {
+  SHOW_ALL: "SHOW_ALL",
+  SHOW_NEW: "SHOW_NEW",
+  SHOW_RECOMENDS: "SHOW_RECOMENDS",
+  SHOW_SALE: "SHOW_SALE",
+};
 
 const addCart = (data) => {
   return {
@@ -38,11 +45,25 @@ const deleteCartFinal = (id) => {
   };
 };
 
+const setVisibilityFilter = (filter) => {
+  return {
+    type: "SET_VISIBILITY_FILTER",
+    filter,
+  };
+};
+
+const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
+  switch (action.type) {
+    case "SET_VISIBILITY_FILTER":
+      return action.filter;
+    default:
+      return state;
+  }
+};
 
 const reducer = (state = initState, action) => {
   const { data } = action;
   switch (action.type) {
-
     case ADD_CART:
       for (var count in state.cart) {
         if (state.cart[count].data.id === data.id) {
@@ -51,14 +72,17 @@ const reducer = (state = initState, action) => {
           return newState;
         }
       }
-      sessionStorage.setItem("cart", JSON.stringify({
-        ...state,
-        bucket:[],
-        cart: [...state.cart, action],
-      }));
+      sessionStorage.setItem(
+        "cart",
+        JSON.stringify({
+          ...state,
+          bucket: [],
+          cart: [...state.cart, action],
+        })
+      );
       return {
         ...state,
-        bucket:[],
+        bucket: [],
         cart: [...state.cart, action],
       };
 
@@ -72,8 +96,8 @@ const reducer = (state = initState, action) => {
       return updateCart;
 
     case ADD_CART_FINAL:
-      for(var counts in state.bucket){
-        if(state.bucket[counts].data.id === action.data.id){
+      for (var counts in state.bucket) {
+        if (state.bucket[counts].data.id === action.data.id) {
           const newBucket = state;
           sessionStorage.setItem("bucket", JSON.stringify(newBucket));
           return newBucket;
@@ -89,9 +113,9 @@ const reducer = (state = initState, action) => {
       );
       return {
         ...state,
-        bucket:[...state.bucket , action],
-        cart : []
-      }
+        bucket: [...state.bucket, action],
+        cart: [],
+      };
     case DELETE_CART_FINAL:
       return {
         ...state,
@@ -103,15 +127,13 @@ const reducer = (state = initState, action) => {
 };
 
 
-
-const store = createStore(reducer);
-
-
 export const actionCreators = {
   addCart,
   deleteCart,
   addCartFinal,
-deleteCartFinal
+  deleteCartFinal,
+  visibilityFilter,
+  setVisibilityFilter
 };
 
-export default store;
+export default combineReducers({reducer,visibilityFilter});

@@ -35,6 +35,7 @@ const Text = styled.span`
   font-weight: 600;
   font-size: 25px;
   line-height: 2;
+  cursor: none;
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;

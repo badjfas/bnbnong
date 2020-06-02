@@ -3,7 +3,6 @@ import { useQuery } from "react-apollo-hooks";
 import { READ_PRODUCT } from "../../../Queries/readProduct";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -20,8 +19,8 @@ const ImgContainer = styled.div`
 background-image: url(${(props) => props.src});
 background-size: cover;
 display:flex
-width: 310px;
-height: 410px;
+width: 100%;
+height: 320px;
 border:1px solid #727272;
 &:hover{
   transform: scale(1.03);
@@ -60,9 +59,8 @@ const ProductPrice = styled.span`
   text-overflow: ellipsis;
 `;
 
-export default () => {
-  const { data, loading } = useQuery(READ_PRODUCT);
-  console.log(loading);
+export default ({data}) => {
+  console.log(data);
   return (
     <>
       <div style={{padding:20}}>
@@ -70,20 +68,19 @@ export default () => {
       </div>
 
       <GridContainer>
-        {!loading
-          ? data &&
-            data.readProduct.map((product) => (
-              <Link to="/detail">
-                <Container>
-                  <ImgContainer src={product.image_1} />
-                  <TextContainer>
-                    <ProductName>천헤향</ProductName>
-                    <ProductPrice>9,000원</ProductPrice>
-                  </TextContainer>
-                </Container>
-              </Link>
-            ))
-          : null}
+      {data.map((p) => {
+        return (
+          <Link to="/detail" key={p.id}>
+          <Container>
+            <ImgContainer src={p.src} />
+            <TextContainer>
+              <ProductName>천헤향</ProductName>
+              <ProductPrice>9,000원</ProductPrice>
+            </TextContainer>
+          </Container>
+        </Link>
+        )
+      })}
       </GridContainer>
     </>
   );
