@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { actionCreators } from "../../store";
-
 
 const Container = styled.div`
   width: 100%;
@@ -10,7 +7,7 @@ const Container = styled.div`
   height: 100%;
   margin-top: 40px;
   flex-direction: column;
-  &>button : hover {
+  &>button: hover {
     background-color: #ddd;
   }
 `;
@@ -18,6 +15,7 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   font-family: "Do Hyeon", sans-serif;
+  margin-bottom:50px;
   & > th,
   td,
   * {
@@ -50,10 +48,10 @@ const TotalPrice = styled.div`
   border: 1px solid #ddd;
 `;
 
-const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
-
-  const onSubmit = (e,data) => {
+export default ({ data, dataBucket, onBtnBucket }) => {
+  const onSubmit = (e, data) => {
     e.preventDefault();
+    console.log(data, "data");
     onBtnBucket(data);
   };
 
@@ -82,19 +80,31 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
             <TableHeader>담기</TableHeader>
           </tr>
 
-          {cart !== null ? (
+          {data !== null ? (
             <>
-              {cart.map((list) => {
+              {data.cart.map((list) => {
+                const [value, setValue] = useState(0);
+
                 return (
                   <tr key={list.data.id}>
                     <td style={{ width: "60%" }}>{list.data.productname}</td>
-                    <td style={{ width: "32%" }}>{list.data.price}</td>
+                    <td style={{ width: "32%" }}>{list.data.price}원</td>
                     <td style={{ width: "18%", padding: 0 }}>
                       <form
-                        onSubmit={(e)=>{onSubmit(e,list.data)}}
+                        onSubmit={(e) => {
+                          onSubmit(e, list.data);
+                        }}
                         style={{ width: "100%", padding: 0 }}
                       >
-                        <button style={{ width: "100%" }}>담기</button>
+                        <button
+                          style={{ width: "100%" }}
+                          onClick={() => {
+                            list.data.qty = value;
+                            setValue(value);
+                          }}
+                        >
+                          담기
+                        </button>
                       </form>
                     </td>
                   </tr>
@@ -105,6 +115,31 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
         </tbody>
       </Table>
 
+      <Table>
+        <tbody>
+          <tr>
+            <TableHeader>상품명</TableHeader>
+            <TableHeader>단가</TableHeader>
+            <TableHeader>담기</TableHeader>
+          </tr>
+          {dataBucket !== null ? (
+            <>
+              {dataBucket.bucket.map((list) => {
+                console.log(list, "list");
+                return (
+                  <tr key={list.data.id}>
+                    <td style={{ width: "60%" }}>{list.data.productname}</td>
+                    <td style={{ width: "32%" }}>{list.data.price}원</td>
+                    <td style={{ width: "18%", padding: 0 }}>
+                      {list.data.qty}
+                    </td>
+                  </tr>
+                );
+              })}
+            </>
+          ) : null}
+        </tbody>
+      </Table>
       <div style={{ width: "100%" }}>
         <button
           style={{
@@ -115,26 +150,11 @@ const CartPresenter = ({ cart ,state ,onBtnBucket }) => {
             border: "1px solid #ddd",
             borderRadius: 5,
           }}
-          onClick={() => {
-          }}
+          onClick={() => {}}
         >
           결제하기
         </button>
       </div>
-      <ul></ul>
     </Container>
   );
 };
-const getCurrentState = (state, ownProps) => {
-  return {
-    state,
-    ownProps,
-  };
-};
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onBtnBucket : (data) => dispatch(actionCreators.addCartFinal(data))
-  };
-};
-
-export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);

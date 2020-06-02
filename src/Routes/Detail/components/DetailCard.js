@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {
@@ -91,12 +91,7 @@ const NaverButton = styled(Link)`
   background-color: #4ddb49;
 `;
 
-const ExButton = styled(NaverButton)`
-  background-color: #547bff;
-`;
-
 const DetailCard = ({ data, id, category, state, addCart }) => {
-  const [list, setList] = useState([]);
   const onClick = (e) => {
     e.preventDefault();
     const { d } = data[id - 1];

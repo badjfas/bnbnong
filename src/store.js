@@ -43,22 +43,28 @@ const deleteCartFinal = (id) => {
 
 const reducer = (state = initState, action) => {
   const { data } = action;
+  console.log("outer",state)
+
   switch (action.type) {
 
     case ADD_CART:
       for (var count in state.cart) {
         if (state.cart[count].data.id === data.id) {
           const newState = state;
-          newState.filter((list) => list.data.id !== action.data.id);
           sessionStorage.setItem("cart", JSON.stringify(newState));
+          console.log("inner",state)
           return newState;
         }
       }
-      sessionStorage.setItem("cart", JSON.stringify([...state.cart, action]));
+      sessionStorage.setItem("cart", JSON.stringify({
+        ...state,
+        bucket:[],
+        cart: [...state.cart, action],
+      }));
       return {
         ...state,
+        bucket:[],
         cart: [...state.cart, action],
-        bucket:[]
       };
 
     case DELETE_CART:
@@ -75,14 +81,25 @@ const reducer = (state = initState, action) => {
       for(var counts in state.bucket){
         if(state.bucket[counts].data.id === action.data.id){
           state.bucket[counts].data.qty++;
-          
-          console.log("inner  state bucket:",state.bucket)
-          sessionStorage.setItem("bucket", JSON.stringify(state.bucket));
-          return state.bucket
+          const newBucket = state;
+          sessionStorage.setItem("bucket", JSON.stringify(newBucket));
+          return newBucket;
         }
       }
       console.log(state.bucket,"outer")
-      return {action , bucket:[...state.bucket]}
+      sessionStorage.setItem(
+        "bucket",
+        JSON.stringify({
+          ...state,
+          bucket: [...state.bucket, action],
+          cart: [],
+        })
+      );
+      return {
+        ...state,
+        bucket:[...state.bucket , action],
+        cart : []
+      }
     case DELETE_CART_FINAL:
       return {
         ...state,

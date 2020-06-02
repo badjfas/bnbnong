@@ -2,11 +2,26 @@ import React from "react";
 import CartPresenter from "./CartPresenter";
 import { useParams } from "react-router-dom";
 import useInput from "../../Hooks/useInput";
+import { connect } from "react-redux";
+import { actionCreators } from "../../store";
 
-export default () => {
-    const cart = sessionStorage.getItem("cart");
-    const result = localStorage.getItem("copyResult")
+const  CartContainer =  ({state,onBtnBucket}) => {
+    const dataCart = sessionStorage.getItem("cart");
+    const dataBucket = sessionStorage.getItem("bucket")
     return (
-        <CartPresenter cart={JSON.parse(cart)} result={JSON.parse(result)}/>
+        <CartPresenter data={JSON.parse(dataCart)} dataBucket={JSON.parse(dataBucket)} state={state} onBtnBucket={onBtnBucket}/>
     )
 }
+const getCurrentState = (state, ownProps) => {
+    console.log("currentState",state)
+    return {
+      state,
+      ownProps,
+    };
+  };
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      onBtnBucket : (data) => dispatch(actionCreators.addCartFinal(data))
+    };
+  };
+export default connect(getCurrentState, mapDispatchToProps)(CartContainer);
