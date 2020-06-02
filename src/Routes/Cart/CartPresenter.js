@@ -1,6 +1,7 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
+import CartList from "./components/CartList";
 
 const Container = styled.div`
   width: 100%;
@@ -32,17 +33,41 @@ const TableHeader = styled.th`
   margin-left: 2px;
   color: black;
 `;
+const TextContainer = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-top:10px;
+`;
+const Text = styled.span`
+  color: #000;
+  display: block;
+  overflow: hidden;
+  padding-top: 3px;
+  font-weight: 600;
+  font-size: 25px;
+  font-family: "Do Hyeon", sans-serif;
+  line-height: 2;
+  cursor: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 10px;
+  border-bottom:2px solid #000;
+`;
 
-export default ({ data, dataBucket, onBtnBucket }) => {
-
+export default ({ data, dataBucket, onBtnBucket, state }) => {
+  console.log(state);
   const onSubmit = (e, data) => {
     e.preventDefault();
     console.log(data, "data");
     onBtnBucket(data);
   };
-const [value,setValue] = useState(0);
+  const [value, setValue] = useState(0);
   return (
     <Container>
+      <TextContainer>
+        <Text>장바구니</Text>
+      </TextContainer>
       <div style={{ width: "100%" }}>
         <button
           style={{
@@ -86,7 +111,7 @@ const [value,setValue] = useState(0);
                           style={{ width: "100%" }}
                           onClick={() => {
                             list.data.qty = value;
-
+                            state.visibilityPayment = "SHOW_PAYMENT";
                             setValue(value);
                           }}
                         >
@@ -101,54 +126,9 @@ const [value,setValue] = useState(0);
           ) : null}
         </tbody>
       </Table>
-
-      <Table style={{ marginTop: 90 }}>
-        <tbody>
-          <tr>
-            <TableHeader>상품명</TableHeader>
-            <TableHeader>수량</TableHeader>
-            <TableHeader>총 가격</TableHeader>
-          </tr>
-          {dataBucket !== null ?                <>
-                  {dataBucket.bucket.map((list) => {
-                    return (
-                      <tr key={list.data.id}>
-                        <td style={{ width: "60%" }}>{list.data.productname}</td>
-                        <td style={{ width: "20%" }}>
-                          <Input
-                            type="number"
-                            onChange={(e) => {
-                              list.data.qty = e.target.value;
-                              setValue(value+1)
-                              list.data.totalPrice = list.data.qty * list.data.price;
-                              localStorage.setItem("result",JSON.stringify(dataBucket));
-                            }}
-                          />
-                        </td>
-                        <td style={{ width: "20%", padding: 0 }}>
-                          {list.data.price * list.data.qty} 원
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </>: null}
-        </tbody>
-      </Table>
-      <div style={{ width: "100%" }}>
-        <button
-          style={{
-            float: "right",
-            marginTop: 10,
-            height: 50,
-            backgroundColor: "white",
-            border: "1px solid #ddd",
-            borderRadius: 5,
-          }}
-          onClick={() => {}}
-        >
-          결제하기
-        </button>
-      </div>
+      {state.visibilityPayment === "SHOW_PAYMENT" ? (
+        <CartList dataBucket={dataBucket} />
+      ) : null}
     </Container>
   );
 };

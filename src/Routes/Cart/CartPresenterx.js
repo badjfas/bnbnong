@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
-import CartList from "./components/CartList";
-import BucketList from "./components/BucketList";
 import { Input } from "@material-ui/core";
 
 const Container = styled.div`

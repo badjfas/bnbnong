@@ -17,6 +17,11 @@ const VisibilityFilters = {
   SHOW_SALE: "SHOW_SALE",
 };
 
+const VisibilityPayment ={
+  SHOW_PAYMENT: "SHOW_PAYMENT",
+  SHOW_DEFAULT: "SHOW_DEFAULT"
+}
+
 const addCart = (data) => {
   return {
     type: ADD_CART,
@@ -51,6 +56,22 @@ const setVisibilityFilter = (filter) => {
     filter,
   };
 };
+
+const setVisibilityPayment = (filter) => {
+  return{
+    type:"SET_VISIBILITY_PAYMENT",
+    filter
+  }
+}
+
+const visibilityPayment = (state =VisibilityPayment.SHOW_DEFAULT, action) => {
+  switch (action.type) {
+    case "SET_VISIBILITY_PAYMENT":
+      return state;
+    default:
+      return state;
+  }
+}
 
 const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
   switch (action.type) {
@@ -132,8 +153,8 @@ export const actionCreators = {
   deleteCart,
   addCartFinal,
   deleteCartFinal,
-  visibilityFilter,
-  setVisibilityFilter
+  setVisibilityFilter,
+  setVisibilityPayment
 };
 
-export default combineReducers({reducer,visibilityFilter});
+export default combineReducers({reducer,visibilityFilter,visibilityPayment});
