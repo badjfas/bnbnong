@@ -18,7 +18,6 @@ const addCart = (data) => {
 };
 
 const deleteCart = (id) => {
-  console.log("Delete Id : ", id);
   return {
     type: DELETE_CART,
     id,
@@ -33,7 +32,6 @@ const addCartFinal = (data) => {
 };
 
 const deleteCartFinal = (id) => {
-  console.log("Delete Id : ", id);
   return {
     type: DELETE_CART_FINAL,
     id,
@@ -43,8 +41,6 @@ const deleteCartFinal = (id) => {
 
 const reducer = (state = initState, action) => {
   const { data } = action;
-  console.log("outer",state)
-
   switch (action.type) {
 
     case ADD_CART:
@@ -52,7 +48,6 @@ const reducer = (state = initState, action) => {
         if (state.cart[count].data.id === data.id) {
           const newState = state;
           sessionStorage.setItem("cart", JSON.stringify(newState));
-          console.log("inner",state)
           return newState;
         }
       }
@@ -77,16 +72,13 @@ const reducer = (state = initState, action) => {
       return updateCart;
 
     case ADD_CART_FINAL:
-      console.log(state,"state")
       for(var counts in state.bucket){
         if(state.bucket[counts].data.id === action.data.id){
-          state.bucket[counts].data.qty++;
           const newBucket = state;
           sessionStorage.setItem("bucket", JSON.stringify(newBucket));
           return newBucket;
         }
       }
-      console.log(state.bucket,"outer")
       sessionStorage.setItem(
         "bucket",
         JSON.stringify({

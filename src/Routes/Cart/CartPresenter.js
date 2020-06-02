@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Input } from "reactstrap";
 
 const Container = styled.div`
   width: 100%;
@@ -15,7 +16,6 @@ const Table = styled.table`
   border-collapse: collapse;
   width: 100%;
   font-family: "Do Hyeon", sans-serif;
-  margin-bottom:50px;
   & > th,
   td,
   * {
@@ -33,28 +33,14 @@ const TableHeader = styled.th`
   color: black;
 `;
 
-const PriceContainer = styled.div`
-  width: 100%;
-  font-family: "Do Hyeon", sans-serif;
-`;
-const TotalPriceHeader = styled.div`
-  width: 20%;
-  border: 1px solid #ddd;
-  float: right;
-`;
-const TotalPrice = styled.div`
-  float: right;
-  width: 20%;
-  border: 1px solid #ddd;
-`;
-
 export default ({ data, dataBucket, onBtnBucket }) => {
+
   const onSubmit = (e, data) => {
     e.preventDefault();
     console.log(data, "data");
     onBtnBucket(data);
   };
-
+const [value,setValue] = useState(0);
   return (
     <Container>
       <div style={{ width: "100%" }}>
@@ -100,6 +86,7 @@ export default ({ data, dataBucket, onBtnBucket }) => {
                           style={{ width: "100%" }}
                           onClick={() => {
                             list.data.qty = value;
+
                             setValue(value);
                           }}
                         >
@@ -115,29 +102,36 @@ export default ({ data, dataBucket, onBtnBucket }) => {
         </tbody>
       </Table>
 
-      <Table>
+      <Table style={{ marginTop: 90 }}>
         <tbody>
           <tr>
             <TableHeader>상품명</TableHeader>
-            <TableHeader>단가</TableHeader>
-            <TableHeader>담기</TableHeader>
+            <TableHeader>수량</TableHeader>
+            <TableHeader>총 가격</TableHeader>
           </tr>
-          {dataBucket !== null ? (
-            <>
-              {dataBucket.bucket.map((list) => {
-                console.log(list, "list");
-                return (
-                  <tr key={list.data.id}>
-                    <td style={{ width: "60%" }}>{list.data.productname}</td>
-                    <td style={{ width: "32%" }}>{list.data.price}원</td>
-                    <td style={{ width: "18%", padding: 0 }}>
-                      {list.data.qty}
-                    </td>
-                  </tr>
-                );
-              })}
-            </>
-          ) : null}
+          {dataBucket !== null ?                <>
+                  {dataBucket.bucket.map((list) => {
+                    return (
+                      <tr key={list.data.id}>
+                        <td style={{ width: "60%" }}>{list.data.productname}</td>
+                        <td style={{ width: "20%" }}>
+                          <Input
+                            type="number"
+                            onChange={(e) => {
+                              list.data.qty = e.target.value;
+                              setValue(value+1)
+                              list.data.totalPrice = list.data.qty * list.data.price;
+                              localStorage.setItem("result",JSON.stringify(dataBucket));
+                            }}
+                          />
+                        </td>
+                        <td style={{ width: "20%", padding: 0 }}>
+                          {list.data.price * list.data.qty} 원
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </>: null}
         </tbody>
       </Table>
       <div style={{ width: "100%" }}>
