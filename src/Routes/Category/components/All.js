@@ -6,26 +6,50 @@ import { Link } from "react-router-dom";
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height:100%;
+    display: table;
+    justify-content:center;
+    margin: 0 auto;
+  }
+  @media only screen and  (width:768px) , (width:1024px) ,(width:1366px) {
+    display:grid;
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    height:100%;
+
+  }
 `;
 
 const Container = styled.div`
   width:100%;
   height:100%;
   padding: 20px;
+  
 `;
 
 
 const ImgContainer = styled.div`
 background-image: url(${(props) => props.src});
 background-size: cover;
-display:flex
+display:flex;
+justify-content:center;
+align-items:center;
 width: 100%;
-height: 320px;
-border:1px solid #727272;
+height: 330px;
 &:hover{
   transform: scale(1.03);
     transition: all .3s ease-in-out;
 }
+@media only screen and (max-width: 768px) {
+
+}
+@media only screen and  (width:1024px) ,(width:1366px) {
+  width:100%;
+  height:500px;
+}
+
 `;
 
 const TextContainer = styled.div`

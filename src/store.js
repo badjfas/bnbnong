@@ -5,6 +5,8 @@ const DELETE_CART = "DELETE_CART";
 const ADD_CART_FINAL = "ADD_CART_FINAL";
 const DELETE_CART_FINAL = "DELETE_CART_FINAL";
 
+
+//state
 const initState = {
   cart: [],
   bucket: [],
@@ -22,6 +24,7 @@ const VisibilityPayment ={
   SHOW_DEFAULT: "SHOW_DEFAULT"
 }
 
+//action
 const addCart = (data) => {
   return {
     type: ADD_CART,
@@ -64,6 +67,7 @@ const setVisibilityPayment = (filter) => {
   }
 }
 
+//Reducer
 const visibilityPayment = (state =VisibilityPayment.SHOW_DEFAULT, action) => {
   switch (action.type) {
     case "SET_VISIBILITY_PAYMENT":

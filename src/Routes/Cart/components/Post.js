@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container, Input } from "reactstrap";
 import { DaumPostcode } from "./DaumPost";
 import styled from "styled-components";
-import { TextareaAutosize } from "@material-ui/core";
+import {
+  TextareaAutosize,
+  Checkbox,
+  FormControlLabel,
+} from "@material-ui/core";
+import { Alert } from 'reactstrap';
 
 const form = {
   address: "",
@@ -34,7 +39,6 @@ const PostCodeContainer = styled.div`
   height: 30px;
   margin-left: 20px;
   margin-bottom: 40px;
-
 `;
 
 const StlyedInput = styled(Input)`
@@ -70,6 +74,20 @@ const Span = styled.span`
 `;
 
 export default () => {
+  const [state, setState] = useState({
+    checkedA: false,
+  });
+
+  const Alert = () => {
+    return (
+        <alert color="success">This is a success alert — check it out!</alert>
+
+    );
+  }
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
   return (
     <>
       <Container>
@@ -129,13 +147,37 @@ export default () => {
           <Text>결제 방식</Text>
         </TextContainer>
         <PostCodeContainer>
-          <ASK
-            rowsMin={5}
-            type="text"
-            id="sample6_detailAddress"
-            placeholder="요청사항"
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={state.checkedA}
+                onChange={handleChange}
+                name="checkedA"
+                color="primary"
+              />
+            }
+            label="계좌 결제"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+              checked={!state.checkedA}
+                onChange={handleChange}
+                name="checkedB"
+                color="primary"
+              />
+            }
+            label="외상 결제"
           />
         </PostCodeContainer>
+        <StyledButton
+          style={{ float: "right", width: 200 }}
+          block
+          color="primary"
+          onClick={Alert}
+        >
+          결제하기
+        </StyledButton>
       </Container>
     </>
   );
