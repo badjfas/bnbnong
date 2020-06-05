@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Container, Input } from "reactstrap";
 import { DaumPostcode } from "./DaumPost";
 import styled from "styled-components";
+import { TextareaAutosize } from "@material-ui/core";
 
 const form = {
   address: "",
@@ -32,6 +33,8 @@ const PostCodeContainer = styled.div`
   margin-top: 20px;
   height: 30px;
   margin-left: 20px;
+  margin-bottom: 40px;
+
 `;
 
 const StlyedInput = styled(Input)`
@@ -47,10 +50,10 @@ const StlyedInputE = styled(Input)`
   margin-right: 3px;
   margin-left: 35px;
 `;
-const ASK = styled(Input)`
+const ASK = styled(TextareaAutosize)`
   border: 1px solid #ddd;
   width: 100%;
-  height: 100px;
+  height: 300px;
 `;
 const StyledButton = styled(Button)`
   background-color: #a2a2a2;
@@ -68,57 +71,72 @@ const Span = styled.span`
 
 export default () => {
   return (
-      <>
-    <Container>
-      <TextContainer>
-        <Text>배송 정보</Text>
-      </TextContainer>
-      <form>
-        <PostCodeContainer>
-          <Span>배송지</Span>
-          <StlyedInput
-            type="text"
-            id="sample6_postcode"
-            placeholder="우편번호"
-            readOnly
-          />
-          <StyledButton block color="primary" onClick={DaumPostcode}>
-            우편번호찾기
-          </StyledButton>
-        </PostCodeContainer>
-        <PostCodeContainer>
-          <Span></Span>
-          <StlyedInputE
-            className="cinput"
-            type="text"
-            id="sample6_address"
-            placeholder="주소"
-            readOnly
-          />
-        </PostCodeContainer>
-        <PostCodeContainer>
-          <Span></Span>
-          <StlyedInputE
-            type="text"
-            id="sample6_detailAddress"
-            placeholder="상세주소"
-          />
-        </PostCodeContainer>
-      </form>
-    </Container>
+    <>
+      <Container>
+        <TextContainer>
+          <Text>배송 정보</Text>
+        </TextContainer>
+        <form>
+          <PostCodeContainer>
+            <Span>배송지</Span>
+            <StlyedInput
+              type="text"
+              id="sample6_postcode"
+              placeholder="우편번호"
+              readOnly
+            />
+            <StyledButton block color="primary" onClick={DaumPostcode}>
+              우편번호찾기
+            </StyledButton>
+          </PostCodeContainer>
+          <PostCodeContainer>
+            <Span></Span>
+            <StlyedInputE
+              className="cinput"
+              type="text"
+              id="sample6_address"
+              placeholder="주소"
+              readOnly
+            />
+          </PostCodeContainer>
+          <PostCodeContainer>
+            <Span></Span>
+            <StlyedInputE
+              type="text"
+              id="sample6_detailAddress"
+              placeholder="상세주소"
+            />
+          </PostCodeContainer>
+        </form>
+      </Container>
 
-    <Container>
-    <TextContainer>
-        <Text>요청 사항</Text>
-      </TextContainer>
-      <PostCodeContainer>
+      <Container>
+        <TextContainer>
+          <Text>요청 사항</Text>
+        </TextContainer>
+        <PostCodeContainer>
           <ASK
+            rowsMin={5}
             type="text"
             id="sample6_detailAddress"
-            placeholder="상세주소"
+            placeholder="요청사항"
           />
-        </PostCodeContainer> 
-    </Container>
+        </PostCodeContainer>
+      </Container>
+
+      <Container>
+        <TextContainer>
+          <Text>결제 방식</Text>
+        </TextContainer>
+        <PostCodeContainer>
+          <ASK
+            rowsMin={5}
+            type="text"
+            id="sample6_detailAddress"
+            placeholder="요청사항"
+          />
+        </PostCodeContainer>
+      </Container>
     </>
   );
 };

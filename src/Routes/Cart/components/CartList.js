@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Input } from "@material-ui/core";
 import styled from "styled-components";
-import Post from "./Post";
+import { Input } from "reactstrap";
 
 const Container = styled.div`
   width: 100%;
@@ -33,12 +32,11 @@ const TableHeader = styled.th`
   margin-left: 2px;
   color: black;
 `;
-
 const TextContainer = styled.div`
-  display:flex;
-  padding-top:30px;
-  width:100%;
-  border-bottom:2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
 `;
 const Text = styled.span`
   color: #000;
@@ -47,56 +45,57 @@ const Text = styled.span`
   padding-top: 3px;
   font-weight: 600;
   font-size: 25px;
+  font-family: "Do Hyeon", sans-serif;
   line-height: 2;
   cursor: none;
-  font-family: "Do Hyeon", sans-serif;
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
+  border-bottom: 2px solid #000;
 `;
-export default ({dataBucket}) =>{
-  const [value, setValue] = useState(0);
-  let tp = 0;
-  if(dataBucket){
-    for( var count in dataBucket.bucket){
-      tp = tp+dataBucket.bucket[count].data.totalPrice;
-    }
-  }
+
+export default ({state,data,onBtnBucket}) => {
+    const onSubmit = (e, data) => {
+        e.preventDefault();
+        onBtnBucket(data);
+      };
   return (
     <Container>
-      <TextContainer>
-        <Text>결제</Text>
-      </TextContainer>
-      <Table style={{ marginTop: 30 }}>
+      <Table id="customers" key="1">
         <tbody>
           <tr>
             <TableHeader>상품명</TableHeader>
-            <TableHeader>수량</TableHeader>
-            <TableHeader>총 가격</TableHeader>
+            <TableHeader>단가</TableHeader>
+            <TableHeader>담기</TableHeader>
           </tr>
-          {dataBucket !== null ? (
+
+          {data !== null ? (
             <>
-              {dataBucket.bucket.map((list) => {
+              {data.cart.map((list) => {
+                const [value, setValue] = useState(0);
+
                 return (
                   <tr key={list.data.id}>
                     <td style={{ width: "60%" }}>{list.data.productname}</td>
-                    <td style={{ width: "20%" }}>
-                      <Input
-                        type="number"
-                        onChange={(e) => {
-                          list.data.qty = e.target.value;
-                          setValue(value + 1);
-                          list.data.totalPrice =
-                            list.data.qty * list.data.price;
-                          localStorage.setItem(
-                            "result",
-                            JSON.stringify(dataBucket)
-                          );
+                    <td style={{ width: "32%" }}>{list.data.price}원</td>
+                    <td style={{ width: "18%", padding: 0 }}>
+                      <form
+                        onSubmit={(e) => {
+                          onSubmit(e, list.data);
                         }}
-                      />
-                    </td>
-                    <td style={{ width: "20%", padding: 0 }}>
-                      {list.data.price * list.data.qty} 원
+                        style={{ width: "100%", padding: 0 }}
+                      >
+                        <button
+                          style={{ width: "100%" }}
+                          onClick={() => {
+                            list.data.qty = value;
+                            state.visibilityPayment = "SHOW_PAYMENT";
+                            setValue(value);
+                          }}
+                        >
+                          담기
+                        </button>
+                      </form>
                     </td>
                   </tr>
                 );
@@ -105,27 +104,6 @@ export default ({dataBucket}) =>{
           ) : null}
         </tbody>
       </Table>
-      <div style={{ width: "100%" }}>
-        <span  style={{
-            float: "right",
-            marginTop: 10,
-            width: 100,
-            height:30,
-            fontFamily: "Do Hyeon sans-serif",
-            backgroundColor: "white",
-            border: "1px solid #ddd",
-          }}>{tp}원</span>
-                  <span  style={{
-            float: "right",
-            marginTop: 10,
-            width: 100,
-            height:30,
-            fontFamily: "Do Hyeon sans-serif",
-            backgroundColor: "white",
-            border: "1px solid #ddd",
-          }}>총가격</span>
-      </div>
-      <Post/>
     </Container>
   );
-}
+};
