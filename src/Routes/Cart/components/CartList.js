@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
+import Spinner from "../../../Component/Spinner";
 
 const Container = styled.div`
   width: 100%;
@@ -54,11 +55,11 @@ const Text = styled.span`
   border-bottom: 2px solid #000;
 `;
 
-export default ({state,data,onBtnBucket}) => {
-    const onSubmit = (e, data) => {
-        e.preventDefault();
-        onBtnBucket(data);
-      };
+export default ({ state, data, onBtnBucket }) => {
+  const onSubmit = (e, data) => {
+    e.preventDefault();
+    onBtnBucket(data);
+  };
   return (
     <Container>
       <Table id="customers" key="1">

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Input } from "reactstrap";
 import Payment from "./components/Payment";
 import CartList from "./components/CartList";
+import Spinner from "../../Component/Spinner";
 
 const Container = styled.div`
   width: 100%;
@@ -46,8 +47,10 @@ const Button = styled.button`
 `;
 
 export default ({ data, dataBucket, onBtnBucket, state }) => {
+
   return (
     <Container>
+      <Spinner type="grow" color="primary" />
       <TextContainer>
         <Text>장바구니</Text>
       </TextContainer>

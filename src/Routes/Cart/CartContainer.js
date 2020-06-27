@@ -2,11 +2,14 @@ import React from "react";
 import CartPresenter from "./CartPresenter";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store";
+import { Spinner } from 'reactstrap';
 
 const  CartContainer =  ({state,onBtnBucket}) => {
     const dataCart = sessionStorage.getItem("cart");
     const dataBucket = sessionStorage.getItem("bucket")
+
     return (
+        
         <CartPresenter data={JSON.parse(dataCart)} dataBucket={JSON.parse(dataBucket)} state={state} onBtnBucket={onBtnBucket}/>
     )
 }
