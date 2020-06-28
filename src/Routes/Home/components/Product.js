@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import SquarePost from "./PCard";
+
+import ProductCard from "./ProductCard";
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(3, 1fr);
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -18,15 +19,13 @@ const GridContainer = styled.div`
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(2, 1fr);
   }
-`;
+    `;
 
 const TextContainer = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
   padding-top:30px;
-  border-top:1px solid #000;
-
 `;
 const Text = styled.span`
   color: #000;
@@ -40,26 +39,32 @@ const Text = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
-  border-bottom:2px solid #000;
-
+  border-bottom: ${(props) => props.theme.boxBorder};
   `;
-
 
 export default ({data}) => {
   return (
     <>
       <TextContainer>
-        <Text>체 험</Text>
+        <Text>제주 농산물</Text>
       </TextContainer>
       <GridContainer>
         {data.map((p) => {
-          
-         if(p.category===3) return (
-            <SquarePost key={p.id} id={p.id} src={p.src} name={p.productname} category={p.category} content={p.content} />
-          );
+           if(p.category===1)  return (
+            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+          ); 
         })}
+             {data.map((p) => {
+           if(p.category===2)  return (
+            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+          ); 
+        })}
+              {data.map((p) => {
+           if(p.category===3)  return (
+            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+          ); 
+        })} 
       </GridContainer>
     </>
   );
 };
-

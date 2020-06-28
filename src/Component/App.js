@@ -1,16 +1,14 @@
 import React from "react";
-import Header from "./Header";
-import { HashRouter, Link} from "react-router-dom";
+import { BrowserRouter, Link} from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
 import Footer from "./Footer";
-//import {Home} from "./svgIcons"
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
-//
+import {Header}  from "./Header";
 
 const Wrapper = styled.div`
   margin: 0px auto 0;
@@ -55,7 +53,7 @@ function App() {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
-      <HashRouter>
+      <BrowserRouter>
           <Header />
         <Wrapper>
           <Routes/>
@@ -72,7 +70,7 @@ function App() {
           </MobileNavBar>
         </Wrapper>
         <Footer/>
-      </HashRouter>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

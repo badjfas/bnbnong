@@ -5,6 +5,7 @@ import Deatail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
 import Category from "../Routes/Category";
 import Search from "../Routes/Search";
+import All from "../Routes/Category/components/All";
 
 const Routes = () => { 
   return(
@@ -12,10 +13,14 @@ const Routes = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/detail/:category/:id" component={Deatail} />
       <Route exact path="/cart" component={Cart} />
-      <Route exact path="/Category/" component={Category} />
-      <Route exact path="/search/" component={Search} />
+      
+      <Route exact path="/category/" component={Category} />
+      <Route path="/category/all" render={All}/>
+      <Route path="/category/recommends" render={All}/>
+      <Route path="/category/sale" render={All}/>
+      <Route path="/category/new" render={All}/>
 
-      <Redirect from="*" to="/" />
+      <Route exact path="/search/" component={Search} />
   </Switch>
 )};
 

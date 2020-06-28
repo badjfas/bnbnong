@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PageviewIcon from '@material-ui/icons/Pageview';
 import { Link } from "react-router-dom";
+
 const Overlay = styled.div`
     background-color:rgba(0,0,0,0.6);
     width:100%;
@@ -20,7 +21,7 @@ const Overlay = styled.div`
       align-items:center;
     }
 `;
-const LL = styled(Link)`
+const Links= styled(Link)`
   display: table;
   width: 230px;
   height:100%;
@@ -35,8 +36,8 @@ const LL = styled(Link)`
 `;
 
 const Container = styled.div`
-  width: 230px;
-  height: 230px;
+  width: 300px;
+  height: 430px;
   display: flex;
   background-image: url(${(props) => props.src});
   background-size: cover;
@@ -89,7 +90,7 @@ text-overflow: ellipsis;
 `;
 
 const SquarePost = ({ name, price, content, src, id ,category }) => (
-  <LL to={`/detail/${category}/${id}`}>
+  <Links to={`/detail/${category}/${id}`}>
     <Container src={src}>
       <Overlay>
         <PageviewIcon style={{ fontSize: 90 }} />
@@ -100,7 +101,7 @@ const SquarePost = ({ name, price, content, src, id ,category }) => (
       <ProductPrice>{price}원</ProductPrice>
       <ProductContent>{content}</ProductContent>
     </div>
-  </LL>
+  </Links>
 );
 
 export default SquarePost;

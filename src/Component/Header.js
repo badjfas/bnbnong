@@ -1,97 +1,84 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
-import Drawer from "./Drawer/Drawer";
-import { ShoppingCart,UserIcon } from "./svgIcons";
-import useInput from "../Hooks/useInput";
-import Input from "./Input";
+import { withRouter, Link } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Dropdown } from "./Dropdown";
+const ImageContainer =styled.div`
+    display:flex;
+    justify-content:center;
+    padding-top:10px;
+    font-size:32px;
+`;
 
-const Header = styled.header`
-  background-color: white;
-  width: 100%;
-  border: 0;
-  border-bottom: ${(props) => props.theme.boxBorder};
-  border-radius: 0px;
+const Img = styled.span``;
+
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  padding-bottom: 30px;
+  border-bottom: ${(props) => props.theme.boxBorder};
+  margin-bottom: 20px;
+  margin-top : 30px;
 `;
 
-const HeaderWrapper = styled.div`
+const List = styled.ul`
   display: flex;
+  list-style: none;
+`;
+
+const Item = styled.li`
+  width: 200px;
+  text-align: center;
+  border-bottom: 1px solid
+    ${(props) => (props.current ? "#3498db" : "transparent")};
+  transition: border-bottom 0.3s ease-in-out;
+  &:not(:first-child) {
+    border-left: 1px solid #000;
+  }
+`;
+
+const SLink = styled(Link)`
+  color: #000;
   width: 100%;
-  max-width: ${(props) => props.theme.maxWidth};
-  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Noto Sans';
 `;
 
-const HeaderColumn = styled.div`
-  width: 33%;
-  text-align: center;
-  &:first-child {
-    text-align: left;
-    margin-right: auto;
-  }
-  &:last-child {
-    text-align: right;
-    margin-left: auto;
-  }
+const Form = styled.form`
+`;
+const Search = styled.input`
 `;
 
-const SearchInput = styled(Input)`
-  text-align: center;
-  background-color: ${props => props.theme.bgColor};
-  padding: 5px;
-  font-size: 14px;
-  height: auto;
-  border-radius: 3px;
-  width: 80%;
-  &::placehorder {
-    opacity: 0.8;
-    font-weight: 400;
-  }
-`;
-
-const HeaderLink = styled(Link)`
-  margin-left: 3px;
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
-`;
-
-export default withRouter(({ history }) => {
-  const search = useInput("");
-  
-  const onSearchSubmit = e => {
-    history.push(`/search?term=${search.value}`);
-  };
-
+export const Header = withRouter(({ location: { pathname } }) => {
   return (
-    <Header>
-      <HeaderWrapper>
-        <HeaderColumn>
-          <Drawer />
-        </HeaderColumn>
-
-        <HeaderColumn style={{marginTop:18}}>
-          <form onSubmit={onSearchSubmit}>
-            <SearchInput
-              value={search.value}
-              onChange={search.onChange}
-              placeholder={"검색.."}
-            />
-          </form>
-        </HeaderColumn>
-
-        <HeaderColumn>
-          <HeaderLink to="/cart">
-            <ShoppingCart />
-          </HeaderLink>
-          <HeaderLink to="/notifications">
-            <UserIcon />
-          </HeaderLink>
-        </HeaderColumn>
-      </HeaderWrapper>
-    </Header>
+      <>
+    <ImageContainer>
+    <span role="img" aria-label="header">🍊🍊</span>
+    </ImageContainer>
+    <Container>
+      <List>
+        <Item>
+            <Dropdown/>
+        </Item>
+        <Item current={pathname === "/category/all"}>
+          <SLink to="/category/all">전체 상품</SLink>
+        </Item>
+        <Item current={pathname === "/category/recommends"}>
+          <SLink to="/category/recommends">추천 상품</SLink>
+        </Item>
+        <Item current={pathname === "/category/sale"}>
+          <SLink to="/category/sale">할인 상품</SLink>
+        </Item>
+        <Item current={pathname === "/category/new"}>
+          <SLink to="/category/new">신 상품</SLink>
+        </Item>
+            <Form>
+                <Search/>
+            </Form>
+      </List>
+    </Container>
+    </>
   );
 });
