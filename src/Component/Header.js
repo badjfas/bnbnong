@@ -28,14 +28,12 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
-  width: 200px;
+  width: 150px;
   text-align: center;
   border-bottom: 1px solid
-    ${(props) => (props.current ? "#3498db" : "transparent")};
+  ${(props) => (props.current ? "#8F9BF5" : "transparent")};
   transition: border-bottom 0.3s ease-in-out;
-  &:not(:first-child) {
-    border-left: 1px solid #000;
-  }
+
 `;
 
 const SLink = styled(Link)`
