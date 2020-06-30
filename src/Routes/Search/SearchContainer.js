@@ -15,6 +15,6 @@ import { data } from "../../ProductData";
    console.log(newData)
 
     return (
-        <SearchPresenter searchTerm={searchTerm} data={data} loading={null}/>
+        <SearchPresenter searchTerm={searchTerm} data={newData} loading={null}/>
     )
 };

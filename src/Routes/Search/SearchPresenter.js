@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Loader from "../../Component/Loader";
 
-const Wrapper = styled.div`
+const Container = styled.div`
   height: 50vh;
   text-align: center;
   margin-top:20px;
@@ -37,28 +37,19 @@ border:1px solid #727272;
 }
 `;
  const SearchPresenter =  ({ searchTerm, loading, data }) => {
-   console.log(searchTerm)
-    // console.log("data:",data?.searchProduct,"searchTerm:",searchTerm)
-    // if (data===undefined) {
-    //     return <Wrapper>다시 검색 해주세요.</Wrapper>;
-    //   } else if (data===undefined&&!loading) {
-    //     return <Wrapper><Loader/></Wrapper>;
-    //   } else if(data&&data?.searchProduct !==undefined)  {
-    //     return (
-    //       <Wrapper>
-    //         {data.searchProduct === undefined ? (
-    //           <Wrapper></Wrapper>
-    //         ) : (
-    //           <ESection>
-    //             <ImgContainer src={data.searchProduct.image_1} />
-    //           </ESection>
-    //         )}
-    //       </Wrapper>
-    //     );
-    //   }else{
-    //       return null
-    //   }
-    return null;
+ 
+  return (
+    data &&
+    data.map((data) => (
+      <>
+        <Container>
+          <Section>
+            <ImgContainer src={data.src}/>
+          </Section>
+        </Container>
+      </>
+    ))
+  );
  }
     
     export default SearchPresenter;
