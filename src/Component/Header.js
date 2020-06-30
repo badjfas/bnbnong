@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { withRouter, Link } from "react-router-dom";
 import { Dropdown } from "./Dropdown";
-import { ShippingBox } from "./svgIcons";
-const ImageContainer =styled.div`
-    display:flex;
-    justify-content:center;
-    padding-top:10px;
-    font-size:32px;
-
+import { ShippingBox, CartSvg, UserIcon, SearchSvg } from "./svgIcons";
+import SearchC from "../Routes/Search";
+import useInput from "./useInput";
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 32px;
 `;
 
 const Img = styled.span``;
@@ -20,23 +21,23 @@ const Container = styled.div`
   padding-bottom: 30px;
   border-bottom: ${(props) => props.theme.boxBorder};
   margin-bottom: 20px;
-  margin-top : 30px;
+  margin-top: 30px;
 `;
 
 const List = styled.ul`
   display: flex;
   list-style: none;
-  margin:0;
-  padding:0;
-  align-items:center;
-  justify-content:center;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Item = styled.li`
-  width: 150px;
+  width: 130px;
   text-align: center;
   border-bottom: 1px solid
-  ${(props) => (props.current ? "#8F9BF5" : "transparent")};
+    ${(props) => (props.current ? "#5f0080" : "transparent")};
   transition: border-bottom 0.3s ease-in-out;
 `;
 
@@ -45,15 +46,39 @@ const SLink = styled(Link)`
   width: 100%;
   font-weight: 600;
   font-size: 15px;
-  font-family: 'Noto Sans';
+  font-family: "Noto Sans";
+  &:hover {
+    color: #5f0080;
+  }
 `;
 
 const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  margin: 0px 10px;
 `;
 const Search = styled.input`
+  border-radius: 5px;
+  border: 2px solid #000;
+  right: -25px;
+  z-index: 1;
+  position: relative;
 `;
 
-export const Header = withRouter(({ location: { pathname } }) => {
+const Icon = styled(SearchSvg)``;
+
+export const Header = withRouter(({ history, location: { pathname } }) => {
+  const search = useInput("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    history.push(`/search?term=${search.value}`);
+  };
+
+  const onChange = (event) => {
+
+    };
+
   return (
     <>
       <ImageContainer>
@@ -78,11 +103,21 @@ export const Header = withRouter(({ location: { pathname } }) => {
           <Item current={pathname === "/category/new"}>
             <SLink to="/category/new">신 상품</SLink>
           </Item>
-          <Form>
-            <Search />
+          <Form onSubmit={handleSubmit}>
+            <Search
+              value={search.value}
+              onChange={search.onChange}
+              placeholder={"Search"}
+            />
+            <Icon />
           </Form>
-          <Item current={pathname === "/category/new"}>
-                <ShippingBox/>
+          <Item>
+            <SLink to="/cart">
+              <CartSvg />
+            </SLink>
+            <SLink to="/cart">
+              <UserIcon />
+            </SLink>
           </Item>
         </List>
       </Container>

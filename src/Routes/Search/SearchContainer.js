@@ -1,19 +1,20 @@
 import React from "react";
-import {withRouter} from "react-router-dom"
-import { useQuery } from "react-apollo-hooks";
-import { SEARCH } from "../../Queries/SearchQuery";
+// import { withRouter } from "react-router-dom";
+// import { useQuery } from "react-apollo-hooks";
+// import { SEARCH } from "../../Queries/SearchQuery";
 import SearchPresenter from "./SearchPresenter";
+import { data } from "../../ProductData";
 
-export default withRouter(({location:{search}}) => {
 
-   const productname = search.split("=")[1];
-   const {data,loading} = useQuery(SEARCH,{
-       skip:productname===undefined,
-       variables:{
-        productname:productname
-       }
-   })
+ export default ({location:{search}}) => {
+
+   const searchTerm = search.substring(6)
+
+    console.log(data)
+   const newData=  data.filter((name) => !name.productname.indexOf(searchTerm))
+   console.log(newData)
+
     return (
-        <SearchPresenter searchTerm={productname} data={data} loading={loading}/>
+        <SearchPresenter searchTerm={searchTerm} data={data} loading={null}/>
     )
-}) ;
+};
