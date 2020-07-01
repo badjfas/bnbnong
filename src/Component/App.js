@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
-import Footer from "./Footer";
 
 
 

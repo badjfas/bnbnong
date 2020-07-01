@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { withRouter, Link } from "react-router-dom";
 import { Dropdown } from "./Dropdown";
-import {  CartSvg, UserIcon, SearchSvg } from "./svgIcons";
+import {  CartSvg} from "./svgIcons";
 import useInput from "./useInput";
 
 const Wrapper = styled.div`
@@ -74,7 +74,6 @@ const Search = styled.input`
   position: relative;
 `;
 
-const Icon = styled(SearchSvg)``;
 
 export const Header = withRouter(({ history, location: { pathname } }) => {
   const search = useInput("");
@@ -84,9 +83,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
     history.push(`/search?term=${search.value}`);
   };
 
-  const onChange = (event) => {
 
-    };
 
   return (
     <Wrapper>

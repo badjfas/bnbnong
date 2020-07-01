@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Loader from "../../Component/Loader";
 
 const Container = styled.div`
   height: 50vh;
@@ -43,9 +42,9 @@ border:1px solid #727272;
     data.map((data) => (
       <>
         <Container>
-          <Section>
+          <ESection>
             <ImgContainer src={data.src}/>
-          </Section>
+          </ESection>
         </Container>
       </>
     ))
