@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Product from "./components/Product"
 
 const Container = styled.div`
-  padding:15px;
+  padding:100px;
 `;
 
 

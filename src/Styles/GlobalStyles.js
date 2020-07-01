@@ -9,6 +9,7 @@ export default createGlobalStyle`
     }
     
     body{
+        padding-bottom:50px;
         background-color:${props=>props.theme.bgColor};
         color:${props=>props.theme.blackColor};
         font-family: 'Nanum Brush Script', 'Do Hyeon', sans-serif,cursive;

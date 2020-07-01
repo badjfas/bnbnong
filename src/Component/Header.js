@@ -4,30 +4,34 @@ import { withRouter, Link } from "react-router-dom";
 import { Dropdown } from "./Dropdown";
 import {  CartSvg, UserIcon, SearchSvg } from "./svgIcons";
 import useInput from "./useInput";
+
+const Wrapper = styled.div`
+  position:fixed;
+  width:100%;
+  background-color:#fff;
+`;
+
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 10px;
   font-size: 32px;
+  width: 100%;
 `;
-
-const Img = styled.span``;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   border-bottom: ${(props) => props.theme.boxBorder};
-  margin-bottom: 20px;
   margin-top: 30px;
+  width: 100%;
 `;
 
 const List = styled.ul`
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
   align-items: center;
   justify-content: center;
 `;
@@ -38,13 +42,16 @@ const Item = styled.li`
   border-bottom: 1px solid
     ${(props) => (props.current ? "#5f0080" : "transparent")};
   transition: border-bottom 0.3s ease-in-out;
+  &:last-child{
+    margin-left : 30px;
+  }
 `;
 
 const SLink = styled(Link)`
   color: #000;
   width: 100%;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 18px;
   font-family: "Noto Sans";
   &:hover {
     color: #5f0080;
@@ -57,8 +64,11 @@ const Form = styled.form`
   margin: 0px 10px;
 `;
 const Search = styled.input`
-  border-radius: 5px;
-  border: 2px solid #000;
+  border-radius: 10px;
+  height:36px;
+  width:238px;
+  background-color:#f7f7f7;
+  border: 1px solid #f7f7f6;
   right: -25px;
   z-index: 1;
   position: relative;
@@ -79,7 +89,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
     };
 
   return (
-    <>
+    <Wrapper>
       <ImageContainer>
         <span role="img" aria-label="header">
           🍊🍊🍊🍊
@@ -106,20 +116,16 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
             <Search
               value={search.value}
               onChange={search.onChange}
-              placeholder={"Search"}
+              placeholder={"검색"}
             />
-            <Icon />
           </Form>
           <Item>
             <SLink to="/cart">
               <CartSvg />
             </SLink>
-            <SLink to="/cart">
-              <UserIcon />
-            </SLink>
           </Item>
         </List>
       </Container>
-    </>
+    </Wrapper>
   );
 });
