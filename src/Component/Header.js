@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { withRouter, Link } from "react-router-dom";
 import { Dropdown } from "./Dropdown";
-import { ShippingBox, CartSvg, UserIcon, SearchSvg } from "./svgIcons";
-import SearchC from "../Routes/Search";
+import {  CartSvg, UserIcon, SearchSvg } from "./svgIcons";
 import useInput from "./useInput";
 const ImageContainer = styled.div`
   display: flex;

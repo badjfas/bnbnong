@@ -1,12 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import Tabs from "../../Routes/Category/components/Tabs";
-import Tabtest from "./components/Tabtest";
-const Container = styled.div`
-  width: 100%;
-`;
+import Tab from "./components/Tab";
 
-export default ({ data, loading }) => {
-  console.log(data,"data");
-  return <Container></Container>;
+
+
+export default ({pathname}) => {
+  console.log(pathname)
+  if(pathname==="/category/all"){
+    return (
+      <Tab text={"전체 항목"}/>
+    );
+  }else if(pathname==="/category/recommends"){
+    return(
+      <Tab text={"추천 상품"}/>
+    )
+  }else if(pathname==="/category/sale"){
+    return(
+      <Tab text={"할인 상품"}/>
+    )
+  }else if(pathname==="/category/new"){
+    return(
+      <Tab text={"신 상품"}/>
+    )
+  }
 };
