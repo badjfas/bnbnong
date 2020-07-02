@@ -11,13 +11,10 @@ import { API } from "../../api";
 export default (props) => {
     console.log(props)
 
-    useEffect(async () => {
-     const result = await API.getList();
-      console.log(result);
-    }, []);
     const {data,loading} = useQuery(getList,{variables:{
-        user_id:31
+        user_id:36
     }})    
+    console.log(data)
     return (
         <HomePresenter data={dummydata}/>
     )

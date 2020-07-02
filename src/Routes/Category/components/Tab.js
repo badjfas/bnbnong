@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import {data} from "./../../../ProductData";
+import ProductCard from "../../Home/components/ProductCard";
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 15px;
+  padding: 100px;
+
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -21,87 +25,26 @@ const GridContainer = styled.div`
   }
 `;
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-`;
 
-const ImgContainer = styled.div`
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 330px;
-  &:hover {
-    transform: scale(1.03);
-    transition: all 0.3s ease-in-out;
-  }
-  @media only screen and (max-width: 768px) {
-  }
-  @media only screen and (width: 1024px), (width: 1366px) {
-    width: 100%;
-    height: 500px;
-  }
-`;
-
-const TextContainer = styled.div`
-  display: table;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ProductName = styled.span`
-  color: #494848;
-  display: block;
-  overflow: hidden;
-  padding-top: 3px;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 2;
-  white-space: pre-line;
-  text-overflow: ellipsis;
-`;
-
-const ProductPrice = styled.span`
-  color: #d1913c;
-  display: block;
-  overflow: hidden;
-  padding-top: 1px;
-  font-weight: 500;
-  font-size: 15px;
-  font-family: "Do Hyeon", sans-serif;
-  line-height: 2;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;
-
-export default ({text}) => {
+export default ({text,data}) => {
+  console.log(data)
   return (
     <>
-      <div style={{ padding: 20 }}>
-        <ProductPrice style={{ fontSize: 20, color: "black" }}>
-          {text}
-        </ProductPrice>
-      </div>
-
-      <GridContainer>
-        {data.map((p) => {
-          return (
-            <Link to="/detail" key={p.id}>
-              <Container>
-                <ImgContainer src={p.src} />
-                <TextContainer>
-                  <ProductName>천헤향</ProductName>
-                  <ProductPrice>9,000원</ProductPrice>
-                </TextContainer>
-              </Container>
-            </Link>
-          );
-        })}
-      </GridContainer>
+    <GridContainer>
+      {data.map((data) => {
+        return (
+          <ProductCard
+            key={data.id}
+            id={data.id}
+            src={data.src}
+            name={data.productname}
+            price={data.price}
+            category={data.category}
+            content={data.content}
+          />
+        );
+      })}
+    </GridContainer>
     </>
   );
 }

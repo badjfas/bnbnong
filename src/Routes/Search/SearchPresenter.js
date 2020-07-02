@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   justify-content:center;
   height:100%;
   width:33%;
+  padding-top:200px;
+  float:left;
 `;
 
 const Container = styled.div`
@@ -20,7 +22,7 @@ const ImgContainer = styled.div`
 
 
  const SearchPresenter =  ({ searchTerm, loading, data }) => {
-
+  console.log(data)
   return (
     data &&
     data.map((data) => (

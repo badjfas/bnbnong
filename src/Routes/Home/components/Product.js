@@ -27,7 +27,7 @@ const TextContainer = styled.div`
   align-items:center;
   justify-content:center;
   padding-top:30px;
-  margin-bottom:20px;
+  margin-bottom:0px;
 `;
 const Text = styled.span`
   color: #000;
