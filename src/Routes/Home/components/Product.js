@@ -5,8 +5,9 @@ import ProductCard from "./ProductCard";
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1,1fr);
+  grid-gap:15px;
   @media only screen and (max-width: 768px) {
     width: 100%;
     height:100%;
@@ -26,6 +27,7 @@ const TextContainer = styled.div`
   align-items:center;
   justify-content:center;
   padding-top:30px;
+  margin-bottom:20px;
 `;
 const Text = styled.span`
   color: #000;

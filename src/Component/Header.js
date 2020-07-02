@@ -80,7 +80,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push(`/search?term=${search.value}`);
+    history.push(`/search?term=${decodeURI(search.value)}`);
   };
 
 

@@ -1,54 +1,37 @@
 import React from "react";
 import styled from "styled-components";
+import ProductCard from "./../Home/components/ProductCard";
+
+const Wrapper = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  width:33%;
+`;
 
 const Container = styled.div`
-  height: 50vh;
-  text-align: center;
-  margin-top:20px;
-
-`;
-
-const Section = styled.div`
-    display:grid;
-    grid-gap:25px;
-    grid-template-columns:repeat(4,160px);
-    grid-template-rows:160px;
-    gird-auto-rows:160px;
-    margin-bottom:55px;
-`;
-
-const ESection = styled(Section)`
-  grid-template-columns: repeat(4, 410px);
-  grid-template-rows: 410px;
-  gird-auto-rows: 410px;
+width:400px;
 `;
 
 const ImgContainer = styled.div`
-background-image: url(${(props) => props.src});
-background-size: cover;
-display:flex
-width: 310px;
-height: 410px;
-border:1px solid #727272;
-&:hover{
-  transform: scale(1.03);
-    transition: all .3s ease-in-out;
-}
+  display:inline-block;
 `;
+
+
  const SearchPresenter =  ({ searchTerm, loading, data }) => {
- 
+
   return (
     data &&
     data.map((data) => (
-      <>
-        <Container>
-          <ESection>
-            <ImgContainer src={data.src}/>
-          </ESection>
-        </Container>
-      </>
-    ))
-  );
+      <Wrapper>
+      <Container>
+        <ProductCard key={data.id} id={data.id} src={data.src} name={data.productname} price={data.price} category={data.category} content={data.content} />
+      </Container>
+      </Wrapper>
+    )
+  )
+  )
  }
     
     export default SearchPresenter;

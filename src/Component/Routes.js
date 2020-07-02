@@ -18,10 +18,6 @@ const Routes = () => {
       <Route exact path="/detail/:category/:id" component={Deatail} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/category/:item" component={Category} />
-      {/* <Route path="/category/all" render={All}/>
-      <Route path="/category/recommends" render={All}/>
-      <Route path="/category/sale" render={All}/>
-      <Route path="/category/new" render={All}/> */}
       <Route exact path="/search/" component={Search} />
   </Switch>
   <Footer/>
