@@ -8,11 +8,10 @@ import { getList } from "../../Queries/readProduct";
 
 
 export default (props) => {
-    console.log(props)
     const {data,loading} = useQuery(getList,{variables:{
-        user_id:31
-    }})    
+        user_id:parseInt(props.match.params.id)
+    }})
     return (
-        <HomePresenter data={dummydata}/>
+        <HomePresenter data={data ? data.getList: []}/>
     )
 }

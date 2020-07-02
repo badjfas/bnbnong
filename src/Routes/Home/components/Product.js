@@ -43,6 +43,7 @@ const Text = styled.span`
   `;
 
 export default ({data}) => {
+  console.warn(data)
   return (
     <>
       <TextContainer>
