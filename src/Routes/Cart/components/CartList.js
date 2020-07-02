@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Input } from "reactstrap";
-import Spinner from "../../../Component/Spinner";
 
 const Container = styled.div`
   width: 100%;

@@ -1,20 +1,12 @@
 import React from "react";
-import { BrowserRouter, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
-import Footer from "./Footer";
-import HomeIcon from '@material-ui/icons/Home';
-import SearchIcon from '@material-ui/icons/Search';
-import MenuIcon from '@material-ui/icons/Menu';
-import {Header}  from "./Header";
 
-const Wrapper = styled.div`
-  margin: 0px auto 0;
-  max-width: ${(props) => props.theme.maxWidth};
-  width: 100%;
-`;
+
+
 
 const MobileNavBar = styled.div`
 display:none;
@@ -52,25 +44,9 @@ const NavLink = styled(Link)`
 function App() {
   return (
     <ThemeProvider theme={Theme}>
-      <GlobalStyles />
-      <BrowserRouter>
-          <Header />
-        <Wrapper>
           <Routes/>
-          <MobileNavBar>
-            <NavLink to="/category">
-              <MenuIcon/>
-            </NavLink>
-            <NavLink to="/">
-              <HomeIcon/>
-            </NavLink>
-            <NavLink to="/">
-              <SearchIcon/>
-            </NavLink>
-          </MobileNavBar>
-        </Wrapper>
-        <Footer/>
-      </BrowserRouter>
+      <GlobalStyles />
+        
     </ThemeProvider>
   );
 }
