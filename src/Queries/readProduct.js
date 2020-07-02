@@ -6,6 +6,9 @@ query getList($user_id:Int!){
       id
       name
       file_name
+      detail_file
+      family
+      state
     }
 }
 `;
