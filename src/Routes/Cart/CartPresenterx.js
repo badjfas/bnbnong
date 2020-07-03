@@ -1,154 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { actionCreators } from "./store";
-import { Input } from "@material-ui/core";
 
 const Container = styled.div`
+  padding-top: 150px;
+`;
+
+const Header = styled.div`
+  text-align: center;
   width: 100%;
-  display: flex;
-  height: 100%;
-  margin-top: 40px;
-  flex-direction: column;
-  &> button : hover {
-    background-color: #ddd;
-  }
+  border-bottom: 2px solid #c83bee;
 `;
-const Table = styled.table`
-  border-collapse: collapse;
+
+const HeaderTitle = styled.span`
+  display: block;
+  padding: 10px 0 14px;
+  font: normal bold 40px/1.5 "Noto Sans" !important;
+  color: #333;
+`;
+
+const SubTitle = styled.div`
+  margin: 0 0 40px;
+  font: normal 16px/18px "Noto Sans";
+  color: #999;
+  text-align: center;
+`;
+
+const CartContainer = styled.div`
   width: 100%;
-  font-family: "Do Hyeon", sans-serif;
-  & > th,
-  td,
-  * {
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 8px;
-  }
-
-`;
-const TableHeader = styled.th`
-  padding-top: 12px;
-  background-color: #ddd;
-  padding-bottom: 12px;
-  text-align: left;
-  margin-left: 2px;
-  color: black;
+  display: block;
 `;
 
-const PriceContainer = styled.div`
-  width:100%;
-  font-family: "Do Hyeon", sans-serif;
-`;
-const TotalPriceHeader = styled.div`
-  width:20%;
-  border:1px solid #ddd;
-  float:right;
+const Form = styled.form``;
 
-`;
-const TotalPrice = styled.div`
-float:right;
-width:20%;
-border:1px solid #ddd;
+const CartItems = styled.div``;
 
+const Table = styled.table``;
+
+const ColGroup = styled.colgroup``;
+
+const Thead = styled.thead``;
+
+const Tr = styled.tr``;
+
+const Th = styled.th`
+  font-family: noto sans;
+  font-weight: 600;
+  padding:20px;
 `;
 
-const CartPresenter = ({ cart, onBtnSave ,state}) => {
-  const [value, setValue] = useState(0);
-  let [price, setPrice] = useState(0);
-  for(var count in cart){
-    price = price + cart[count].data.totalPrice;
-  }  
-  state.result = price;
-  console.log(state.result)
+
+export default () => {
   return (
     <Container>
-      <div style={{ width: "100%" }}>
-        <button
-          style={{
-            float: "right",
-            marginBottom: 10,
-            height: 30,
-            backgroundColor: "white",
-            border: "1px solid #ddd",
-            borderRadius: 5,
-          }}
-          onClick={() => {}}
-        >
-          장바구니 비우기
-        </button>
-      </div>
-      <Table id="customers" key="1">
-        <tbody>
-          <tr>
-            <TableHeader>상품명</TableHeader>
-            <TableHeader>단가</TableHeader>
-            <TableHeader>수량</TableHeader>
-          </tr>
-
-          {cart !== null ? (
-            <>
-              {cart.map((list) => {
-                return (
-                  <tr key={list.data.id}>
-                    <td style={{ width: "60%" }}>{list.data.productname}</td>
-                    <td style={{ width: "32%" }}>{list.data.price}</td>
-                    <td style={{ width: "18%" }}>
-                      <Input
-                        type="number"
-                        value={list.data.qty}
-                        onChange={(e) => {
-                          list.data.qty = e.target.value;
-                          setValue(list.data.qty);
-                          list.data.totalPrice =
-                            parseInt(list.data.qty) * list.data.price;
-                          localStorage.setItem("result", JSON.stringify(cart));
-                        }}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
-            </>
-          ) : null}
-        </tbody>
-      </Table>
-      <PriceContainer>
-      <TotalPrice>{price}원</TotalPrice>
-        <TotalPriceHeader>최종 가격</TotalPriceHeader>
-      </PriceContainer>
-      <div style={{ width: "100%" }}>
-        <button
-          style={{
-            float: "right",
-            marginTop: 10,
-            height: 50,
-            backgroundColor: "white",
-            border: "1px solid #ddd",
-            borderRadius: 5,
-          }}
-          onClick={() => {
-            onBtnSave(cart);
-          }}
-        >
-          결제하기
-        </button>
-      </div>
+      <Header>
+        <HeaderTitle>장바구니</HeaderTitle>
+        <SubTitle>주문하실 상품명 및 수량을 정확하게 확인해 주세요.</SubTitle>
+      </Header>
+      <CartContainer>
+        <Form>
+          <CartItems>
+            <Table>
+              <ColGroup>
+                <col style={{ width: 432 }} />
+                <col style={{ width: 432 }} />
+                <col style={{ width: 300 }} />
+                <col style={{ width: 200 }} />
+                <col style={{ width: "auto" }} />
+              </ColGroup>
+              <Thead>
+                <Tr>
+                  <Th>
+                    <input type="checkbox" />
+                    전체 선택
+                  </Th>
+                  <Th>상품 정보</Th>
+                  <Th>수량</Th>
+                  <Th>상품금액</Th>
+                  <Th></Th>
+                </Tr>
+              </Thead>
+            </Table>
+          </CartItems>
+        </Form>
+      </CartContainer>
     </Container>
   );
 };
-const getCurrentState = (state, ownProps) => {
-console.log(ownProps);
-  return {
-    state,
-    ownProps,
-  };
-};
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onBtnSave: (data) => dispatch(actionCreators.saveCart(data)),
-    totalPrice : () => dispatch(actionCreators.calTotalPrice())
-  };
-};
-
-export default connect(getCurrentState, mapDispatchToProps)(CartPresenter);
