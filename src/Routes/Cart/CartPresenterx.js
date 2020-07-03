@@ -33,7 +33,9 @@ const CartContainer = styled.div`
   display: block;
 `;
 
-const Form = styled.form``;
+const Form = styled.form`
+  width:100%;
+`;
 
 const CartItems = styled.div``;
 
@@ -53,6 +55,27 @@ const Th = styled.th`
   font-family: noto sans;
   font-weight: 600;
   padding: 20px;
+`;
+
+const ButtonContainer = styled.div`
+  width:100%;
+  display:flex;
+  aligin-items:center;
+  justify-content:center;
+  margin-top:50px;  
+`;
+
+const Button = styled.button`
+  display: block;
+  width: 200px;
+  height: 48px;
+  margin: 0 auto;
+  border: 0;
+  background-color: #5f0080;
+  font-size: 14px;
+  color: #fff;
+  line-height: 20px;
+  letter-spacing: -0.3px;
 `;
 
 export default ({ProductData}) => {
@@ -77,7 +100,7 @@ export default ({ProductData}) => {
                 <Tr>
                   <Th>
                     <input type="checkbox" />
-                    전체 선택
+                    전체 선택 
                   </Th>
                   <Th>상품 정보</Th>
                   <Th>수량</Th>
@@ -87,11 +110,12 @@ export default ({ProductData}) => {
               </Thead>
             </Table>
             {ProductData.map((data) => {
-              return (
-                <List productname={data.productname} src={data.src}/>
-              )
+              return <List productname={data.productname} src={data.src} />;
             })}
           </CartItems>
+          <ButtonContainer>
+            <Button>주문 하기</Button>
+          </ButtonContainer>
         </Form>
       </CartContainer>
     </Container>
