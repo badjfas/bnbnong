@@ -1,31 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import List from "./components/List";
 
 const Container = styled.div`
-  padding-top: 150px;
   max-width:1100px;
   margin:0px auto;
-`;
-
-const Header = styled.div`
-  text-align: center;
-  width: 100%;
-  border-bottom: 2px solid #c83bee;
-`;
-
-const HeaderTitle = styled.span`
-  display: block;
-  padding: 10px 0 14px;
-  font: normal bold 40px/1.5 "Noto Sans" !important;
-  color: #333;
-`;
-
-const SubTitle = styled.div`
-  margin: 0 0 40px;
-  font: normal 16px/18px "Noto Sans";
-  color: #999;
-  text-align: center;
 `;
 
 const CartContainer = styled.div`
@@ -55,13 +33,17 @@ const Th = styled.th`
   padding: 20px;
 `;
 
-export default ({ProductData}) => {
+const Image = styled.div`
+  background-image: url(${(props) => props.src});
+  background-position: center center;
+  background-size: cover;
+  width: 90px;
+  height: 100px;
+`;
+
+export default ({productname,src}) => {
   return (
     <Container>
-      <Header>
-        <HeaderTitle>장바구니</HeaderTitle>
-        <SubTitle>주문하실 상품명 및 수량을 정확하게 확인해 주세요.</SubTitle>
-      </Header>
       <CartContainer>
         <Form>
           <CartItems>
@@ -75,22 +57,17 @@ export default ({ProductData}) => {
               </ColGroup>
               <Thead>
                 <Tr>
-                  <Th>
-                    <input type="checkbox" />
-                    전체 선택
+                  <Th style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <input type="checkbox" style={{display:"flex",alignItems:"center",justifyContent:"center",height:14,width:14}} />
+                    <Image src={src}/>
                   </Th>
-                  <Th>상품 정보</Th>
+                  <Th>{productname}</Th>
                   <Th>수량</Th>
                   <Th>상품금액</Th>
                   <Th></Th>
                 </Tr>
               </Thead>
             </Table>
-            {ProductData.map((data) => {
-              return (
-                <List productname={data.productname} src={data.src}/>
-              )
-            })}
           </CartItems>
         </Form>
       </CartContainer>
