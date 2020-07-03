@@ -58,7 +58,7 @@ export default ({productname,src}) => {
               <Thead>
                 <Tr>
                   <Th style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <input type="checkbox" style={{display:"flex",alignItems:"center",justifyContent:"center",height:14,width:14}} />
+                    <input type="checkbox" style={{marginRight:15,height:14,width:14}} />
                     <Image src={src}/>
                   </Th>
                   <Th>{productname}</Th>
