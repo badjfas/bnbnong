@@ -1,34 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import CartPresenter from "./CartPresenterx";
 import { connect } from "react-redux";
 import { actionCreators } from "../../store";
-import {data as Pd} from "../../ProductData";
+import { data as Pd } from "../../ProductData";
 
+const CartContainer = ({}) => {
+  const [checked, isChecked] = useState(false);
+  const [selected, isSelected] = useState(false);
 
-const  CartContainer =  ({state,onBtnBucket}) => {
-    const dataCart = sessionStorage.getItem("cart");
-    const dataBucket = sessionStorage.getItem("bucket")
-
-    return (
-      <CartPresenter
-        ProductData={Pd}
-        data={JSON.parse(dataCart)}
-        dataBucket={JSON.parse(dataBucket)}
-        state={state}
-        onBtnBucket={onBtnBucket}
-      />
-    );
-}
-const getCurrentState = (state, ownProps) => {
-    console.log("currentState",state)
-    return {
-      state,
-      ownProps,
-    };
+  const handleAllChecked = (e) => {
+    const {
+      target: { checked },
+    } = e;
+    return isChecked(checked);
   };
-  const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-      onBtnBucket : (data) => dispatch(actionCreators.addCartFinal(data))
-    };
+
+  const handleSelect = (e) => {
+    const {
+      target: { checked },
+    } = e;
+    return isSelected(checked);
   };
-export default connect(getCurrentState, mapDispatchToProps)(CartContainer);
+
+  return (
+    <CartPresenter
+      ProductData={Pd}
+      handleAllChecked={handleAllChecked}
+      handleSelect={handleSelect}
+      checked={checked}
+      selected={selected}
+    />
+  );
+};
+export default CartContainer;

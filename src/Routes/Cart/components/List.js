@@ -12,7 +12,6 @@ const CartContainer = styled.div`
 `;
 
 const Form = styled.form``;
-
 const CartItems = styled.div``;
 
 const Table = styled.table`
@@ -20,11 +19,8 @@ const Table = styled.table`
 `;
 
 const ColGroup = styled.colgroup``;
-
 const Col = styled.col``;
-
 const Thead = styled.thead``;
-
 const Tr = styled.tr``;
 
 const Th = styled.th`
@@ -41,7 +37,7 @@ const Image = styled.div`
   height: 100px;
 `;
 
-export default ({productname,src}) => {
+export default ({productname,src,checked,handleSelect,selected}) => {
   return (
     <Container>
       <CartContainer>
@@ -58,7 +54,7 @@ export default ({productname,src}) => {
               <Thead>
                 <Tr>
                   <Th style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <input type="checkbox" style={{marginRight:15,height:14,width:14}} />
+                    <input type="checkbox" style={{marginRight:15,height:14,width:14}} checked={checked||selected} onChange={handleSelect} />
                     <Image src={src}/>
                   </Th>
                   <Th>{productname}</Th>

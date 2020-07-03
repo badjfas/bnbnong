@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import List from "./components/List";
 
@@ -58,11 +58,11 @@ const Th = styled.th`
 `;
 
 const ButtonContainer = styled.div`
+  border-top: 2px solid #c83bee;
   width:100%;
   display:flex;
   aligin-items:center;
   justify-content:center;
-  margin-top:50px;  
 `;
 
 const Button = styled.button`
@@ -76,9 +76,16 @@ const Button = styled.button`
   color: #fff;
   line-height: 20px;
   letter-spacing: -0.3px;
+  margin-top:50px;  
+
 `;
 
-export default ({ProductData}) => {
+const Input = styled.input`
+  margin-right:15px
+`;
+
+export default ({ProductData,handleAllChecked,checked,handleSelect,selected}) => {
+  console.log(selected,checked);
   return (
     <Container>
       <Header>
@@ -99,8 +106,8 @@ export default ({ProductData}) => {
               <Thead>
                 <Tr>
                   <Th>
-                    <input type="checkbox" />
-                    전체 선택 
+                    <Input type="checkbox"  onChange={handleAllChecked} checked={checked} handleSelect={handleSelect} />
+                    전체 선택
                   </Th>
                   <Th>상품 정보</Th>
                   <Th>수량</Th>
@@ -110,7 +117,7 @@ export default ({ProductData}) => {
               </Thead>
             </Table>
             {ProductData.map((data) => {
-              return <List productname={data.productname} src={data.src} />;
+              return <List productname={data.productname} src={data.src} checked={checked}/>;
             })}
           </CartItems>
           <ButtonContainer>
