@@ -41,11 +41,10 @@ const Item = styled.li`
   width: 130px;
   text-align: center;
   border-bottom: 2px solid
-  line-height:1px;
     ${(props) => (props.current ? "#5f0080" : "transparent")};
   transition: border-bottom 0.3s ease-in-out;
-  &:last-child{
-    margin-left : 30px;
+  &:last-child {
+    margin-left: 30px;
   }
 `;
 
