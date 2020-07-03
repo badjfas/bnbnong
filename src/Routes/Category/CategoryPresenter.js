@@ -3,12 +3,11 @@ import styled from "styled-components";
 import Tab from "./components/Tab";
 
 
-
 export default ({pathname,data}) => {
   console.log(pathname)
   if(pathname==="/category/all"){
     return (
-      <Tab text={"전체 항목"} data={data}/>
+        <Tab text={"전체 항목"} data={data} />
     );
   }else if(pathname==="/category/recommends"){
     return(

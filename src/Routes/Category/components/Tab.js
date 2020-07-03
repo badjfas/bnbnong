@@ -8,7 +8,8 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 15px;
-  padding: 100px;
+  padding-left: 100px;
+  padding-right: 100px;
 
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -25,26 +26,46 @@ const GridContainer = styled.div`
   }
 `;
 
+const TextContainer = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  `;
+const Text = styled.span`
+  color: #000;
+  display: block;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 2;
+  cursor: none;
+  margin-left: 10px;
+  margin-top:130px;
+  border-bottom: ${(props) => props.theme.boxBorder};
+  `;
 
 export default ({text,data}) => {
   console.log(data)
   return (
     <>
-    <GridContainer>
-      {data.map((data) => {
-        return (
-          <ProductCard
-            key={data.id}
-            id={data.id}
-            src={data.src}
-            name={data.productname}
-            price={data.price}
-            category={data.category}
-            content={data.content}
-          />
-        );
-      })}
-    </GridContainer>
+      <TextContainer>
+        <Text>{text}</Text>
+      </TextContainer>
+      <GridContainer>
+        {data.map((data) => {
+          return (
+            <ProductCard
+              key={data.id}
+              id={data.id}
+              src={data.src}
+              name={data.productname}
+              price={data.price}
+              category={data.category}
+              content={data.content}
+            />
+          );
+        })}
+      </GridContainer>
     </>
   );
 }

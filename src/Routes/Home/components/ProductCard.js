@@ -10,8 +10,19 @@ const Links= styled(Link)`
   margin: 0 auto;
   margin-bottom:20px;
   margin-top:40px;
+  z-index:1;
 }
 `;
+
+const Img = styled.div`
+  background-image: url(${(props) => props.src});
+  background-size: cover;
+  width:100%;
+  height:450px;
+  background-position:center center;
+  transition : opacity 0.3s linear;
+`;
+
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +36,11 @@ const Container = styled.div`
     justify-content: center;
     margin: 0 auto;
   }
-`;
-const Img = styled.div`
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  width:100%;
-  height:450px;
-  background-position:center center;
+  &:hover {
+    ${Img} {
+      opacity: 0.3;
+    }}
+
 `;
 
 const ProductName = styled.span`
@@ -69,7 +78,10 @@ line-height: 2;
 white-space: pre-line;
 word-break:break-all;
 text-overflow: ellipsis;
+`;
 
+const ImageContainer = styled.div`
+  display:table;
 `;
 
 const ProductCard = ({ name, price, content, src, id ,category }) => (
@@ -77,11 +89,11 @@ const ProductCard = ({ name, price, content, src, id ,category }) => (
     <Container >
         <Img src={src}/>
     </Container>
-    <div style={{ display: "table" }}>
+    <ImageContainer>
       <ProductName>{name}</ProductName>
       <ProductPrice>{price}원</ProductPrice>
       <ProductContent>{content}</ProductContent>
-    </div>
+    </ImageContainer>
   </Links>
 );
 

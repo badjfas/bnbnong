@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   position:fixed;
   width:100%;
   background-color:#fff;
+  z-index:2;
 `;
 
 const ImageContainer = styled.div`
