@@ -6,7 +6,10 @@ import { data as Pd } from "../../ProductData";
 
 const CartContainer = ({}) => {
   const [checked, isChecked] = useState(false);
-  const [selected, isSelected] = useState(false);
+  const [selected, isSelected] = useState({
+    list_1:false,
+    list_2:false,
+  });
 
   const handleAllChecked = (e) => {
     const {

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import List from "./components/List";
 import { Link } from "react-router-dom";
+import List from "./components/List";
+import UserInfo from "./components/UserInfo";
+import ShippingInfo from "./components/ShippingInfo";
+import PayInfo from "./components/PayInfo";
 
 const Container = styled.div`
   padding-top: 150px;
@@ -85,44 +88,41 @@ const Input = styled.input`
   margin-right:15px
 `;
 
-export default ({ProductData,handleAllChecked,checked,handleSelect,selected}) => {
-  console.log(selected,checked);
+export default ({data}) => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>장바구니</HeaderTitle>
+        <HeaderTitle>주문서</HeaderTitle>
         <SubTitle>주문하실 상품명 및 수량을 정확하게 확인해 주세요.</SubTitle>
       </Header>
       <CartContainer>
-        <Form onSubmit={()=>null}>
+        <Form onSubmit={() => null}>
           <CartItems>
             <Table>
               <ColGroup>
-                <Col style={{ width: 432 }} />
-                <Col style={{ width: 432 }} />
-                <Col style={{ width: 300 }} />
-                <Col style={{ width: 200 }} />
-                <Col style={{ width: "auto" }} />
+                <Col style={{ width: 120 }} />
+                <Col style={{ width: 800 }} />
+                <Col style={{ width: 186 }} />
               </ColGroup>
               <Thead>
                 <Tr>
-                  <Th>
-                    <Input type="checkbox"  onChange={handleAllChecked} checked={checked}/>
-                    전체 선택
-                  </Th>
+                  <Th>{""}</Th>
                   <Th>상품 정보</Th>
-                  <Th>수량</Th>
                   <Th>상품금액</Th>
-                  <Th></Th>
                 </Tr>
               </Thead>
             </Table>
-            {ProductData.map((data) => {
-              return <List productname={data.productname} src={data.src} checked={checked} handleSelect={handleSelect}/>;
+            {data.map((product) => {
+              return (
+                <List productname={product.productname} src={product.src} />
+              );
             })}
+            <UserInfo />
+            <ShippingInfo/>
+            <PayInfo/>
           </CartItems>
           <ButtonContainer to={"/pay"}>
-            <Button>주문 하기</Button>
+            <Button>결제 하기</Button>
           </ButtonContainer>
         </Form>
       </CartContainer>

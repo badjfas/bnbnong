@@ -6,6 +6,7 @@ import Deatail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
 import Search from "../Routes/Search";
 import Category from "../Routes/Category";
+import Pay from "../Routes/Pay";
 import { Header } from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
@@ -30,6 +31,7 @@ const Routes = () => {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/category/:item" component={Category} />
           <Route exact path="/search/" component={Search} />
+          <Route exact path="/pay" component={Pay} />
         </Switch>
       </Container>
       <Footer />
