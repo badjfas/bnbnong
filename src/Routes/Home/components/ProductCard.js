@@ -15,8 +15,8 @@ const Links= styled(Link)`
 `;
 
 const Img = styled.div`
-  background-image: url(${(props) => props.src});
-  background-size: cover;
+background-image: url('${(props) => props.src}');
+background-size: cover;
   width:100%;
   height:450px;
   background-position:center center;
@@ -85,7 +85,7 @@ const ImageContainer = styled.div`
 `;
 
 const ProductCard = ({ name, price, content, src, id ,category }) => (
-  <Links to={`/detail/${category}/${id}`}>
+  <Links to={`/detail/${id}`}>
     <Container >
         <Img src={src}/>
     </Container>

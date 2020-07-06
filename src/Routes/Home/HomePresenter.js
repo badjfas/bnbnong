@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import Product from "./components/Product"
+import Loader from "../../Component/Loader";
 
 const Container = styled.div`
   padding:100px;
 `;
 
 
-export default ({ data}) => {
+export default ({ data, getList, error, loading }) => {
   return (
     <Container>
-      <Product data={data} />
+      {loading ? <Loader/>:<Product data={getList} />}
     </Container>
   );
 };
