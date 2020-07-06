@@ -7,7 +7,7 @@ const Container = styled.div`
   align-items:center;
   border-top: 2px solid #DBE1E1;
   width:100%;
-  height:1000px;
+  height:100%;
 `;
 
 const ImageContainer = styled.div`

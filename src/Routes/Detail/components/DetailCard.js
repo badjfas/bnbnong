@@ -101,7 +101,7 @@ const NaverButton = styled(Link)`
   background-color: #4ddb49;
 `;
 
-const DetailCard = ({ data, id,category }) => {
+const DetailCard = ({ data, numberWithCommas }) => {
 
  console.log(data);
       return (
@@ -111,7 +111,7 @@ const DetailCard = ({ data, id,category }) => {
           </ImgContainer>
           <ContentContainer>
             <ProductName>{data[0].name}</ProductName>
-            <ProductPrice>{data[0].price_shipping}원</ProductPrice>
+            <ProductPrice>{numberWithCommas(data[0].price_shipping)}원</ProductPrice>
             <ProductWeight>중량: 500g</ProductWeight>
             <ProductCaution>
               <Caution /> 이 상품은 바로 배송되지 않습니다. 제철 지정 일자에

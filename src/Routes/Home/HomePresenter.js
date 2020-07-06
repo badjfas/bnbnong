@@ -8,10 +8,10 @@ const Container = styled.div`
 `;
 
 
-export default ({ data, getList, error, loading }) => {
+export default ({ data, getList, error, loading,numberWithCommas }) => {
   return (
     <Container>
-      {loading ? <Loader/>:<Product data={getList} />}
+      {loading ? <Loader/>:<Product data={getList} numberWithCommas={numberWithCommas} />}
     </Container>
   );
 };

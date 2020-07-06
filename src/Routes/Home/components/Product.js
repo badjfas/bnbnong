@@ -44,7 +44,7 @@ const Text = styled.span`
   border-bottom: ${(props) => props.theme.boxBorder};
   `;
 
-export default ({data}) => {
+export default ({data,numberWithCommas}) => {
   console.log(data,"product")
   return (
     <>
@@ -75,7 +75,7 @@ export default ({data}) => {
               id={p.id}
               src={'http://bnbnong.com:4000/static/'+p.file_name}
               name={p.name}
-              price={p.price_shipping}
+              price={numberWithCommas(p.price_shipping)}
               category={p.category}
               content={p.content}
             />

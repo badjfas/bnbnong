@@ -16,7 +16,7 @@ export default class extends React.Component {
 
   async componentDidMount() {
     try {
-      const { data :getList} = await API.getList(31);
+      const { data: getList } = await API.getList(31);
       this.setState({
         getList: getList,
       });
@@ -30,8 +30,13 @@ export default class extends React.Component {
       });
     }
   }
+
+  numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   render() {
-    const { getList,getDetail, error, loading } = this.state;
+    const { getList, getDetail, error, loading } = this.state;
     return (
       <HomePresenter
         data={dummydata}
@@ -39,6 +44,7 @@ export default class extends React.Component {
         getDetail={getDetail}
         error={error}
         loading={loading}
+        numberWithCommas={this.numberWithCommas}
       />
     );
   }
