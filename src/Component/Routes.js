@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import React from "react";
 import Home from "../Routes/Home";
-import Deatail from "../Routes/Detail";
+import Detail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
 import Search from "../Routes/Search";
 import Category from "../Routes/Category";
@@ -16,7 +16,7 @@ const Routes = () => {
   <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/:id" component={Home} />
-      <Route exact path="/detail/:category/:id" component={Deatail} />
+      <Route exact path="/detail/:id" component={Detail} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/category/:item" component={Category} />
       {/* <Route path="/category/all" render={All}/>
