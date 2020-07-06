@@ -39,7 +39,7 @@ const Container = styled.div`
   width: 300px;
   height: 430px;
   display: flex;
-  background-image: url(${(props) => props.src});
+  background-image: url('${(props) => props.src}');
   background-size: cover;
   cursor: pointer;
   @media only screen and (max-width: 768px) {
@@ -90,7 +90,7 @@ text-overflow: ellipsis;
 `;
 
 const SquarePost = ({ name, price, content, src, id ,category }) => (
-  <Links to={`/detail/${category}/${id}`}>
+  <Links to={`/detail/${id}`}>
     <Container src={src}>
       <Overlay>
         <PageviewIcon style={{ fontSize: 90 }} />

@@ -51,7 +51,7 @@ export default ({data}) => {
       </TextContainer>
       <GridContainer>
         {data.map((p) => {
-          return  <ProductCard key={p.id} id={p.id} src={'https://bnbnong.com:4001/static/'+p.file_name} name={p.name} price={p.price} category={p.category} content={p.content} />
+          return  <ProductCard key={p.id} id={p.id} src={'http://bnbnong.com:4000/static/'+p.file_name} name={p.name} price={p.price} category={p.category} content={p.content} />
         })}
         {data.map((p) => {
            if(p.category===1)  return (
