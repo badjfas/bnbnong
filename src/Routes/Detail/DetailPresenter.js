@@ -1,13 +1,22 @@
 import React from "react"
 import DetailCard from "./components/DetailCard";
 import InfoCard from "./components/InfoCard";
+import Loader from "../../Component/Loader";
 
 
-const DetailPresenter = ({data,id,category}) => {
+const DetailPresenter = ({data,loading,error,numberWithCommas}) => {
   return (
     <>
-      <DetailCard data={data} id={id} category={category}/>
-      <InfoCard/>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <DetailCard data={data} numberWithCommas={numberWithCommas} />
+          <InfoCard
+            src={data[0].detail_file}
+          />
+        </>
+      )}
     </>
   );
 };

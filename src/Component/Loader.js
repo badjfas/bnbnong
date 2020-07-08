@@ -1,8 +1,5 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { ShoppingCart } from "./svgIcons";
-
-
 
 const Animation = keyframes`
   0%{
@@ -18,12 +15,17 @@ const Animation = keyframes`
 
 const Loader = styled.div`
   animation: ${Animation} 1.5s linear infinite;
-  width:100%;
-  text-align:center;
+  height: 150vh;
+  width: 100%;
+  display: flex;
+  padding-top:200px;
+  justify-content: center;
+  font-size:100px;
+  margin-top:20px;
 `;
 
 export default () => (
   <Loader>
-    <ShoppingCart size={50} />
+      <span role="img" aria-label="Loading">😁</span>
   </Loader>
 );

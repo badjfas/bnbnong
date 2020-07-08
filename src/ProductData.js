@@ -72,7 +72,7 @@ export const data = [
   },
   {
     id: 7,
-    category: 2,
+    category: 1,
     productname: "제주 딸기 잼",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -83,7 +83,7 @@ export const data = [
   },
   {
     id: 8,
-    category: 2,
+    category: 1,
     productname: "제주 말린 감귤",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -94,7 +94,7 @@ export const data = [
   },
   {
     id: 9,
-    category: 2,
+    category: 1,
     productname: "제주 건 망고",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -104,7 +104,7 @@ export const data = [
   },
   {
     id: 10,
-    category: 2,
+    category: 1,
     productname: "제주 한라봉 잼",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -115,7 +115,7 @@ export const data = [
   },
   {
     id: 11,
-    category: 3,
+    category: 1,
     productname: "제주 딸기 잼",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -126,7 +126,7 @@ export const data = [
   },
   {
     id: 12,
-    category: 3,
+    category: 1,
     productname: "제주 말린 감귤",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -136,7 +136,7 @@ export const data = [
   },
   {
     id: 13,
-    category: 3,
+    category: 1,
     productname: "제주 건 망고",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -147,7 +147,7 @@ export const data = [
   },
   {
     id: 14,
-    category: 3,
+    category: 1,
     productname: "제주 한라봉 잼",
     content: "이 상품은 딸기로 만든 잼",
     price: 8800,
@@ -157,7 +157,3 @@ export const data = [
       "https://post-phinf.pstatic.net/MjAxNzA4MDdfMTY0/MDAxNTAyMDczMjI5MTkz.X240UJe5DKWuCmJVHyzAYT64LctZ6pJxIGsWHmv9600g.lJIPOG_h3b0GDU586XcZeMrPGkx3fhClGoV0WXUWl20g.JPEG/1_copy.jpg?type=w1200",
   },
 ];
-
-export const data2 = [];
-
-export const data3 = [];

@@ -13,8 +13,9 @@ import { actionCreators } from "../../../store";
 const Container = styled.div`
   display: flex;
   padding: 30px;
-  padding-top: 60px;
+  padding-top: 200px;
   width: 100%;
+  font-family: noto sans;
   @media only screen and (max-width: 768px) {
     display: grid;
     grid-template-rows: repeat(1, 1fr);
@@ -26,17 +27,18 @@ const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 500px;
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  max-width: 450px;
+  max-width: 500px;
   max-height: 500px;
 `;
 const ContentContainer = styled.div`
   display: table;
-  padding-left: 70px;
+  padding-left: 20px;
+  max-width:600px;
   width: 100%;
   @media only screen and (max-width: 768px) {
     padding: 0;
@@ -46,13 +48,15 @@ const Text = styled.p`
   padding: 10px;
 `;
 const ProductName = styled(Text)`
-  font-size: 50px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #dbe1e1;
+  font-weight: 700;
+  font-size: 24px;
 `;
 
 const ProductPrice = styled(Text)`
   font-size 35px;
+  font-weight: 700;
+  border-bottom: 1px solid #dbe1e1;
+  margin-bottom:20px;
 `;
 
 const ProductWeight = styled(Text)`
@@ -65,13 +69,19 @@ const ProductCaution = styled(Text)`
   background-color: #ffbc54;
   border-radius: 7px;
   padding: 3px;
-  font-size: 24px;
+  font-size: 17px;
   color: #f3f3f3;
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
 `;
 
 const ProductContent = styled(Text)`
   color: #0b61d4;
   font-size: 23px;
+
 `;
 
 const ButtonContainer = styled.div`
@@ -91,58 +101,39 @@ const NaverButton = styled(Link)`
   background-color: #4ddb49;
 `;
 
-const DetailCard = ({ data, id, category, state, addCart }) => {
-  const onClick = (e) => {
-    e.preventDefault();
-    const { d } = data[id - 1];
-    addCart(d);
-  };
+const DetailCard = ({ data, numberWithCommas }) => {
 
-  switch (category) {
-    case "1":
+ console.log(data);
       return (
         <Container>
           <ImgContainer>
-            <Image src={data[id - 1].src} />
+            <Image src={'http://bnbnong.com:4000/static/'+data[0].file_name} />
           </ImgContainer>
           <ContentContainer>
-            <ProductName>{data[id - 1].productname}</ProductName>
-            <ProductPrice>{data[id - 1].price}원</ProductPrice>
+            <ProductName>{data[0].name}</ProductName>
+            <ProductPrice>{numberWithCommas(data[0].price_shipping)}원</ProductPrice>
             <ProductWeight>중량: 500g</ProductWeight>
             <ProductCaution>
-              <Caution /> 이상품은 ...
+              <Caution /> 이 상품은 바로 배송되지 않습니다. 제철 지정 일자에
+              일괄 배송됩니다.
             </ProductCaution>
             <ProductContent>
-              <ShippingTruck style={{ fontSize: 35 }} /> 배송 1~2일 소요
+              <ShippingTruck style={{ fontSize: 35 }} /> 2020 년 6 ~ 9 월 배송
+              예정
             </ProductContent>
             <ProductContent>
-              <ShippingBox style={{ fontSize: 35 }} /> 튼튼한 박스 포장
+              <ShippingBox style={{ fontSize: 35 }} /> 안전한 에어박스 포장
             </ProductContent>
             <ProductContent>
-              <ShippingMoney style={{ fontSize: 35 }} /> 배송비 2,500원
+              <ShippingMoney style={{ fontSize: 35 }} /> 배송비 포함
             </ProductContent>
             <ButtonContainer>
-              <NaverButton onClick={onClick}>장바구니</NaverButton>
+              <NaverButton>장바구니</NaverButton>
             </ButtonContainer>
           </ContentContainer>
         </Container>
       );
-    case 2:
-      return null;
-    default:
-      return null;
-  }
+return null;
 };
-const getCurrentState = (state) => {
-  return {
-    state,
-  };
-};
-const mapDispatchToProps = (dispatch, props) => {
-  const data = props.data[props.id - 1];
-  console.log(data, "dispatch");
-  return {
-    addCart: () => dispatch(actionCreators.addCart(data)),
-  };
-};
-export default connect(getCurrentState, mapDispatchToProps)(DetailCard);
+
+export default DetailCard;

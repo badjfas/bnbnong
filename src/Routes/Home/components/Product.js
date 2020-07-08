@@ -44,8 +44,8 @@ const Text = styled.span`
   border-bottom: ${(props) => props.theme.boxBorder};
   `;
 
-export default ({data}) => {
-  console.warn(data)
+export default ({data,numberWithCommas}) => {
+  console.log(data,"product")
   return (
     <>
       <TextContainer>
@@ -70,6 +70,20 @@ export default ({data}) => {
             <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
           ); 
         })} 
+        {data.map((p)=>{
+          console.log(p)
+          return (
+            <ProductCard
+              key={p.id}
+              id={p.id}
+              src={'http://bnbnong.com:4000/static/'+p.file_name}
+              name={p.name}
+              price={numberWithCommas(p.price_shipping)}
+              category={p.category}
+              content={p.content}
+            />
+          );
+        })}
       </GridContainer>
     </>
   );
