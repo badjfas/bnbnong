@@ -13,7 +13,7 @@ const DetailPresenter = ({data,loading,error,numberWithCommas}) => {
         <>
           <DetailCard data={data} numberWithCommas={numberWithCommas} />
           <InfoCard
-            src={"http://bnbnong.com:4000/static/" + data[0].detail_file}
+            src={data[0].detail_file}
           />
         </>
       )}

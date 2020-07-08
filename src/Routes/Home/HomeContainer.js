@@ -16,7 +16,7 @@ export default class extends React.Component {
 
   async componentDidMount() {
     try {
-      const { data: getList } = await API.getList(31);
+      const { data: getList } = await API.getList(this.props.match.params.id);
       this.setState({
         getList: getList,
       });
