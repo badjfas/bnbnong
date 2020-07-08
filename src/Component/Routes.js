@@ -6,29 +6,39 @@ import Detail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
 import Search from "../Routes/Search";
 import Category from "../Routes/Category";
+import Pay from "../Routes/Pay";
 import { Header } from "./Header";
 import Footer from "./Footer";
+import styled from "styled-components";
 
-const Routes = () => { 
-  return(
+const Container = styled.div`
+  width:100%;
+  max-width:1400px;
+  margin : 0px auto;
+  `;
+const RouterContainer = styled.div`
+`;
+
+
+const Routes = () => {
+  return (
     <Router>
-    <Header/>
-  <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/:id" component={Home} />
-      <Route exact path="/detail/:id" component={Detail} />
-      <Route exact path="/cart" component={Cart} />
-      <Route exact path="/category/:item" component={Category} />
-      {/* <Route path="/category/all" render={All}/>
-      <Route path="/category/recommends" render={All}/>
-      <Route path="/category/sale" render={All}/>
-      <Route path="/category/new" render={All}/> */}
-      <Route exact path="/search/" component={Search} />
-  </Switch>
-  <Footer/>
-  </Router>
-
-)};
+      <Header />
+      <Container>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/:id" component={Home} />
+          <Route exact path="/detail/:id" component={Detail} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/category/:item" component={Category} />
+          <Route exact path="/search/" component={Search} />
+          <Route exact path="/pay" component={Pay} />
+        </Switch>
+      </Container>
+      <Footer />
+    </Router>
+  );
+};
 
 
 const appRouter = () => (

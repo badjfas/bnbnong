@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   position:fixed;
   width:100%;
   background-color:#fff;
+  z-index:2;
 `;
 
 const ImageContainer = styled.div`
@@ -39,11 +40,11 @@ const List = styled.ul`
 const Item = styled.li`
   width: 130px;
   text-align: center;
-  border-bottom: 1px solid
+  border-bottom: 2px solid
     ${(props) => (props.current ? "#5f0080" : "transparent")};
   transition: border-bottom 0.3s ease-in-out;
-  &:last-child{
-    margin-left : 30px;
+  &:last-child {
+    margin-left: 30px;
   }
 `;
 
@@ -80,7 +81,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push(`/search?term=${search.value}`);
+    history.push(`/search?term=${decodeURI(search.value)}`);
   };
 
 

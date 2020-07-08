@@ -8,9 +8,10 @@ const Container = styled.div`
 
 
 export default ({ data}) => {
+  const sell = data.filter(e => e.state === 1)
   return (
     <Container>
-      <Product data={data} />
+      <Product data={sell} />
     </Container>
   );
 };
