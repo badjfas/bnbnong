@@ -14,6 +14,10 @@ export const API = {
     api.get(`/api/product/list/open/${p}`, {
       method: "GET",
     }),
+  getInfo: (p) =>
+    api.get(`/api/auth/info/open/${p}`, {
+      method: "GET",
+    }),
   getDetail: (p) =>
     api.get(`/api/product/detail/open/${p}`, {
       method: "GET",

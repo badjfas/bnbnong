@@ -53,9 +53,6 @@ export default ({data,numberWithCommas}) => {
       </TextContainer>
       <GridContainer>
         {data.map((p) => {
-          return  <ProductCard key={p.id} id={p.id} src={'http://bnbnong.com:4000/static/'+p.file_name} name={p.name} price={p.price} category={p.category} content={p.content} />
-        })}
-        {data.map((p) => {
            if(p.category===1)  return (
             <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
           ); 
@@ -71,7 +68,6 @@ export default ({data,numberWithCommas}) => {
           ); 
         })} 
         {data.map((p)=>{
-          console.log(p)
           return (
             <ProductCard
               key={p.id}
