@@ -95,7 +95,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
       </ImageContainer>
       <Container>
         <List>
-          <Item>
+          {/* <Item>
             <Dropdown />
           </Item>
           <Item current={pathname === "/category/all"}>
@@ -121,7 +121,7 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
             <SLink to="/cart">
               <CartSvg />
             </SLink>
-          </Item>
+          </Item> */}
         </List>
       </Container>
     </Wrapper>
