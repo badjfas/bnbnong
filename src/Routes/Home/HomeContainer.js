@@ -10,15 +10,17 @@ export default class extends React.Component {
   state = {
     loading: true,
     getList: null,
-    getDetail: null,
+    getInfo: null,
     error: null,
   };
 
   async componentDidMount() {
     try {
       const { data: getList } = await API.getList(this.props.match.params.id);
+      const { data: getInfo } = await API.getInfo(this.props.match.params.id);
       this.setState({
         getList: getList,
+        getInfo
       });
     } catch (e) {
       this.setState({
@@ -36,12 +38,12 @@ export default class extends React.Component {
   };
 
   render() {
-    const { getList, getDetail, error, loading } = this.state;
+    const { getList, getInfo, error, loading } = this.state;
     return (
       <HomePresenter
         data={dummydata}
         getList={getList}
-        getDetail={getDetail}
+        getInfo={getInfo}
         error={error}
         loading={loading}
         numberWithCommas={this.numberWithCommas}
