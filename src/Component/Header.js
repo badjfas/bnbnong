@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { Dropdown } from "./Dropdown";
 import {  CartSvg} from "./svgIcons";
 import useInput from "./useInput";
+import logo from "./logo.JPG";
 
 const Wrapper = styled.div`
   position:fixed;
@@ -18,6 +19,10 @@ const ImageContainer = styled.div`
   padding-top: 10px;
   font-size: 32px;
   width: 100%;
+`;
+
+const Image = styled.img`
+  width: 200px;
 `;
 
 const Container = styled.div`
@@ -90,12 +95,12 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
     <Wrapper>
       <ImageContainer>
         <span role="img" aria-label="header">
-          🍊🍊🍊🍊
+          <Image src={logo} />
         </span>
       </ImageContainer>
-      <Container>
+      {/* <Container>
         <List>
-          {/* <Item>
+          <Item>
             <Dropdown />
           </Item>
           <Item current={pathname === "/category/all"}>
@@ -121,9 +126,9 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
             <SLink to="/cart">
               <CartSvg />
             </SLink>
-          </Item> */}
+          </Item>
         </List>
-      </Container>
+      </Container> */}
     </Wrapper>
   );
 });
