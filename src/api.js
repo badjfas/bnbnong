@@ -26,19 +26,11 @@ export const API = {
     api.get(`/api/product/detail/open/${p}`, {
       method: "GET",
     }),
+
+  getCoord: (address) =>
+    api.get(`/api/geocode/?query=${address}`, {
+      method: "GET",
+    }).then(response => response.data.addresses[0]),
 };
 
-export const MapAPI = {
-  getUserDetail: (id) =>
-    api
-      .get(`/api/admin/users/detail/${id}`, {
-        method: "GET",
-      })
-      .then((response) => console.log(response.data)),
-  getCoord: (address) =>
-    api
-      .get(`/api/geocode/?query=${address}`, {
-        method: "GET",
-      })
-      .then((response) => console.log(response.data)),
-};
+export const MapAPI = {};

@@ -3,30 +3,51 @@ import React, { useEffect } from "react";
 import HomePresenter from "./HomePresenter";
 import { data as dummydata } from "../../ProductData";
 import { API, MapAPI } from "../../api";
+import { split } from "apollo-boost";
 
 
 export default class extends React.Component {
-  constructor(props) {
+   constructor(props) {
     super(props)
     this.state = {
       loading: true,
       getList: null,
       getInfo: null,
-      getUserDetail:null,
+      getUserDetail: null,
+      getCoord: null,
       error: null,
+      address: null,
+      x: "",
+      y: "",
+      roadAddress:"",
+      jibunAddress:"",
     };
   }
-
   async componentDidMount() {  
+
     try { 
-      await console.log(MapAPI.getUserDetail(this.props.match.params.id));
       const { data: getList } = await API.getList(this.props.match.params.id);
       const { data: getInfo } = await API.getInfo(this.props.match.params.id);
-
+      
       this.setState({
         getList: getList,
-        getInfo,
       });
+
+      this.setState(
+        {
+          address: getInfo[0].address,
+        },
+        async() => {
+         const data = await API.getCoord(this.state.address)
+          this.setState({
+            x: data.x,
+            y: data.y,
+            roadAddress: data.roadAddress,
+            jibunAddress: data.jibunAddress,
+          },()=>this.initMap());
+        }
+      );
+
     } catch (e) {
       this.setState({
         error: "위치 : HomeContainer ",
@@ -42,7 +63,10 @@ export default class extends React.Component {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+
+
   initMap() {
+    console.log("work?")
     var contentString = [
       '<div class="iw_inner" style="padding: 10px;">',
       `<h4>${this.state.roadAddress}</h4>`,
@@ -81,8 +105,8 @@ export default class extends React.Component {
 
 
   render() {
-    const { getList, getInfo, getUserDetail, error, loading } = this.state;
-      return (
+    const { getList, getInfo, getUserDetail, error, loading ,roadAddress,jibunAddress,x,y } = this.state; 
+    return (
       <>
       <HomePresenter
         data={dummydata}
@@ -92,7 +116,7 @@ export default class extends React.Component {
         error={error}
         loading={loading}
         numberWithCommas={this.numberWithCommas}
-        initMap ={this.initMap} 
+        getCoord ={this.getCoord} 
       />
       </>
     );
