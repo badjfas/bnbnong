@@ -3,11 +3,11 @@ import reset from "styled-reset";
 
 export default createGlobalStyle`
     ${reset};
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+    @import url('https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wvrfdytxl9&callback=initMap');
     * {
           box-sizing:border-box;
     }
-    
+
     body{
         padding-bottom:50px;
         background-color:${props=>props.theme.bgColor};

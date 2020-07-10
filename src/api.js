@@ -23,3 +23,18 @@ export const API = {
       method: "GET",
     }),
 };
+
+export const MapAPI = {
+  getUserDetail: (id) =>
+    api
+      .get(`/api/admin/users/detail/${id}`, {
+        method: "GET",
+      })
+      .then((response) => console.log(response.data)),
+  getCoord: (address) =>
+    api
+      .get(`/api/geocode/?query=${address}`, {
+        method: "GET",
+      })
+      .then((response) => console.log(response.data)),
+};
