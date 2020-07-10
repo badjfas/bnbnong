@@ -112,21 +112,20 @@ const DetailCard = ({ data, numberWithCommas }) => {
           <ContentContainer>
             <ProductName>{data[0].name}</ProductName>
             <ProductPrice>{numberWithCommas(data[0].price_shipping)}원</ProductPrice>
-            <ProductWeight>중량: 500g</ProductWeight>
-            <ProductCaution>
+            {/* <ProductWeight>중량: 500g</ProductWeight> */}
+            {/* <ProductCaution>
               <Caution /> 이 상품은 바로 배송되지 않습니다. 제철 지정 일자에
               일괄 배송됩니다.
-            </ProductCaution>
+            </ProductCaution> */}
             <ProductContent>
-              <ShippingTruck style={{ fontSize: 35 }} /> 2020 년 6 ~ 9 월 배송
-              예정
+              <ShippingTruck style={{ fontSize: 35 }} /> {data[0].shippingDate}
             </ProductContent>
             <ProductContent>
-              <ShippingBox style={{ fontSize: 35 }} /> 안전한 에어박스 포장
+              <ShippingBox style={{ fontSize: 35 }} /> 
             </ProductContent>
-            <ProductContent>
+            {/* <ProductContent>
               <ShippingMoney style={{ fontSize: 35 }} /> 배송비 포함
-            </ProductContent>
+            </ProductContent> */}
             <ButtonContainer>
               <NaverButton>장바구니</NaverButton>
             </ButtonContainer>
