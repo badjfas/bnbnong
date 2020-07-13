@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   z-index:2;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled(Link)`
   display: flex;
   justify-content: center;
   padding-top: 10px;
@@ -93,17 +93,17 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
 
   return (
     <Wrapper>
-      <ImageContainer>
+      <ImageContainer to={"/"}>
         <span role="img" aria-label="header">
           <Image src={logo} />
         </span>
       </ImageContainer>
-      {/* <Container>
+      <Container>
         <List>
           <Item>
             <Dropdown />
           </Item>
-          <Item current={pathname === "/category/all"}>
+          {/* <Item current={pathname === "/category/all"}>
             <SLink to="/category/all">전체 상품</SLink>
           </Item>
           <Item current={pathname === "/category/recommends"}>
@@ -121,14 +121,14 @@ export const Header = withRouter(({ history, location: { pathname } }) => {
               onChange={search.onChange}
               placeholder={"검색"}
             />
-          </Form>
+          </Form> */}
           <Item>
-            <SLink to="/cart">
+            <SLink to="/list/cart">
               <CartSvg />
             </SLink>
           </Item>
         </List>
-      </Container> */}
+      </Container>
     </Wrapper>
   );
 });

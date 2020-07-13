@@ -28,9 +28,9 @@ export default class extends React.Component {
   componentDidMount = async () => {
     const { id } = this.state;
     try {
-       const { data: getDetail } = await API.getDetail(id);
+      const { data: getDetail } = await API.getDetail(id);
       this.setState({
-         getDetail: getDetail,
+        getDetail: getDetail,
       });
     } catch {
       this.setState({
@@ -48,36 +48,31 @@ export default class extends React.Component {
   };
 
   saveCart = (cart) => {
-    console.log("saveCart",cart)
+    console.log("saveCart", cart);
     sessionStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  loadCart = () => {
-    this.setState({
-      cart: JSON.parse(sessionStorage.getItem("cart")),
-    });
+  addToList = (item) => {
+    console.log(item.id);
+    var cart = [];
 
-    if (sessionStorage.getItem("cart") !== null) {
-      this.loadCart();
-    }
-  };
-
-  addToList = ( {id} ) => {
-    var cart =[];
-
-    if (sessionStorage.getItem("cart") === null || sessionStorage.getItem("cart") === "{}" ) {
-      cart.push(id)
+    if (
+      sessionStorage.getItem("cart") === null ||
+      sessionStorage.getItem("cart") === "{}"
+    ) {
+      cart.push(item);
       this.saveCart(cart);
     } else {
       cart = JSON.parse(sessionStorage.getItem("cart"));
-      cart.push(id)
-      const result = new Set([...cart])
-      sessionStorage.setItem("cart",JSON.stringify([...result]))
+      console.log("cart", cart);
+      cart.push(item);
+      const result = cart.filter((l, index) => l.id !== item.id);
+      console.log([...result, item], "result");
+      sessionStorage.setItem("cart", JSON.stringify([...result, item]));
     }
   };
   render() {
     const { getDetail, loading, error, id, cart } = this.state;
-    console.log(typeof sessionStorage.getItem("cart"))
     return (
       <DetailPresenter
         data={getDetail}

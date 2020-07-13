@@ -1,71 +1,154 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Payment from "./components/Payment";
-import CartList from "./components/CartList";
-
+import List from "./components/List";
+import { Link } from "react-router-dom";
+import Loader from "../../Component/Loader"
 const Container = styled.div`
+  padding-top: 150px;
+  max-width:1100px;
+  margin:0px auto;
+`;
+
+const Header = styled.div`
+  text-align: center;
   width: 100%;
-  display: flex;
-  height: 100%;
-  margin-top: 40px;
-  flex-direction: column;
-  &>button: hover {
-    background-color: #ddd;
-  }
+  border-bottom: 2px solid #c83bee;
 `;
-const TextContainer = styled.div`
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding-top:10px;
-`;
-const Text = styled.span`
-  color: #000;
+
+const HeaderTitle = styled.span`
   display: block;
-  overflow: hidden;
-  padding-top: 3px;
+  padding: 10px 0 14px;
+  font: normal bold 40px/1.5 "Noto Sans" !important;
+  color: #333;
+`;
+
+const SubTitle = styled.div`
+  margin: 0 0 40px;
+  font: normal 16px/18px "Noto Sans";
+  color: #999;
+  text-align: center;
+`;
+
+const CartContainer = styled.div`
+  width: 100%;
+  display: block;
+`;
+
+const Form = styled.form`
+  width:100%;
+`;
+
+const CartItems = styled.div``;
+
+const Table = styled.table`
+  border-bottom: 2px solid #E9E9E9;
+`;
+
+const ColGroup = styled.colgroup``;
+
+const Col = styled.col``;
+
+const Thead = styled.thead``;
+
+const Tr = styled.tr``;
+
+const Th = styled.th`
+  font-family: noto sans;
   font-weight: 600;
-  font-size: 25px;
-  font-family: "Do Hyeon", sans-serif;
-  line-height: 2;
-  cursor: none;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-left: 10px;
-  border-bottom:2px solid #000;
+  padding: 20px;
+`;
+
+const ButtonContainer = styled(Link)`
+  border-top: 2px solid #c83bee;
+  width:100%;
+  display:flex;
+  aligin-items:center;
+  justify-content:center;
 `;
 
 const Button = styled.button`
-  float: right;
-  margin-bottom: 10px;
-  height: 40px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  display: block;
+  width: 200px;
+  height: 48px;
+  margin: 0 auto;
+  border: 0;
+  background-color: #5f0080;
+  font-size: 14px;
+  color: #fff;
+  line-height: 20px;
+  letter-spacing: -0.3px;
+  margin-top:50px;  
+
 `;
 
-export default ({ data, dataBucket, onBtnBucket, state , list }) => {
-  console.log(list)
+const Input = styled.input`
+  margin-right:15px
+`;
+
+export default ({ProductData,handleAllChecked,checked,error,loading,handleDelete}) => {
   return (
     <Container>
-      <TextContainer>
-        <Text>장바구니</Text>
-      </TextContainer>
-      <div style={{ width: "100%" }}>
-        <Button
-          onClick={(e) => {
-            sessionStorage.removeItem("cart")
-            sessionStorage.removeItem("bucket")
-            window.location.reload();
-          }}
-        >
-          장바구니 비우기
-        </Button>
-        <CartList state={state} onBtnBucket={onBtnBucket} data={data}/>
-      </div>
-      {state.visibilityPayment === "SHOW_PAYMENT" ? (
-        <Payment dataBucket={dataBucket} />
-      ) : null}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header>
+            <HeaderTitle>장바구니</HeaderTitle>
+            <SubTitle>
+              주문하실 상품명 및 수량을 정확하게 확인해 주세요.
+            </SubTitle>
+          </Header>
+          <CartContainer>
+            <Form onSubmit={() => null}>
+              <CartItems>
+                <Table>
+                  <ColGroup>
+                    <Col style={{ width: 432 }} />
+                    <Col style={{ width: 432 }} />
+                    <Col style={{ width: 300 }} />
+                    <Col style={{ width: 200 }} />
+                    <Col style={{ width: "auto" }} />
+                  </ColGroup>
+                  <Thead>
+                    <Tr>
+                      <Th>
+                        <Input
+                          type="checkbox"
+                          onChange={handleAllChecked}
+                          checked={checked}
+                        />
+                        전체 선택
+                      </Th>
+                      <Th>상품 정보</Th>
+                      <Th>수량</Th>
+                      <Th>상품금액</Th>
+                      <Th></Th>
+                    </Tr>
+                  </Thead>
+                </Table>
+                {ProductData === null
+                  ? console.log("is null")
+                  : ProductData.map((data) => {
+                      return (
+                        <List
+                          handleDelete={handleDelete}
+                          id={data.id}
+                          productname={data.name}
+                          src={
+                            "http://bnbnong.com:4000/static/" + data.file_name
+                          }
+                          price_shipping={data.price_shipping}
+                        />
+                      );
+                    })}
+              </CartItems>
+              <ButtonContainer to={"/pay"}>
+                <Button>주문 하기</Button>
+              </ButtonContainer>
+            </Form>
+          </CartContainer>
+        </>
+      )}
     </Container>
   );
 };
