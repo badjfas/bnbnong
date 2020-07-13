@@ -44,43 +44,43 @@ const Text = styled.span`
   border-bottom: ${(props) => props.theme.boxBorder};
   `;
 
-export default ({data,numberWithCommas}) => {
-  console.log(data,"product")
+export default ({data,numberWithCommas,dummyData,error}) => {
+  console.log(dummyData,"product")
   return (
     <>
-      <TextContainer>
-        <Text>제주 농산물</Text>
-      </TextContainer>
-      <GridContainer>
-        {data.map((p) => {
-           if(p.category===1)  return (
-            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-          ); 
-        })}
-             {data.map((p) => {
-           if(p.category===2)  return (
-            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-          ); 
-        })}
-              {data.map((p) => {
-           if(p.category===3)  return (
-            <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-          ); 
-        })} 
-        {data.map((p)=>{
-          return (
-            <ProductCard
-              key={p.id}
-              id={p.id}
-              src={'http://bnbnong.com:4000/static/'+p.file_name}
-              name={p.name}
-              price={numberWithCommas(p.price_shipping)}
-              category={p.category}
-              content={p.content}
-            />
-          );
-        })}
-      </GridContainer>
-    </>
-  );
+    <TextContainer>
+      <Text>제주 농산물</Text>
+    </TextContainer>
+    <GridContainer>
+      {dummyData.map((p) => {
+         if(p.category===1)  return (
+          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+        ); 
+      })}
+           {dummyData.map((p) => {
+         if(p.category===2)  return (
+          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+        ); 
+      })}
+            {dummyData.map((p) => {
+         if(p.category===3)  return (
+          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
+        ); 
+      })} 
+      {data.map((p)=>{
+        return (
+          <ProductCard
+            key={p.id}
+            id={p.id}
+            src={'http://bnbnong.com:4000/static/'+p.file_name}
+            name={p.name}
+            price={numberWithCommas(p.price_shipping)}
+            category={p.category}
+            content={p.content}
+          />
+        );
+      })}
+    </GridContainer>
+  </>
+  )
 };

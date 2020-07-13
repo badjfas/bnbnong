@@ -85,7 +85,7 @@ const Input = styled.input`
   margin-right:15px
 `;
 
-export default ({ProductData,handleAllChecked,checked,handleSelect,selected}) => {
+export default ({ProductData,handleAllChecked,checked,handleSelect,selected,list}) => {
   console.log(selected,checked);
   return (
     <Container>

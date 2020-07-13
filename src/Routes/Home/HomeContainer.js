@@ -24,7 +24,6 @@ export default class extends React.Component {
     };
   }
   async componentDidMount() {  
-
     try { 
       const { data: getList } = await API.getList(this.props.match.params.id);
       const { data: getInfo } = await API.getInfo(this.props.match.params.id);
@@ -47,9 +46,8 @@ export default class extends React.Component {
           },()=>this.initMap());
         }
       );
-
     } catch (e) {
-      this.setState({
+      this.setState({ 
         error: "위치 : HomeContainer ",
       });
     } finally {

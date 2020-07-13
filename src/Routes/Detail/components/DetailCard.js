@@ -101,24 +101,23 @@ const NaverButton = styled(Link)`
   background-color: #4ddb49;
 `;
 
-const DetailCard = ({ data, numberWithCommas }) => {
-
- console.log(data);
+const DetailCard = ({ data, numberWithCommas ,onClick,dummyData}) => {
       return (
         <Container>
           <ImgContainer>
             <Image src={'http://bnbnong.com:4000/static/'+data[0].file_name} />
           </ImgContainer>
           <ContentContainer>
-            <ProductName>{data[0].name}</ProductName>
+          <ProductName>{data[0].name}</ProductName>
             <ProductPrice>{numberWithCommas(data[0].price_shipping)}원</ProductPrice>
+
             {/* <ProductWeight>중량: 500g</ProductWeight> */}
             {/* <ProductCaution>
               <Caution /> 이 상품은 바로 배송되지 않습니다. 제철 지정 일자에
               일괄 배송됩니다.
             </ProductCaution> */}
             <ProductContent>
-              <ShippingTruck style={{ fontSize: 35 }} /> {data[0].shippingDate}
+              {/* <ShippingTruck style={{ fontSize: 35 }} /> {data[0].shippingDate} */}
             </ProductContent>
             <ProductContent>
               <ShippingBox style={{ fontSize: 35 }} /> 
@@ -126,13 +125,15 @@ const DetailCard = ({ data, numberWithCommas }) => {
             {/* <ProductContent>
               <ShippingMoney style={{ fontSize: 35 }} /> 배송비 포함
             </ProductContent> */}
-            <ButtonContainer>
+            <ButtonContainer onClick={(e)=>{
+              e.preventDefault();
+              onClick(dummyData)
+            }}>
               <NaverButton>장바구니</NaverButton>
             </ButtonContainer>
           </ContentContainer>
         </Container>
       );
-return null;
 };
 
 export default DetailCard;

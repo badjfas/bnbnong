@@ -44,8 +44,8 @@ const Button = styled.button`
   border-radius: 5px;
 `;
 
-export default ({ data, dataBucket, onBtnBucket, state }) => {
-
+export default ({ data, dataBucket, onBtnBucket, state , list }) => {
+  console.log(list)
   return (
     <Container>
       <TextContainer>

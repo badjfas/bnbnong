@@ -15,7 +15,12 @@ export default ({ data, getList, error, loading,numberWithCommas,initMap }) => {
         <Loader />
       ) : (
         <>
-          <Product data={getList} numberWithCommas={numberWithCommas} />
+          <Product
+            data={getList}
+            numberWithCommas={numberWithCommas}
+            dummyData={data}
+            error={error}
+          />
         </>
       )}
       <div id="map" style={{ width: "100%", height: "400px" }}></div>

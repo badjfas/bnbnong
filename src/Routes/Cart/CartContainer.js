@@ -25,9 +25,13 @@ const CartContainer = ({}) => {
     return isSelected(checked);
   };
 
+  const list = JSON.parse(sessionStorage.getItem("cart"));
+  
+
   return (
     <CartPresenter
       ProductData={Pd}
+      list={list}
       handleAllChecked={handleAllChecked}
       handleSelect={handleSelect}
       checked={checked}
