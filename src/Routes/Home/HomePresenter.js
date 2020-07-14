@@ -4,7 +4,7 @@ import Product from "./components/Product"
 import Loader from "../../Component/Loader";
 
 const Container = styled.div`
-  padding:100px;
+  padding-top:150px;
 `;
 
 

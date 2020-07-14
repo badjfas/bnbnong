@@ -58,12 +58,9 @@ export default ({data,numberWithCommas}) => {
             <MarketCard
               key={p.id}
               id={p.id}
-              // src={'http://bnbnong.com:4000/static/'+p.file_name}
+              src={"https://www.iboxjeju.com/packs/media/images/products/06/img6-1-7c6ff0ac0db4d544e3f3c10e296713b4.jpg"}
               name={p.name}
               family={p.family}
-              // price={numberWithCommas(p.price_shipping)}
-              // category={p.category}
-              // content={p.content}
             />
           );
         })}

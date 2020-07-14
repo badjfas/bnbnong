@@ -15,12 +15,13 @@ const Links= styled(Link)`
 `;
 
 const Img = styled.div`
-  background-image: url('${(props) => props.src}');
-  background-size: cover;
-  width:100%;
-  height:450px;
-  background-position:center center;
-  transition : opacity 0.3s linear;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 450px;
+  opacity: 0;
+  transition: opacity 0.3s linear;
 `;
 
 
@@ -28,22 +29,18 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-size: cover;
+  background-position:center center;
+  background-color:#eee;
   cursor: pointer;
-  @media only screen and (max-width: 768px) {
-    width: 230px;
-    height: 230px;
-    display: table;
-    justify-content: center;
-    margin: 0 auto;
-  }
   &:hover {
     ${Img} {
-      opacity: 0.3;
+      opacity: 1;
     }}
 
 `;
 
-const ProductName = styled.span`
+const FarmName = styled.span`
   color: #494848;
   display: block;
   overflow: hidden;
@@ -55,47 +52,42 @@ const ProductName = styled.span`
   text-overflow: ellipsis;
 `;
 
-const ProductPrice = styled.span`
-  color: #727272;
-  display: block;
-  overflow: hidden;
-  padding-top: 1px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 2;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-`;
-
-const ProductContent = styled.span`
-color: #727272;
-display: block;
-overflow: hidden;
-font-weight: 500;
-font-size: 16px;
-font-family:'Do Hyeon', sans-serif;
-line-height: 2;
-white-space: pre-line;
-word-break:break-all;
-text-overflow: ellipsis;
-`;
-
 const ImageContainer = styled.div`
   display:table;
 `;
 
-const MarketCard = ({ name, family, id }) => (
-  <Links to={`/${id}`}>
-    <Container >
-      {/* <Img src={src}/> */}
-      {family}
-    </Container>
-    <ImageContainer>
-      <ProductName>{name}</ProductName>
-      {/* <ProductPrice>{price}원</ProductPrice>
-      <ProductContent>{content}</ProductContent> */}
-    </ImageContainer>
-  </Links>
-);
+const Number = styled.div`
+    color:black;
+    display:flex;
+    align-items:center;
+    &:first-child{
+        margin-right:20px;
+    }
+`;
+
+const NumberText = styled.span`
+    margin-left:10px;
+    font-size:16px;
+    color:black;
+`;
+const MarketCard = ({ name, family, id,src }) => {
+  console.log(family);
+
+  return (
+    <Links to={`/${id}`}>
+      <Container>
+          <Img>
+            <Number>
+              <NumberText>
+              {family}
+              </NumberText>
+            </Number>
+          </Img>
+      </Container>
+      <ImageContainer>
+        <FarmName>{name}</FarmName>
+      </ImageContainer>
+    </Links>
+  );};
 
 export default MarketCard;

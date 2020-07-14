@@ -4,7 +4,7 @@ import Market from "./components/Market"
 import Loader from "../../Component/Loader";
 
 const Container = styled.div`
-  padding:100px;
+  padding-top:150px;
 `;
 
 
