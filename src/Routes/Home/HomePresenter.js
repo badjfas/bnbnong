@@ -8,10 +8,22 @@ const Container = styled.div`
 `;
 
 
-export default ({ data, getList, error, loading,numberWithCommas }) => {
+export default ({ data, getList, error, loading,numberWithCommas,initMap }) => {
   return (
     <Container>
-      {loading ? <Loader/>:<Product data={getList} numberWithCommas={numberWithCommas} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Product
+            data={getList}
+            numberWithCommas={numberWithCommas}
+            dummyData={data}
+            error={error}
+          />
+        </>
+      )}
+      <div id="map" style={{ width: "100%", height: "400px" }}></div>
     </Container>
   );
 };

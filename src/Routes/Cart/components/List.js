@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -37,7 +37,23 @@ const Image = styled.div`
   height: 100px;
 `;
 
-export default ({productname,src,checked,handleSelect,selected}) => {
+const Input = styled.input`
+width: 38px;
+height: 22px;
+border: 0;
+background-color: #fff;
+font-size: 12px;
+color: #000;
+text-align: center;
+letter-spacing: -.2px;
+border: 1px solid #ddd;
+`;
+export default ({id,productname,src,price_shipping,handleDelete}) => {
+
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <Container>
       <CartContainer>
@@ -53,14 +69,45 @@ export default ({productname,src,checked,handleSelect,selected}) => {
               </ColGroup>
               <Thead>
                 <Tr>
-                  <Th style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <input type="checkbox" style={{marginRight:15,height:14,width:14}} checked={checked||selected} onChange={handleSelect} />
-                    <Image src={src}/>
+                  <Th
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      style={{ marginRight: 15, height: 14, width: 14 }}
+                    />
+                    <Image src={src} />
                   </Th>
                   <Th>{productname}</Th>
-                  <Th>수량</Th>
-                  <Th>상품금액</Th>
-                  <Th></Th>
+                  <Th>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <button onClick={(e) => e.preventDefault()}>-</button>
+                      <Input placeholder="0" type="text" />
+                      <button onClick={(e) => e.preventDefault()}>+</button>
+                    </div>
+                  </Th>
+                  <Th>{numberWithCommas(price_shipping)}</Th>
+                  <Th>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleDelete(id)
+                      }}
+                      style={{ backgroundColor: "transparent", border: 0 }}
+                    >
+                      X
+                    </button>
+                  </Th>
                 </Tr>
               </Thead>
             </Table>

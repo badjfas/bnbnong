@@ -26,7 +26,6 @@ const Image = styled.img`
 
 export default ({src}) => {
     const images = src.split("|")
-    console.log(images)
     return (
       <Container>
         <ImageContainer>
