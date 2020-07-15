@@ -21,10 +21,10 @@ const Container = styled.div`
 const Routes = () => {
   return (
     <Router>
-     <Header />
       <Switch>
           <Route exact path="/" component={Main} />
       </Switch>
+     <Header />
       <Container>
         <Switch>
           <Route exact path="/:id" component={Home} />

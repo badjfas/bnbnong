@@ -104,7 +104,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const Container = styled.div`
-  font-size: 12px;
+width:100%;
+  max-width:1200px;
 `;
 
 const Image = styled.div`
