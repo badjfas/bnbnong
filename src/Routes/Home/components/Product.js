@@ -72,7 +72,7 @@ export default ({data,numberWithCommas,dummyData,error}) => {
           <ProductCard
             key={p.id}
             id={p.id}
-            src={'http://bnbnong.com:4000/static/'+p.file_name}
+            // src={'http://bnbnong.com:4000/static/'+p.file_name}
             name={p.name}
             price={numberWithCommas(p.price_shipping)}
             category={p.category}

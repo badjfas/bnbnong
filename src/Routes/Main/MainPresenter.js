@@ -4,14 +4,14 @@ import Market from "./components/Market"
 import Loader from "../../Component/Loader";
 
 const Container = styled.div`
-  padding-top:150px;
 `;
 
 
-export default ({ data, marketList, error, loading, numberWithCommas }) => {
+export default ({ getAllFamily,marketList, error, loading, numberWithCommas,FamilyCategoryList }) => {
+loading ? console.log("loading") :FamilyCategoryList.map(list=>getAllFamily(list.id))
   return (
     <Container>
-      {loading ? <Loader/>:<Market data={marketList} numberWithCommas={numberWithCommas} />}
+      {loading ? <Loader/>:<Market data={marketList} numberWithCommas={numberWithCommas} FamilyCategoryList={FamilyCategoryList} />}
     </Container>
   );
 };

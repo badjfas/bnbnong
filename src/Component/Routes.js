@@ -17,17 +17,16 @@ const Container = styled.div`
   max-width:1400px;
   margin : 0px auto;
   `;
-const RouterContainer = styled.div`
-`;
-
 
 const Routes = () => {
   return (
     <Router>
-      <Header />
+     <Header />
+      <Switch>
+          <Route exact path="/" component={Main} />
+      </Switch>
       <Container>
         <Switch>
-          <Route exact path="/" component={Main} />
           <Route exact path="/:id" component={Home} />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/list/cart" component={Cart} />

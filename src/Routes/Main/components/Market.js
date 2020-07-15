@@ -3,6 +3,53 @@ import styled from "styled-components";
 
 import MarketCard from "./MarketCard";
 
+const Container = styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+background-image: url('${(props) => props.src}');
+background-size:cover;
+background-position:center center;
+width:100%;
+height:900px;
+`;
+
+
+const Form = styled.form`
+display:table;
+`;
+
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 60px;
+  margin-bottom: 50px;
+`;
+
+const SubTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 50px;
+`;
+
+const Search = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  height: 36px;
+  width: 400px;
+  background-color: #f7f7f7;
+  border: 1px solid #f7f7f6;
+  z-index: 1;
+  margin: 0px auto;
+`;
+
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -44,15 +91,24 @@ const Text = styled.span`
   border-bottom: ${(props) => props.theme.boxBorder};
   `;
 
-export default ({data,numberWithCommas}) => {
-  console.log(data,"product")
+export default ({data}) => {
   return (
     <>
+    <Container src={"https://cdn.pixabay.com/photo/2019/05/07/13/28/stone-day-bag-4185981_960_720.jpg"}>
+      <Form> 
+      <Title>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        </Title>
+        <SubTitle>
+        Lorem Ipsum has been the industry's
+        </SubTitle>
+        <Search placeholder="농장 이름..."/>
+      </Form>
+    </Container>
       <TextContainer>
-        <Text>제주 농장</Text>
+        <Text>함께 하는 농장들</Text>
       </TextContainer>
       <GridContainer>
-
         {data.map((p)=>{
           return (
             <MarketCard
