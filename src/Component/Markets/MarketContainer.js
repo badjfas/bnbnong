@@ -12,9 +12,9 @@ export default class extends Component {
     componentDidMount = async() =>{
         try{
             const { data: marketList } = await API.getMarketList();
-            console.log(marketList);
             this.setState({
-                marketList : marketList
+                marketList : marketList,
+                currentItem:Math.floor(Math.random()*marketList.length)
             })
         }catch (e){
             console.warn(e)
