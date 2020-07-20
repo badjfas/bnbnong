@@ -32,7 +32,8 @@ export default ({ FamilyCategoryList, getAllFamily, loading }) => {
       {loading ? (
         <Loader />
       ) : (
-        FamilyCategoryList.map((list) => (
+        FamilyCategoryList.map((list) => {
+          return(
           <Filters
             onClick={() => {
               getAllFamily(list.id);
@@ -40,7 +41,7 @@ export default ({ FamilyCategoryList, getAllFamily, loading }) => {
           >
             {list.name}
           </Filters>
-        ))
+        )})
       )}
     </Container>
   );

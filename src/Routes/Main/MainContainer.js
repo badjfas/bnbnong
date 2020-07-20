@@ -2,26 +2,28 @@ import React, { useEffect } from "react";
 import MainPresenter from "./MainPresenter";
 
 import { API } from "../../api";
+import useInput from "../../Component/useInput";
 
 export default class extends React.Component {
-  state = {
-    loading: true,
-    marketList: null,
-    FamilyCategoryList: null,
-    AllFamilyList:null,
-    error: null,
-    scrollTop: 0
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      loading: true,
+      marketList: null,
+      FamilyCategoryList: null,
+      AllFamilyList:null,
+      getAllList:[],
+      error: null,
+      scrollTop: 0
+    };
+  }
 
   async componentDidMount() {
     try {
-      window.addEventListener('scroll', this.handleScroll);
-
-      const { data: marketList } = await API.getMarketList(this.props.match.params.id);
-      const { data : FamilyCategoryList } = await API.getFamilyCateogry();
-      
+      const { data : getAllList} = await API.getList("all");
+    const { data : FamilyCategoryList } = await API.getFamilyCateogry();
       this.setState({
-        marketList,
+     getAllList,
       });
       this.setState({
         FamilyCategoryList
@@ -49,29 +51,25 @@ export default class extends React.Component {
   }
 
 
-  handleScroll = (e) => {
-    const scrollTop = ('scroll', e.srcElement.scrollingElement.scrollTop);
-    this.setState({
-      scrollTop
-    })
-    }
   filterCategory = (id) => {
 
   }  
 
+
+
   render() {
-    const { marketList, error, loading, FamilyCategoryList, AllFamilyList ,scrollTop } = this.state;
+    const { error, loading, FamilyCategoryList, AllFamilyList ,getAllList } = this.state;
     return (
       <MainPresenter
-        marketList={marketList}
-        AllFamilyList={AllFamilyList}
+      AllFamilyList={AllFamilyList}
+        getAllList={getAllList}
         FamilyCategoryList={FamilyCategoryList}
         error={error}
         loading={loading}
-        scrollTop={scrollTop}
         numberWithCommas={this.numberWithCommas}
         getAllFamily={this.getAllFamily}
-        handleScroll={this.handleScroll}
+        handleSubmit={this.handleSubmit}
+        props={this.props}
       />
     );
   }

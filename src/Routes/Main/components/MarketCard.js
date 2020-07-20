@@ -157,7 +157,7 @@ const MarketCard = ({ id, src, name, family, year, isMovie = false }) => (
   <Link to={`/${id}`}>
     <Container>
       <ImageContainer>
-        <Image src={src} />
+        <Image src={`http://bnbnong.com:4000/static/${src}`} />
         <Rating>
           <span role="img" aria-label="rating">
             ⭐

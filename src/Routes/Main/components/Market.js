@@ -67,7 +67,7 @@ export default ({ data }) => {
                 key={p.id}
                 id={p.id}
                 src={
-                  "https://www.iboxjeju.com/packs/media/images/products/06/img6-1-7c6ff0ac0db4d544e3f3c10e296713b4.jpg"
+                  p.file_name
                 }
                 name={p.name}
                 family={p.family}
