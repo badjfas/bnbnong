@@ -10,10 +10,11 @@ const Container = styled.div`
   background-size:cover;
   background-position:center center;
   width:100%;
-  height:900px;
+  height:1000px;
   flex-wrap:wrap;
+  padding-top:100px;
   `;
-const Form = styled.form`
+const Form = styled.div`
   display: table;
   width: 100%;
 `;
@@ -22,6 +23,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color:#eee;
   font-weight: 600;
   font-size: 60px;
   margin-bottom: 50px;
@@ -29,6 +31,8 @@ const Title = styled.div`
 
 const SubTitle = styled.div`
   display: flex;
+  color:#eee;
+
   align-items: center;
   justify-content: center;
   font-weight: 600;
@@ -36,29 +40,16 @@ const SubTitle = styled.div`
   margin-bottom: 50px;
 `;
 
-const Search = styled.input`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  height: 36px;
-  width: 400px;
-  background-color: #f7f7f7;
-  border: 1px solid #f7f7f6;
-  z-index: 1;
-  margin: 0px auto;
-`;
 
 export default () => {
     return (
-      <Container src={null}>
+      <Container src={"https://images.wallpaperscraft.com/image/mandarins_fruits_citrus_leaves_117635_2048x1152.jpg"}>
         <Form>
-          <Title>
+        <Title>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry.
           </Title>
-          <SubTitle>Lorem Ipsum has been the industry's</SubTitle>
-          <Search placeholder="농장 이름..." />
+          <SubTitle>저희와 함께하는 농부님들</SubTitle>
         </Form>
         <Markets />
       </Container>
