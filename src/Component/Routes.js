@@ -8,25 +8,22 @@ import Cart from "../Routes/Cart";
 import Search from "../Routes/Search";
 import Category from "../Routes/Category";
 import Pay from "../Routes/Pay";
-import { Header } from "./Header";
+import Headers from "./Headers";
 import Footer from "./Footer";
 import styled from "styled-components";
 
 const Container = styled.div`
   width:100%;
-  max-width:1400px;
   margin : 0px auto;
   `;
 
 const Routes = () => {
   return (
     <Router  >
-      <Switch>
-          <Route exact path="/" component={Main} />
-      </Switch>
-     <Header />
+     <Headers />
       <Container>
         <Switch>
+          <Route exact path="/" component={Main} />
           <Route exact path="/:id" component={Home} />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/list/cart" component={Cart} />
