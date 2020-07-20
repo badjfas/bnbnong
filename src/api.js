@@ -2,11 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://bnbnong.com:4000",
-  // headers:{
-  //   'Authorization': 'Bearer ' + localStorage.getItem('token'),
-  //   'Accept': 'application/json',
-  //   'Content-Type': 'application/json',
-  // }
+
 });
 
 export const API = {
@@ -18,7 +14,7 @@ export const API = {
     api.get(`/api/auth/list/open/0`, {
       method: "GET",
     }),
-  getInfo: (p) =>
+  getMarketInfo: (p) =>
     api.get(`/api/auth/info/open/${p}`, {
       method: "GET",
     }),
@@ -35,7 +31,8 @@ export const API = {
   }),
   getAllFamily : (categoryId) =>api.get(`api/product/allFamily/${categoryId}`,{
     method:"GET"
-  })
+  }),
+
 };
 
 export const MapAPI = {};
