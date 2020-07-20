@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Market from "./components/Market";
 import Loader from "../../Component/Loader";
 import useInput from "../../Component/useInput";
-import Headers from "../../Component/Headers";
 import Banners from "../../Component/Banners";
 
 export default ({
@@ -15,7 +14,6 @@ export default ({
 }) => {
   return (
     <>
-      <Headers />
       <Banners />
       {loading ? (
         <Loader />
