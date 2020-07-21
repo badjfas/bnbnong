@@ -71,6 +71,7 @@ export default ({ data }) => {
                 }
                 name={p.name}
                 family={p.family}
+                gap={p.gap}
               />
             );
           })}
