@@ -49,6 +49,21 @@ export default class extends Component {
 
     render(){
         const {marketList,error,loading,currentItem} = this.state;
-        return <MarketPresenter marketList={marketList} loading={loading} error={error} currentItem={currentItem} showSlide={this.showSlide} handleNext={this.handleNext} handlePrev={this.handlePrev}/>;
+        console.log("length",marketList.length)
+        return (
+          <MarketPresenter
+            marketList={marketList}
+            loading={loading}
+            error={error}
+            currentItem={
+              currentItem >= marketList.length - 3
+                ? currentItem - 3
+                : currentItem
+            }
+            showSlide={this.showSlide}
+            handleNext={this.handleNext}
+            handlePrev={this.handlePrev}
+          />
+        );
     }
 }
