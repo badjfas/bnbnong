@@ -45,7 +45,7 @@ const Text = styled.span`
   `;
 
 export default ({data,numberWithCommas,dummyData,error}) => {
-  console.log(dummyData,"product")
+  console.log(data);
   return (
     <>
     <TextContainer>
