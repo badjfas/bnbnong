@@ -52,21 +52,7 @@ export default ({data,numberWithCommas,dummyData,error}) => {
       <Text>제주 농산물</Text>
     </TextContainer>
     <GridContainer>
-      {/* {dummyData.map((p) => {
-         if(p.category===1)  return (
-          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-        ); 
-      })}
-           {dummyData.map((p) => {
-         if(p.category===2)  return (
-          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-        ); 
-      })}
-            {dummyData.map((p) => {
-         if(p.category===3)  return (
-          <ProductCard key={p.id} id={p.id} src={p.src} name={p.productname} price={p.price} category={p.category} content={p.content} />
-        ); 
-      })}  */}
+
       {data.map((p)=>{
         return (
           <ProductCard
