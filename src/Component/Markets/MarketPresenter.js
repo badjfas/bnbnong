@@ -6,34 +6,46 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
 `;
 
 const Contents = styled.div`
-  display: table;
-  padding:0 30px 0px 29px;
+  padding: 0 30px 0px 29px;
   width: 400px;
   height: 400px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+
+const MarketName = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight:600;
+  color:#eee;
 `;
 
 const Avatar = styled.div`
-  width: 300px;
-  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 350px;
   transition: opacity 0.5s linear;
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center center;
+  border-radius:70%;
+  overflow: hidden;
 `;
 
-
 const Chips = styled.div`
-margin-top:5px;
-display:flex;
-justify-content: center;
-align-items: center;
-width:100%;
-flex-wrap: wrap;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
 `;
 
 const Chip = styled.div`
@@ -44,29 +56,31 @@ const Chip = styled.div`
   margin: 5px;
   border-radius: 10px;
   border: 2px solid #eee;
-  padding:5px;
-  font-size:20px;
+  padding: 5px;
+  font-size: 15px;
+  font-weight:400;
 `;
 
 const ButtonLeft = styled.div`
-  display: flex;
+  display: ${(props) => (props.currentItem === 0 ? "none" : "flex")};
   justify-content: center;
   align-items: center;
+  color:#eee;
   font-size: 30px;
-  color: black;
   background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    `;
+`;
 
 const ButtonRigjht = styled.div`
-  display: flex;
+  display: ${(props) => (props.currentItem === 11 ? "none" : "flex")};
   justify-content: center;
   align-items: center;
+  color:#eee;
   font-size: 30px;
   background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 export default ({
@@ -77,57 +91,76 @@ export default ({
   handlePrev,
 }) => {
   const Array = [
-    "https://lh3.googleusercontent.com/proxy/BLiUwZOsLTstf2No5Ox4H3MxZubXfLGBqPgCuBSDVNI8JgIDziaw6KeV_VfHYw82fwM-jlkQr_xjAO5ocn_sSxTFpHNKI80RCPA2Il-6Ivl9VFOqWoZHdw",
-    "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
-    "https://cdn.imgbin.com/3/12/17/imgbin-computer-icons-avatar-user-login-avatar-man-wearing-blue-shirt-illustration-mJrXLG07YnZUc2bH5pGfFKUhX.jpg",
-    "https://img.favpng.com/10/14/2/avatar-computer-icons-user-profile-business-png-favpng-uVq05zLDgFqFDHD2EF87qrVMA.jpg",
-    "https://cdn1.iconfinder.com/data/icons/diversity-avatars-volume-01-circles/64/matrix-morpheus-512.png",
-    "https://lh3.googleusercontent.com/proxy/BLiUwZOsLTstf2No5Ox4H3MxZubXfLGBqPgCuBSDVNI8JgIDziaw6KeV_VfHYw82fwM-jlkQr_xjAO5ocn_sSxTFpHNKI80RCPA2Il-6Ivl9VFOqWoZHdw",
-    "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
-    "https://cdn.imgbin.com/3/12/17/imgbin-computer-icons-avatar-user-login-avatar-man-wearing-blue-shirt-illustration-mJrXLG07YnZUc2bH5pGfFKUhX.jpg",
-    "https://img.favpng.com/10/14/2/avatar-computer-icons-user-profile-business-png-favpng-uVq05zLDgFqFDHD2EF87qrVMA.jpg",
-    "https://cdn1.iconfinder.com/data/icons/diversity-avatars-volume-01-circles/64/matrix-morpheus-512.png",
-    "https://lh3.googleusercontent.com/proxy/BLiUwZOsLTstf2No5Ox4H3MxZubXfLGBqPgCuBSDVNI8JgIDziaw6KeV_VfHYw82fwM-jlkQr_xjAO5ocn_sSxTFpHNKI80RCPA2Il-6Ivl9VFOqWoZHdw",
-    "https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png",
-    "https://cdn.imgbin.com/3/12/17/imgbin-computer-icons-avatar-user-login-avatar-man-wearing-blue-shirt-illustration-mJrXLG07YnZUc2bH5pGfFKUhX.jpg",
-    "https://img.favpng.com/10/14/2/avatar-computer-icons-user-profile-business-png-favpng-uVq05zLDgFqFDHD2EF87qrVMA.jpg",
-    "https://cdn1.iconfinder.com/data/icons/diversity-avatars-volume-01-circles/64/matrix-morpheus-512.png",
+"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU"
   ];
-  console.log(loading? null :marketList[0].family.split(","))
+  console.log(currentItem);
   return (
     <Container>
-      <ButtonLeft onClick={handlePrev}>{"<"}</ButtonLeft>
+      <ButtonLeft currentItem={currentItem} onClick={handlePrev}>
+        {"<"}
+      </ButtonLeft>
       {loading ? (
         <Loader />
       ) : (
         <>
           <Contents>
+      <MarketName>{marketList[currentItem].name}</MarketName>
             <Avatar src={Array[currentItem]} />
             <Chips>
-              {marketList[currentItem].family.split(",").map((list) => (
-                <Chip>{list}</Chip>
-              ))}
+              {marketList[currentItem].family.split(",").map((list, index) => {
+                if (index <= 6) {
+                  return <Chip>{list}</Chip>;
+                }
+              })}
             </Chips>
           </Contents>
           <Contents>
+          <MarketName>{marketList[currentItem+1].name}</MarketName>
+
             <Avatar src={Array[currentItem + 1]} />
             <Chips>
-              {marketList[currentItem + 1].family.split(",").map((list) => (
-                <Chip>{list}</Chip>
-              ))}
+              {marketList[currentItem + 1].family
+                .split(",")
+                .map((list, index) => {
+                  if (index <= 6) {
+                    return <Chip>{list}</Chip>;
+                  }
+                })}
             </Chips>
           </Contents>
           <Contents>
+          <MarketName>{marketList[currentItem+2].name}</MarketName>
+
             <Avatar src={Array[currentItem + 2]} />
             <Chips>
-              {marketList[currentItem + 2].family.split(",").map((list) => (
-                <Chip>{list}</Chip>
-              ))}
+              {marketList[currentItem + 2].family
+                .split(",")
+                .map((list, index) => {
+                  if (index <= 6) {
+                    return <Chip>{list}</Chip>;
+                  }
+                })}
             </Chips>
           </Contents>
         </>
       )}
-      <ButtonRigjht onClick={handleNext}>{">"}</ButtonRigjht>
+      <ButtonRigjht currentItem={currentItem} onClick={handleNext}>
+        {">"}
+      </ButtonRigjht>
     </Container>
   );
 };
