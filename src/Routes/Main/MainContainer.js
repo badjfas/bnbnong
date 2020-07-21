@@ -1,23 +1,33 @@
 import React, { useEffect } from "react";
 import MainPresenter from "./MainPresenter";
-import { gql } from "apollo-boost";
-import { useQuery } from "react-apollo-hooks";
-import { getList } from "../../Queries/readProduct";
+
 import { API } from "../../api";
+import useInput from "../../Component/useInput";
 
 export default class extends React.Component {
-  state = {
-    loading: true,
-    marketList: null,
-    error: null,
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      loading: true,
+      marketList: null,
+      FamilyCategoryList: null,
+      AllFamilyList:null,
+      getAllList:[],
+      error: null,
+      scrollTop: 0
+    };
+  }
 
   async componentDidMount() {
     try {
-      const { data: marketList } = await API.getMarketList(this.props.match.params.id);
+      const { data : getAllList} = await API.getList("all");
+    const { data : FamilyCategoryList } = await API.getFamilyCateogry();
       this.setState({
-        marketList,
+     getAllList,
       });
+      this.setState({
+        FamilyCategoryList
+      })
     } catch (e) {
       this.setState({
         error: "위치 : MainContainer ",
@@ -29,41 +39,38 @@ export default class extends React.Component {
     }
   }
 
-  numberWithCommas = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
+}
+
+  getAllFamily = async(categoryId) => {
+    const {data : getAllFamily} = await API.getAllFamily(categoryId);
+    this.setState({
+      AllFamilyList:getAllFamily
+    })
+  }
+
+
+  filterCategory = (id) => {
+
+  }  
+
+
 
   render() {
-    const { marketList, error, loading } = this.state;
+    const { error, loading, FamilyCategoryList, AllFamilyList ,getAllList } = this.state;
     return (
       <MainPresenter
-        marketList={marketList}
+      AllFamilyList={AllFamilyList}
+        getAllList={getAllList}
+        FamilyCategoryList={FamilyCategoryList}
         error={error}
         loading={loading}
         numberWithCommas={this.numberWithCommas}
+        getAllFamily={this.getAllFamily}
+        handleSubmit={this.handleSubmit}
+        props={this.props}
       />
     );
   }
 }
-
-// export default (props) => {
-//     console.log(props)
-
-//     const datas = async () => {
-//       return await API.getList(31);
-//     }
-//     console.log(datas());
-//     const datas2 = async () => {
-//         const {data} = await API.getDetail(327);
-//         return data
-//       }
-//     console.log()
-
-//     const {data,loading} = useQuery(getList,{variables:{
-//         user_id:36
-//     }})
-//     console.log(data)
-//     return (
-//         <HomePresenter data={dummydata}/>
-//     )
-// }

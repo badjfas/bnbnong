@@ -4,16 +4,18 @@ import React from "react";
 // import { SEARCH } from "../../Queries/SearchQuery";
 import SearchPresenter from "./SearchPresenter";
 import { data } from "../../ProductData";
+import { API } from "../../api";
 
 
- export default ({location:{search}}) => {
+ export default async({location:{search}}) => {
 
    const searchTerm = decodeURI(search.substring(6));
 
-    console.log(data)
-   const newData =  data.filter((name) => !name.productname.indexOf(searchTerm))
+    const { data: marketList } = await API.getMarketList(this.props.match.params.id);
+
+    const newData =  marketList.filter((name) => !name.productname.indexOf(searchTerm))
 
     return (
-        <SearchPresenter searchTerm={searchTerm} data={newData} loading={null}/>
+        <SearchPresenter searchTerm={searchTerm} data={marketList} loading={null}/>
     )
 };

@@ -8,7 +8,6 @@ import { API } from "../../api";
 export default class extends React.Component {
   state = {
     cart: JSON.parse(sessionStorage.getItem("cart")),
-    length:JSON.parse(sessionStorage.getItem("cart")).length,
     error: null,
     loading: true,
   };

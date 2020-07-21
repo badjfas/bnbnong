@@ -1,17 +1,29 @@
-import React from "react";
-import styled from "styled-components";
-import Market from "./components/Market"
+import React, { useState } from "react";
+import Market from "./components/Market";
 import Loader from "../../Component/Loader";
+import useInput from "../../Component/useInput";
+import Banners from "../../Component/Banners";
 
-const Container = styled.div`
-  padding:100px;
-`;
-
-
-export default ({ data, marketList, error, loading, numberWithCommas }) => {
+export default ({
+  error,
+  loading,
+  numberWithCommas,
+  FamilyCategoryList,
+  getAllList,
+  props,
+}) => {
   return (
-    <Container>
-      {loading ? <Loader/>:<Market data={marketList} numberWithCommas={numberWithCommas} />}
-    </Container>
+    <>
+      <Banners />
+      {loading ? (
+        <Loader />
+      ) : (
+        <Market
+          data={getAllList}
+          numberWithCommas={numberWithCommas}
+          FamilyCategoryList={FamilyCategoryList}
+        />
+      )}
+    </>
   );
 };
