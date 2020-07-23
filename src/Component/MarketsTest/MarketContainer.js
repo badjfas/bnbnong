@@ -51,7 +51,7 @@ export default class extends Component {
     }
 
     handleSlideRight = (e) => {
-        console.log(e);
+       // console.log(e);
         const scrollRight = ('slide', e.srcElement.scrollingElement.scrollLeft);
         this.setState({
           scrollRight:scrollRight+20

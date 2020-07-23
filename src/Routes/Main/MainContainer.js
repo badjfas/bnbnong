@@ -16,7 +16,7 @@ export default class extends React.Component {
       getAllList:[],
       error: null,
       scrollTop: 0,
-      isMarket:"market"
+      isMarket:"product"
     };
   }
 

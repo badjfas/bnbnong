@@ -3,6 +3,8 @@ import Market from "./components/Market";
 import Loader from "../../Component/Loader";
 import useInput from "../../Component/useInput";
 import Banners from "../../Component/Banners";
+import Products from "../../Component/Products";
+
 import styled from "styled-components";
 
 const SwitchCointainer = styled.div`
@@ -47,16 +49,16 @@ export default ({
     <>
       <SwitchCointainer>
         <MarketButton isMarket={isMarket} onClick={() => switchPage("market")}>
-          농장 보기
+          농장으로 보기
         </MarketButton>
         <ProductButton
           isMarket={isMarket}
           onClick={() => switchPage("product")}
         >
-          상품들 보기
+          상품목록으로 보기
         </ProductButton>
       </SwitchCointainer>
-      {isMarket === "market" ? <Banners /> : null}
+      {isMarket === "market" ? <Banners /> : <Products/>}
       {loading ? (
         <Loader />
       ) : (
