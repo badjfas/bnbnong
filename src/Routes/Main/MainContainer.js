@@ -3,6 +3,7 @@ import MainPresenter from "./MainPresenter";
 
 import { API } from "../../api";
 import useInput from "../../Component/useInput";
+import { UniqueFieldDefinitionNamesRule } from "graphql";
 
 export default class extends React.Component {
   constructor(props){
@@ -14,7 +15,8 @@ export default class extends React.Component {
       AllFamilyList:null,
       getAllList:[],
       error: null,
-      scrollTop: 0
+      scrollTop: 0,
+      isMarket:"market"
     };
   }
 
@@ -51,14 +53,22 @@ export default class extends React.Component {
   }
 
 
-  filterCategory = (id) => {
-
+  switchPage = (args) => {
+    if(args=== "market" ){
+      this.setState({
+        isMarket:"market"
+      })
+    }else if(args === "product"){
+      this.setState({
+        isMarket: "product"
+      })
+    }
   }  
 
 
 
   render() {
-    const { error, loading, FamilyCategoryList, AllFamilyList ,getAllList } = this.state;
+    const { error, loading, FamilyCategoryList, AllFamilyList ,getAllList ,isMarket } = this.state;
     return (
       <MainPresenter
       AllFamilyList={AllFamilyList}
@@ -70,6 +80,8 @@ export default class extends React.Component {
         getAllFamily={this.getAllFamily}
         handleSubmit={this.handleSubmit}
         props={this.props}
+        switchPage={this.switchPage}
+        isMarket={isMarket}
       />
     );
   }
