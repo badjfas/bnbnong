@@ -30,7 +30,7 @@ export default class extends React.Component {
       })
     } catch (e) {
       this.setState({
-        error: "위치 : MainContainer ",
+        error: "불편을 드려 죄송합니다..",
       });
     } finally {
       this.setState({

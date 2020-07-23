@@ -3,6 +3,7 @@ import Market from "./components/Market";
 import Loader from "../../Component/Loader";
 import useInput from "../../Component/useInput";
 import Banners from "../../Component/Banners";
+import Error from "../../Component/Error";
 
 export default ({
   error,
@@ -12,7 +13,7 @@ export default ({
   getAllList,
   props,
 }) => {
-  return (
+  return error === null ? (
     <>
       <Banners />
       {loading ? (
@@ -25,5 +26,7 @@ export default ({
         />
       )}
     </>
+  ) : (
+    <Error />
   );
 };

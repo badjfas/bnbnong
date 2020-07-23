@@ -34,7 +34,7 @@ export default class extends React.Component {
       });
     } catch {
       this.setState({
-        error: "위치 : DetailContainer.js",
+        error: "불편을 드려 죄송합니다..",
       });
     } finally {
       this.setState({

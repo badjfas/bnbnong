@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Loader from "./../Loader";
+import Error from "../Error";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -8,12 +10,12 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Contents = styled.div`
+const Contents = styled(Link)`
   padding: 0 30px 0px 29px;
   width: 400px;
   height: 400px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const MarketName = styled.div`
@@ -21,8 +23,8 @@ const MarketName = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 30px;
-  font-weight:600;
-  color:#eee;
+  font-weight: 600;
+  color: #eee;
 `;
 
 const Avatar = styled.div`
@@ -35,7 +37,7 @@ const Avatar = styled.div`
   background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center center;
-  border-radius:70%;
+  border-radius: 70%;
   overflow: hidden;
 `;
 
@@ -58,14 +60,14 @@ const Chip = styled.div`
   border: 2px solid #eee;
   padding: 5px;
   font-size: 15px;
-  font-weight:400;
+  font-weight: 400;
 `;
 
 const ButtonLeft = styled.div`
   display: ${(props) => (props.currentItem === 0 ? "none" : "flex")};
   justify-content: center;
   align-items: center;
-  color:#eee;
+  color: #eee;
   font-size: 30px;
   background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -76,7 +78,7 @@ const ButtonRigjht = styled.div`
   display: ${(props) => (props.currentItem === 11 ? "none" : "flex")};
   justify-content: center;
   align-items: center;
-  color:#eee;
+  color: #eee;
   font-size: 30px;
   background-color: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -89,26 +91,26 @@ export default ({
   currentItem,
   handleNext,
   handlePrev,
+  error,
 }) => {
   const Array = [
-"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
-"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
-"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
-"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
-"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
-"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
-"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
-"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
-"https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
-"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
-"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU"
+    "https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+    "https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+    "https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+    "https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+    "https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+    "https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+    "https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+    "https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
+    "https://library.kissclipart.com/20181210/fvq/kissclipart-icon-clipart-computer-icons-afa4dc7d7bc24a86.jpg",
+    "https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRPVoWm0ry98_u2m1U3CBYR1HJOfZMDkCBoEg&usqp=CAU",
   ];
-  console.log(currentItem);
-  return (
+  return error === null ? (
     <Container>
       <ButtonLeft currentItem={currentItem} onClick={handlePrev}>
         {"<"}
@@ -117,8 +119,8 @@ export default ({
         <Loader />
       ) : (
         <>
-          <Contents>
-      <MarketName>{marketList[currentItem].name}</MarketName>
+          <Contents to={`/market/${marketList[currentItem].id}`}>
+            <MarketName>{marketList[currentItem].name}</MarketName>
             <Avatar src={Array[currentItem]} />
             <Chips>
               {marketList[currentItem].family.split(",").map((list, index) => {
@@ -128,8 +130,8 @@ export default ({
               })}
             </Chips>
           </Contents>
-          <Contents>
-          <MarketName>{marketList[currentItem+1].name}</MarketName>
+          <Contents to={`/market/${marketList[currentItem+1].id}`}>
+            <MarketName>{marketList[currentItem + 1].name}</MarketName>
 
             <Avatar src={Array[currentItem + 1]} />
             <Chips>
@@ -142,8 +144,8 @@ export default ({
                 })}
             </Chips>
           </Contents>
-          <Contents>
-          <MarketName>{marketList[currentItem+2].name}</MarketName>
+          <Contents to={`/market/${marketList[currentItem+2].id}`}>
+            <MarketName>{marketList[currentItem + 2].name}</MarketName>
 
             <Avatar src={Array[currentItem + 2]} />
             <Chips>
@@ -162,5 +164,7 @@ export default ({
         {">"}
       </ButtonRigjht>
     </Container>
+  ) : (
+    <Error text={error} />
   );
 };

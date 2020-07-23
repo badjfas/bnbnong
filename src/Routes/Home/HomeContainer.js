@@ -24,9 +24,10 @@ export default class extends React.Component {
     };
   }
   async componentDidMount() {  
+    console.log(this.props.match.params.id);
     try { 
       const { data: getList } = await API.getList(this.props.match.params.id);
-      const { data: getInfo } = await API.getInfo(this.props.match.params.id);
+      const { data: getMarketInfo } = await API.getMarketInfo(this.props.match.params.id);
       
       this.setState({
         getList: getList,
@@ -34,7 +35,7 @@ export default class extends React.Component {
 
       this.setState(
         {
-          address: getInfo[0].address,
+          address: getMarketInfo[0].address,
         },
         async() => {
          const data = await API.getCoord(this.state.address)
@@ -47,8 +48,9 @@ export default class extends React.Component {
         }
       );
     } catch (e) {
+      console.log(e)
       this.setState({ 
-        error: "위치 : HomeContainer ",
+        error: "불편을 드려 죄송합니다..",
       });
     } finally {
       this.setState({
@@ -64,7 +66,6 @@ export default class extends React.Component {
 
 
   initMap() {
-    console.log("work?")
     var contentString = [
       '<div class="iw_inner" style="padding: 10px;">',
       `<h4>${this.state.roadAddress}</h4>`,
@@ -103,7 +104,7 @@ export default class extends React.Component {
 
 
   render() {
-    const { getList, getInfo, getUserDetail, error, loading ,roadAddress,jibunAddress,x,y } = this.state; 
+    const { getList, getInfo, getUserDetail, error, loading } = this.state; 
     return (
       <>
       <HomePresenter
@@ -120,25 +121,3 @@ export default class extends React.Component {
     );
   }
 }
-
-// export default (props) => {
-//     console.log(props)
-
-//     const datas = async () => {
-//       return await API.getList(31);
-//     }
-//     console.log(datas());
-//     const datas2 = async () => {
-//         const {data} = await API.getDetail(327);
-//         return data
-//       }
-//     console.log()
-
-//     const {data,loading} = useQuery(getList,{variables:{
-//         user_id:36
-//     }})
-//     console.log(data)
-//     return (
-//         <HomePresenter data={dummydata}/>
-//     )
-// }

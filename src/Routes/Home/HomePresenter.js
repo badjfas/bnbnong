@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Product from "./components/Product"
 import Loader from "../../Component/Loader";
+import Error from "../../Component/Error";
 
 const Container = styled.div`
   padding-top:150px;
@@ -10,20 +11,20 @@ const Container = styled.div`
 
 export default ({ data, getList, error, loading,numberWithCommas,initMap }) => {
   return (
-    <Container>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Product
-            data={getList}
-            numberWithCommas={numberWithCommas}
-            dummyData={data}
-            error={error}
-          />
-        </>
-      )}
-      <div id="map" style={{ width: "100%", height: "400px" }}></div>
-    </Container>
+    error ===null ?     <Container>
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        <Product
+          data={getList}
+          numberWithCommas={numberWithCommas}
+          dummyData={data}
+          error={error}
+        />
+      </>
+    )}
+    <div id="map" style={{ width: "100%", height: "400px" }}></div>
+  </Container> : <Error/>
   );
 };
