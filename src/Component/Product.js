@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import MarketCard from "./MarketCard";
+import ProductCard from "./ProductCard";
 
 const Container = styled.div`
   display: table;
@@ -16,7 +16,7 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  grid-gap: 15px;
+  grid-gap: 25px;
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -36,7 +36,7 @@ const TextContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 30px;
-  margin-bottom: 0px;
+  padding-bottom: 20px;
 `;
 const Text = styled.span`
   color: #000;
@@ -53,7 +53,7 @@ const Text = styled.span`
   border-bottom: ${(props) => props.theme.boxBorder};
 `;
 
-export default ({ data }) => {
+export default ({ data,numberWithCommas,isMarket }) => {
   return (
     <>
       <Container>
@@ -63,15 +63,16 @@ export default ({ data }) => {
         <GridContainer>
           {data.map((p) => {
             return (
-              <MarketCard
+              <ProductCard
                 key={p.id}
                 id={p.id}
-                src={
-                  p.file_name
-                }
+                src={p.file_name}
                 name={p.name}
                 family={p.family}
                 gap={p.gap}
+                price={p.price_shipping}
+                numberWithCommas={numberWithCommas}
+                isMarket={isMarket}
               />
             );
           })}

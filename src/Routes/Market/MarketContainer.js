@@ -1,9 +1,8 @@
 /* global naver */
 import React, { useEffect } from "react";
-import HomePresenter from "./HomePresenter";
+import MarketPresenter from "./MarketPresenter";
 import { data as dummydata } from "../../ProductData";
 import { API, MapAPI } from "../../api";
-import { split } from "apollo-boost";
 
 
 export default class extends React.Component {
@@ -24,11 +23,9 @@ export default class extends React.Component {
     };
   }
   async componentDidMount() {  
-    console.log(this.props.match.params.id);
     try { 
       const { data: getList } = await API.getList(this.props.match.params.id);
       const { data: getMarketInfo } = await API.getMarketInfo(this.props.match.params.id);
-      
       this.setState({
         getList: getList,
       });
@@ -44,7 +41,7 @@ export default class extends React.Component {
             y: data.y,
             roadAddress: data.roadAddress,
             jibunAddress: data.jibunAddress,
-          },()=>this.initMap());
+          },()=>MapAPI.initMap(this.state));
         }
       );
     } catch (e) {
@@ -63,51 +60,11 @@ export default class extends React.Component {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-
-
-  initMap() {
-    var contentString = [
-      '<div class="iw_inner" style="padding: 10px;">',
-      `<h4>${this.state.roadAddress}</h4>`,
-      `<div>> ${this.state.jibunAddress}</div>`,
-      '</div>'
-    ].join('');
-
-    let map = new naver.maps.Map('map', {
-      center: new naver.maps.LatLng(this.state.y, this.state.x),
-      zoom: 18
-    });
-
-    let marker = new naver.maps.Marker({
-      map: map,
-      position: new naver.maps.LatLng(this.state.y, this.state.x),
-    });
-
-    var infowindow = new naver.maps.InfoWindow({
-      content: contentString,
-      //maxWidth: 140,
-      borderColor: "lightgrey",
-      borderWidth: 2,
-      anchorSize: new naver.maps.Size(20, 20),
-      anchorSkew: true,
-      pixelOffset: new naver.maps.Point(20, -20),
-    });  
-
-    naver.maps.Event.addListener(marker, "click", function (e) {
-      if (infowindow.getMap()) {
-        infowindow.close();
-      } else {
-        infowindow.open(map, marker);
-      }
-    });
-  }
-
-
   render() {
     const { getList, getInfo, getUserDetail, error, loading } = this.state; 
     return (
       <>
-      <HomePresenter
+      <MarketPresenter
         data={dummydata}
         getList={getList}
         getInfo={getInfo}
@@ -115,7 +72,6 @@ export default class extends React.Component {
         error={error}
         loading={loading}
         numberWithCommas={this.numberWithCommas}
-        getCoord ={this.getCoord} 
       />
       </>
     );

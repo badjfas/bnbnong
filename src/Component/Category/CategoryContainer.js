@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProductsPresenter from "./ProductsPresenter";
+import CategoryPresenter from "./CategoryPresenter";
 import { API } from "../../api";
 
 export default class extends Component {
@@ -13,9 +13,9 @@ export default class extends Component {
     componentDidMount = async() =>{
 
         try{
-            const { data: getList } = await API.getList("all");
+            const { data: getFamilyCateogry } = await API.getFamilyCateogry("all");
             this.setState({
-                categoryList : getList,
+                categoryList : getFamilyCateogry,
             })
         }catch (e){
             console.warn(e)
@@ -30,7 +30,6 @@ export default class extends Component {
     }
     
     handleSlideRight = (n) => {
-        console.log(n)
         this.setState({
             move:this.state.move+n
         })
@@ -52,7 +51,7 @@ export default class extends Component {
     render(){
         const {categoryList,error,loading,move} = this.state;
         return (
-          <ProductsPresenter
+          <CategoryPresenter
           categoryList={categoryList}
             loading={loading}
             error={error}

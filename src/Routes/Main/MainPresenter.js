@@ -1,37 +1,33 @@
 import React, { useState } from "react";
-import Market from "./components/Market";
+import Product from "../../Component/Product";
 import Loader from "../../Component/Loader";
-import useInput from "../../Component/useInput";
-import Banners from "../../Component/Banners";
-import Products from "../../Component/Products";
-
+import Category from "../../Component/Category";
 import styled from "styled-components";
 
-const SwitchCointainer = styled.div`
-  display: flex;
-  padding-top: 100px;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+const TitleContainer = styled.div`
+  display:flex;
+  justify-content:center;
+  align-itmes:center;
+  padding-top:100px;
 `;
+
+const Title = styled.div``;
+
+const SwitchCointainer = styled.div`
+  position:relative;
+  padding:100px;
+  right:-70%;
+  `;
 
 const MarketButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 200px;
-  font-size:30px;
+  font-size:25px;
+  padding:5px;
   background-color: ${(props) =>
-    props.isMarket === "market" ? "#f50" : "#eee"};
-`;
-const ProductButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  font-size:30px;
-  background-color: ${(props) =>
-    props.isMarket === "product" ? "#f50" : "#eee"};
+    props.isMarket ? "#f50" : "#eee"};
 `;
 
 export default ({
@@ -42,30 +38,30 @@ export default ({
   getAllList,
   props,
   isMarket,
+  marketList,
   switchPage,
 }) => {
-  console.log(isMarket);
   return (
     <>
+      <TitleContainer>
+        <Title>
+        산지 직송
+        </Title>
+      </TitleContainer>
       <SwitchCointainer>
-        <MarketButton isMarket={isMarket} onClick={() => switchPage("market")}>
-          농장으로 보기
+        <MarketButton isMarket={isMarket} onClick={() => !switchPage()}>
+          {isMarket ? "농장" : "마켓" }
         </MarketButton>
-        <ProductButton
-          isMarket={isMarket}
-          onClick={() => switchPage("product")}
-        >
-          상품목록으로 보기
-        </ProductButton>
-      </SwitchCointainer>
-      {isMarket === "market" ? <Banners /> : <Products/>}
+      </SwitchCointainer> 
+      <Category/>
       {loading ? (
         <Loader />
       ) : (
-        <Market
-          data={getAllList}
+        <Product
+          data={isMarket ? marketList : getAllList}
           numberWithCommas={numberWithCommas}
           FamilyCategoryList={FamilyCategoryList}
+          isMarket={isMarket}
         />
       )}
     </>

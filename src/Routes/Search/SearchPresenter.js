@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ProductCard from "./../Home/components/ProductCard";
+import ProductCard from "../../Component/ProductCard";
 
 const Wrapper = styled.div`
   display:flex;
@@ -19,7 +19,6 @@ width:400px;
 const ImgContainer = styled.div`
   display:inline-block;
 `;
-
 
  const SearchPresenter =  ({ searchTerm, loading, data }) => {
   console.log(data)

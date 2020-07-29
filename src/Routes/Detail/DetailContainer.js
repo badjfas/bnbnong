@@ -1,9 +1,7 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
-import { withRouter } from "react-router-dom";
 import { data as dummyData } from "../../ProductData";
 import { API } from "../../api";
-import { CardText } from "reactstrap";
 
 export default class extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import React from "react";
-import Home from "../Routes/Home";
+import Market from "../Routes/Market";
 import Main from "../Routes/Main";
 import Detail from "../Routes/Detail";
 import Cart from "../Routes/Cart";
@@ -24,7 +24,7 @@ const Routes = () => {
       <Container>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/market/:id" component={Home} />
+          <Route exact path="/market/:id" component={Market} />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/list/cart" component={Cart} />
           <Route exact path="/category/:item" component={Category} />

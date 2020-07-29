@@ -44,13 +44,6 @@ const SubTitle = styled.div`
 export default () => {
     return (
       <Container src={""}>
-        <Form>
-        <Title>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </Title>
-          <SubTitle>저희와 함께하는 농부님들</SubTitle>
-        </Form>
         <MarketsTest />
       </Container>
     );

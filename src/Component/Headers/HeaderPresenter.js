@@ -4,6 +4,9 @@ import styled from "styled-components";
 const Header = styled.div.attrs(props=>({
     className:props.className
   }))`
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background-color:${props=>props.scrollTop>100 ? "transparent" : "#2c3e50" };
     padding: 20px 10px; 
     color: black;
@@ -19,11 +22,16 @@ const Header = styled.div.attrs(props=>({
   `;
   const HeaderTitle = styled.div``;
 
+  const Input = styled.input`
+  
+  `;
+
 export default ({ handleScroll, scrollTop }) => {
  return(
     <>
     <Header className="Scroll" onScroll={handleScroll} scrollTop={scrollTop}>
       <HeaderTitle>bnbnong</HeaderTitle>
+      <Input placeholder="검색"/>
     </Header>
   </>
  );
