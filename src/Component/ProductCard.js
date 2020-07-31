@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 const Container = styled.div`
   width: 100%;
   max-width: 1200px;
-  border: 1px solid #eee;
 `;
 
 const Image = styled.div`
@@ -69,8 +68,8 @@ const Chips = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   flex-wrap: wrap;
+  float:left;
 `;
 
 const Chip = styled.div`
@@ -84,6 +83,11 @@ const Chip = styled.div`
   padding: 5px;
   font-size: 15px;
   font-weight: 400;
+
+`;
+
+const Links = styled(Link)`
+  border: 1px solid #eee;
 `;
 
 const ProductCard = ({
@@ -97,7 +101,7 @@ const ProductCard = ({
   isMarket,
 }) => {
   return !isMarket ? (
-    <Link to={`/detail/${id}`}>
+    <Links to={`/detail/${id}`}>
       <Container>
         <ImageContainer>
           <Image src={`http://bnbnong.com:4000/static/${src}`} />
@@ -116,9 +120,9 @@ const ProductCard = ({
             : numberWithCommas(price)}
         </Title>
       </Container>
-    </Link>
+    </Links>
   ) : (
-    <Link to={`/market/${id}`}>
+    <Links to={`/market/${id}`}>
     <Container>
       <ImageContainer>
         <Image src={"https://www.shareicon.net/data/512x512/2016/05/26/770815_man_512x512.png"} />
@@ -130,14 +134,14 @@ const ProductCard = ({
       <Title>
         <Chips>
           {family.split(",").map((list, index) => {
-            if (index <= 7) {
+            if (index <= 6) {
               return <Chip>{list}</Chip>;
             }
           })}
         </Chips>
       </Title>
     </Container>
-    </Link>
+    </Links>
 
   );
 };

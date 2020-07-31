@@ -46,12 +46,10 @@ export default class extends React.Component {
   };
 
   saveCart = (cart) => {
-    console.log("saveCart", cart);
     sessionStorage.setItem("cart", JSON.stringify(cart));
   };
 
   addToList = (item) => {
-    console.log(item.id);
     var cart = [];
 
     if (
@@ -62,10 +60,8 @@ export default class extends React.Component {
       this.saveCart(cart);
     } else {
       cart = JSON.parse(sessionStorage.getItem("cart"));
-      console.log("cart", cart);
       cart.push(item);
       const result = cart.filter((l, index) => l.id !== item.id);
-      console.log([...result, item], "result");
       sessionStorage.setItem("cart", JSON.stringify([...result, item]));
     }
   };

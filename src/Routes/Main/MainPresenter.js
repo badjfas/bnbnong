@@ -14,20 +14,21 @@ const TitleContainer = styled.div`
 const Title = styled.div``;
 
 const SwitchCointainer = styled.div`
-  position:relative;
-  padding:100px;
-  right:-70%;
+  float:right;
+  width:100%;
+  padding:20px;
+  border:0px;
   `;
 
 const MarketButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align:center;
   width: 200px;
-  font-size:25px;
-  padding:5px;
-  background-color: ${(props) =>
-    props.isMarket ? "#f50" : "#eee"};
+  font-size: 25px;
+  padding: 5px;
+  border: 2px solid ${(props) => (props.isMarket ? "#2E86C1" : "#17A589")};
+  border-radius: 5px;
+  margin-right:15%;
+  float:right;
 `;
 
 export default ({
@@ -48,12 +49,12 @@ export default ({
         산지 직송
         </Title>
       </TitleContainer>
+      <Category/>
       <SwitchCointainer>
         <MarketButton isMarket={isMarket} onClick={() => !switchPage()}>
-          {isMarket ? "농장" : "마켓" }
+          {isMarket ? "농장으로 보기" : "마켓으로 보기" }
         </MarketButton>
       </SwitchCointainer> 
-      <Category/>
       {loading ? (
         <Loader />
       ) : (
