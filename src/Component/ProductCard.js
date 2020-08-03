@@ -21,7 +21,6 @@ const MarketImage = styled.div`
   background-size:cover;
   background-position:center center;
   background-image: url('${(props) => props.src}');
-  transition : opacity 0.1s linear;
   `;
 
   const ProductImage = styled.div`
@@ -29,7 +28,6 @@ const MarketImage = styled.div`
   background-size:cover;
   background-position:center center;
   background-image: url('${(props) => props.src}');
-  transition : opacity 0.1s linear;
   `;
 
 const GapMark = styled.span`

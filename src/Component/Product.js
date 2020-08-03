@@ -52,7 +52,7 @@ const Text = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
-  border-bottom:1px solid #0f4c81;
+  border-bottom:2px solid #0f4c81;
 
   `;
 
@@ -61,7 +61,7 @@ export default ({ data,numberWithCommas,isMarket }) => {
     <>
       <Container>
         <TextContainer>
-          <Text>함께 하는 농장들</Text>
+          <Text>{isMarket ? "농장" : "마켓"}</Text>
         </TextContainer>
         <GridContainer>
           {data.map((p) => {
