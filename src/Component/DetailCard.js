@@ -25,14 +25,32 @@ const Image = styled.img`
 
 const Items = styled.div`
   background-color:#eee;
+  width:100%;
+  height:100%;
+  min-height:200px;
 `;
 
 const Item = styled.div`
-  width:100%;
   font-size:28px;
   font-weight:600;
-  padding:15px;
+  padding:20px;
+  &:last-child{
+    float:right;
+    padding:50px;
+    color:#0f4c81;
+  }
 `;
+
+const DetailList = styled.ul`
+  font-weight: 600;
+`;
+
+const List = styled.li`
+  border-bottom: 1px solid #eee;
+  padding:20px;
+`;
+
+
 
 const DetailCard = ({ data, numberWithCommas }) => {
   console.log(data);
@@ -43,9 +61,13 @@ const DetailCard = ({ data, numberWithCommas }) => {
       </ImgContainer>
       <Items>
         <Item>{data[0].name}</Item>
-        <Item>{numberWithCommas(data[0].price_shipping)}</Item>
-        <Item>{data[0].name}</Item>
+        <Item>{numberWithCommas(data[0].price_shipping)}원</Item>
       </Items>
+      <DetailList>
+        <List>원산지 : </List>
+        <List>배송방법 :</List>
+        <List>배송비 :</List>
+      </DetailList>
     </Container>
   );
 };
