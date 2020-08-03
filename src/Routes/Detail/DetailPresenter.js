@@ -1,6 +1,5 @@
 import React from "react"
-import DetailCard from "./components/DetailCard";
-import InfoCard from "./components/InfoCard";
+import DetailCard from "../../Component/DetailCard";
 import Loader from "../../Component/Loader";
 import styled from "styled-components";
 
@@ -9,7 +8,7 @@ const Container = styled.div`
   justify-content:center;
   align-items:center;
   width:100%;
-  max-width:1200px;
+  max-width:900px;
   margin:0px auto;
 `;
 

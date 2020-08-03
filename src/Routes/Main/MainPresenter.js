@@ -8,10 +8,17 @@ const TitleContainer = styled.div`
   display:flex;
   justify-content:center;
   align-itmes:center;
-  padding-top:100px;
+  font-weight: 600;
+  font-size: 25px;
+  padding-top:150px;
+  padding-bottom:50px;
+
 `;
 
-const Title = styled.div``;
+const Title = styled.span`
+border-bottom:1px solid #0f4c81;
+padding-bottom:5px;
+`;
 
 const SwitchCointainer = styled.div`
   float:right;
@@ -21,14 +28,20 @@ const SwitchCointainer = styled.div`
   `;
 
 const MarketButton = styled.div`
-  text-align:center;
+  cursor: pointer;
+  user-select:none;
+  text-align: center;
   width: 200px;
   font-size: 25px;
   padding: 5px;
-  border: 2px solid ${(props) => (props.isMarket ? "#2E86C1" : "#17A589")};
-  border-radius: 5px;
-  margin-right:15%;
-  float:right;
+  border: 1px solid ${(props) => (props.isMarket ? "#0f4c81" : "#0f4c81")};
+  border-radius: 10px;
+  margin-right: 15%;
+  float: right;
+  &:hover{
+    background-color:#0f4c81;
+    color:white;
+  }
 `;
 
 export default ({
@@ -46,7 +59,7 @@ export default ({
     <>
       <TitleContainer>
         <Title>
-        산지 직송
+        품목군
         </Title>
       </TitleContainer>
       <Category/>

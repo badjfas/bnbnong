@@ -8,7 +8,7 @@ const Header = styled.div.attrs(props=>({
     display:flex;
     justify-content:center;
     align-items:center;
-    background-color:${props=>props.scrollTop>100 ? "transparent" : "#D35400" };
+    background-color:${props=>props.scrollTop>100 ? "transparent" : "#fff" };
     padding: 20px 10px; 
     font-size:20px;
     font-weight: bold;
@@ -18,7 +18,7 @@ const Header = styled.div.attrs(props=>({
     opacity:${props=>props.scrollTop>100 ? 0 : 1 };
     transition: 0.2s;
     z-index:1030;
-    box-shadow:5px 5px 20px #B3B1AC;
+    box-shadow:1px 1px 10px #B3B1AC;
   `;
   const HeaderTitle = styled.div`
     position:relative;
@@ -32,8 +32,8 @@ const Header = styled.div.attrs(props=>({
     width: 200px;
     border-radius: 10px;
     height: 36px;
-    background-color: #f7f7f7;
-    border: 1px solid #f7f7f6;
+    background-color: #EEE9E9;
+    border: 1px solid #EEE9E9;
     transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     padding: 8px 8px 8px 74px;
     &:focus {

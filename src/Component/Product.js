@@ -10,6 +10,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0px auto;
+  
 `;
 
 const GridContainer = styled.div`
@@ -17,6 +18,7 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, 1fr);
   grid-gap: 25px;
+
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -50,8 +52,9 @@ const Text = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-left: 10px;
-  border-bottom: ${(props) => props.theme.boxBorder};
-`;
+  border-bottom:1px solid #0f4c81;
+
+  `;
 
 export default ({ data,numberWithCommas,isMarket }) => {
   return (
