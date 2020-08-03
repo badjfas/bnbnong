@@ -22,6 +22,7 @@ const Header = styled.div.attrs(props=>({
   `;
   const HeaderTitle = styled.div`
     position:relative;
+    color:#0f4c81;
   `;
 
   const Form = styled.form`
@@ -33,7 +34,7 @@ const Header = styled.div.attrs(props=>({
     border-radius: 10px;
     height: 36px;
     background-color: #EEE9E9;
-    border: 1px solid #EEE9E9;
+    border: 2px solid #EEE9E9;
     transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     padding: 8px 8px 8px 74px;
     &:focus {

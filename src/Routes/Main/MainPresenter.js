@@ -16,7 +16,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.span`
-border-bottom:1px solid #0f4c81;
+border-bottom:2px solid #0f4c81;
 padding-bottom:5px;
 `;
 
