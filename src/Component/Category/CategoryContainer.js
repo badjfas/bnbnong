@@ -5,6 +5,7 @@ import { API } from "../../api";
 export default class extends Component {
     state = {
         categoryList: [],
+        allCategoryList : [],
         loading:true,
         error:null,
         scrollRight:0,
@@ -14,9 +15,20 @@ export default class extends Component {
 
         try{
             const { data: getFamilyCateogry } = await API.getFamilyCateogry("all");
-            this.setState({
-                categoryList : getFamilyCateogry,
-            })
+            this.setState(
+              {
+                categoryList: getFamilyCateogry,
+              },
+              async () => {
+                this.state.categoryList.map(async ({ id }) => {
+                    console.log(id)
+                  const { data: getAllCategory } = await API.getAllFamily(id);
+                  this.setState({
+                    allCategoryList:getAllCategory
+                  })
+                });
+              }
+            );
         }catch (e){
             console.warn(e)
             this.setState({
@@ -49,10 +61,11 @@ export default class extends Component {
 
     }
     render(){
-        const {categoryList,error,loading,move} = this.state;
+        const {categoryList,error,loading,move,allCategoryList} = this.state;
+        console.log(allCategoryList)
         return (
           <CategoryPresenter
-          categoryList={categoryList}
+            categoryList={categoryList}
             loading={loading}
             error={error}
             move={move}
