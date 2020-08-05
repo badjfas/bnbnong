@@ -53,6 +53,7 @@ background-color:#eee;
 
 export default ({
   categoryList,
+  allFamilyList,
   loading,
   handleSlideRight,
   move,
@@ -67,7 +68,7 @@ export default ({
       ) : (
         <Contents>
           <Items move={move} id={"ul"}>
-            {categoryList.map((list) => {
+            {allFamilyList.map((list) => {
               return (
                 <Item id={list.id}>
                   <Img

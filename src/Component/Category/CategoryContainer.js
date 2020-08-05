@@ -6,13 +6,19 @@ export default class extends Component {
     state = {
         categoryList: [],
         allCategoryList : [],
+        allFamilyList: [],
         loading:true,
         error:null,
         scrollRight:0,
         move:0
     }
     componentDidMount = async() =>{
-
+        function getFamily(getAllCategory) {
+            this.setState({
+                allFamilyList: getAllCategory
+            });
+        }
+        getFamily = getFamily.bind(this);
         try{
             const { data: getFamilyCateogry } = await API.getFamilyCateogry("all");
             this.setState(
@@ -21,11 +27,8 @@ export default class extends Component {
               },
               async () => {
                 this.state.categoryList.map(async ({ id }) => {
-                    console.log(id)
-                  const { data: getAllCategory } = await API.getAllFamily(id);
-                  this.setState({
-                    allCategoryList:getAllCategory
-                  })
+                    const { data: getAllCategory } = await API.getAllFamily(id);
+                    await getFamily(getAllCategory);
                 });
               }
             );
@@ -61,11 +64,11 @@ export default class extends Component {
 
     }
     render(){
-        const {categoryList,error,loading,move,allCategoryList} = this.state;
-        console.log(allCategoryList)
+        const {categoryList,error,loading,move,allCategoryList, allFamilyList} = this.state;
         return (
           <CategoryPresenter
             categoryList={categoryList}
+            allFamilyList={allFamilyList}
             loading={loading}
             error={error}
             move={move}

@@ -30,7 +30,7 @@ export const API = {
   getFamilyCateogry: () => api.get(`api/product/familyCategory`,{
     method:"GET"
   }),
-  getAllFamily : (categoryId) =>api.get(`api/product/allFamily/${categoryId}`,{
+  getAllFamily : (categoryId) =>api.get(`api/product/allFamily/0`,{
     method:"GET"
   }),
   getProduct: ({
