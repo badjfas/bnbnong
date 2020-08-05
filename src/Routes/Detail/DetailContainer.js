@@ -1,9 +1,7 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
-import { withRouter } from "react-router-dom";
 import { data as dummyData } from "../../ProductData";
 import { API } from "../../api";
-import { CardText } from "reactstrap";
 
 export default class extends React.Component {
   constructor(props) {
@@ -34,7 +32,7 @@ export default class extends React.Component {
       });
     } catch {
       this.setState({
-        error: "위치 : DetailContainer.js",
+        error: "불편을 드려 죄송합니다..",
       });
     } finally {
       this.setState({
@@ -48,12 +46,10 @@ export default class extends React.Component {
   };
 
   saveCart = (cart) => {
-    console.log("saveCart", cart);
     sessionStorage.setItem("cart", JSON.stringify(cart));
   };
 
   addToList = (item) => {
-    console.log(item.id);
     var cart = [];
 
     if (
@@ -64,10 +60,8 @@ export default class extends React.Component {
       this.saveCart(cart);
     } else {
       cart = JSON.parse(sessionStorage.getItem("cart"));
-      console.log("cart", cart);
       cart.push(item);
       const result = cart.filter((l, index) => l.id !== item.id);
-      console.log([...result, item], "result");
       sessionStorage.setItem("cart", JSON.stringify([...result, item]));
     }
   };

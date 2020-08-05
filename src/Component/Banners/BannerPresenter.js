@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Markets from "../Markets";
+import MarketsTest from "../MarketsTest";
 
 const Container = styled.div`
   display:flex;
@@ -10,7 +10,7 @@ const Container = styled.div`
   background-size:cover;
   background-position:center center;
   width:100%;
-  height:1000px;
+  height:100%;
   flex-wrap:wrap;
   padding-top:100px;
   `;
@@ -43,15 +43,8 @@ const SubTitle = styled.div`
 
 export default () => {
     return (
-      <Container src={"https://images.wallpaperscraft.com/image/mandarins_fruits_citrus_leaves_117635_2048x1152.jpg"}>
-        <Form>
-        <Title>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </Title>
-          <SubTitle>저희와 함께하는 농부님들</SubTitle>
-        </Form>
-        <Markets />
+      <Container src={""}>
+        <MarketsTest />
       </Container>
     );
 }
