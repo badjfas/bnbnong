@@ -43,7 +43,7 @@ const Img = styled.div`
 height:80px;
 width:80px;
 border-radius:70%;
-border:3px solid #eee;
+border:1px solid #a59c9c;
 background-size:cover;
 background-position:center center;
 background-image: url('${(props) => props.src}');
