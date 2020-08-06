@@ -53,7 +53,9 @@ const Text = styled.span`
   text-overflow: ellipsis;
   margin-left: 10px;
   border-bottom:2px solid #0f4c81;
-
+  font-size: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
   `;
 
 export default ({ data,numberWithCommas,isMarket }) => {

@@ -12,12 +12,14 @@ const TitleContainer = styled.div`
   font-size: 25px;
   padding-top:150px;
   padding-bottom:50px;
-
 `;
 
 const Title = styled.span`
 border-bottom:2px solid #0f4c81;
-padding-bottom:5px;
+padding-bottom:20px;
+padding-left: 40px;
+padding-right: 40px;
+font-size: 40px;
 `;
 
 const SwitchCointainer = styled.div`
@@ -25,6 +27,7 @@ const SwitchCointainer = styled.div`
   width:100%;
   padding:20px;
   border:0px;
+  margin-top: 20px;
   `;
 
 const MarketButton = styled.div`
@@ -34,12 +37,15 @@ const MarketButton = styled.div`
   width: 200px;
   font-size: 25px;
   padding: 5px;
+  background-color:#0f4c81;
+  color: white;
   border: 1px solid ${(props) => (props.isMarket ? "#0f4c81" : "#0f4c81")};
   border-radius: 10px;
   margin-right: 15%;
   float: right;
   &:hover{
-    background-color:#0f4c81;
+    background-color:#628fb5;
+    border: 1px solid #628fb5;
     color:white;
   }
 `;
