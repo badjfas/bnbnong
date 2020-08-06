@@ -9,7 +9,7 @@ const Header = styled.div.attrs(props=>({
     justify-content:center;
     align-items:center;
     background-color:${props=>props.scrollTop>100 ? "transparent" : "#fff" };
-    padding: 20px 10px; 
+    padding: 10px 10px; 
     font-size:20px;
     font-weight: bold;
     position: fixed;
@@ -53,11 +53,17 @@ const Header = styled.div.attrs(props=>({
     margin: 0px auto;
     height: 36px;
   `;
+
+  const Img = styled.img`
+    height: 40px;
+  `;
 export default ({ handleScroll, scrollTop }) => {
  return (
    <>
      <Header className="Scroll" onScroll={handleScroll} scrollTop={scrollTop}>
-       <HeaderTitle>Bnbnong</HeaderTitle>
+       <HeaderTitle>
+        <Img src="/logo.png"/>
+       </HeaderTitle>
 
        <Form>
          <Button>

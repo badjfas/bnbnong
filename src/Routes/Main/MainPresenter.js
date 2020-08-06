@@ -62,7 +62,7 @@ export default ({
         품목군
         </Title>
       </TitleContainer>
-      <Category/>
+      <Category />
       <SwitchCointainer>
         <MarketButton isMarket={isMarket} onClick={() => !switchPage()}>
           {isMarket ? "농장으로 보기" : "마켓으로 보기" }
